@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,13 +128,284 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\About.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\About_Slide.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Archive.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bill.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BillDetail.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BITSoccerDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BITSoccerDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BITSoccerDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BITSoccerDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BITSoccerDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_Detail.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coach.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coach_Moment.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiscountCode.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Footer.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gender.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Header.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomePage_Content.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Home_Slide.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LevelCoach.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LevelStudent.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News_Category.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PartOfDay.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RangeAge.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RangeTime.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rating.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stadium.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tag.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tourament.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserType.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminAssets\dist\css\adminlte.css" />
+    <Content Include="AdminAssets\dist\css\adminlte.min.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.components.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.core.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.pages.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="AdminAssets\dist\img\AdminLTELogo.png" />
+    <Content Include="AdminAssets\dist\img\avatar.png" />
+    <Content Include="AdminAssets\dist\img\avatar04.png" />
+    <Content Include="AdminAssets\dist\img\avatar2.png" />
+    <Content Include="AdminAssets\dist\img\avatar3.png" />
+    <Content Include="AdminAssets\dist\img\avatar5.png" />
+    <Content Include="AdminAssets\dist\img\boxed-bg.jpg" />
+    <Content Include="AdminAssets\dist\img\boxed-bg.png" />
+    <Content Include="AdminAssets\dist\img\credit\american-express.png" />
+    <Content Include="AdminAssets\dist\img\credit\cirrus.png" />
+    <Content Include="AdminAssets\dist\img\credit\mastercard.png" />
+    <Content Include="AdminAssets\dist\img\credit\mestro.png" />
+    <Content Include="AdminAssets\dist\img\credit\paypal.png" />
+    <Content Include="AdminAssets\dist\img\credit\paypal2.png" />
+    <Content Include="AdminAssets\dist\img\credit\visa.png" />
+    <Content Include="AdminAssets\dist\img\default-150x150.png" />
+    <Content Include="AdminAssets\dist\img\icons.png" />
+    <Content Include="AdminAssets\dist\img\photo1.png" />
+    <Content Include="AdminAssets\dist\img\photo2.png" />
+    <Content Include="AdminAssets\dist\img\photo3.jpg" />
+    <Content Include="AdminAssets\dist\img\photo4.jpg" />
+    <Content Include="AdminAssets\dist\img\prod-1.jpg" />
+    <Content Include="AdminAssets\dist\img\prod-2.jpg" />
+    <Content Include="AdminAssets\dist\img\prod-3.jpg" />
+    <Content Include="AdminAssets\dist\img\prod-4.jpg" />
+    <Content Include="AdminAssets\dist\img\prod-5.jpg" />
+    <Content Include="AdminAssets\dist\img\user1-128x128.jpg" />
+    <Content Include="AdminAssets\dist\img\user2-160x160.jpg" />
+    <Content Include="AdminAssets\dist\img\user3-128x128.jpg" />
+    <Content Include="AdminAssets\dist\img\user4-128x128.jpg" />
+    <Content Include="AdminAssets\dist\img\user5-128x128.jpg" />
+    <Content Include="AdminAssets\dist\img\user6-128x128.jpg" />
+    <Content Include="AdminAssets\dist\img\user7-128x128.jpg" />
+    <Content Include="AdminAssets\dist\img\user8-128x128.jpg" />
+    <Content Include="AdminAssets\dist\js\adminlte.js" />
+    <Content Include="AdminAssets\dist\js\adminlte.min.js" />
+    <Content Include="AdminAssets\dist\js\demo.js" />
+    <Content Include="AdminAssets\dist\js\pages\dashboard.js" />
+    <Content Include="AdminAssets\dist\js\pages\dashboard2.js" />
+    <Content Include="AdminAssets\dist\js\pages\dashboard3.js" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="AdminAssets\plugins\datatables-bs4\css\dataTables.bootstrap4.css" />
+    <Content Include="AdminAssets\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="AdminAssets\plugins\datatables-bs4\js\dataTables.bootstrap4.js" />
+    <Content Include="AdminAssets\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="AdminAssets\plugins\datatables-responsive\css\responsive.bootstrap4.css" />
+    <Content Include="AdminAssets\plugins\datatables-responsive\css\responsive.bootstrap4.min.css" />
+    <Content Include="AdminAssets\plugins\datatables-responsive\js\dataTables.responsive.js" />
+    <Content Include="AdminAssets\plugins\datatables-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="AdminAssets\plugins\datatables-responsive\js\responsive.bootstrap4.js" />
+    <Content Include="AdminAssets\plugins\datatables-responsive\js\responsive.bootstrap4.min.js" />
+    <Content Include="AdminAssets\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="AdminAssets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\all.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\all.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\brands.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\brands.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\fontawesome.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\regular.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\regular.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\solid.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\solid.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\v4-shims.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="AdminAssets\plugins\jquery\core.js" />
+    <Content Include="AdminAssets\plugins\jquery\jquery.js" />
+    <Content Include="AdminAssets\plugins\jquery\jquery.min.js" />
+    <Content Include="AdminAssets\plugins\jquery\jquery.slim.js" />
+    <Content Include="AdminAssets\plugins\jquery\jquery.slim.min.js" />
+    <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\cards.css" />
+    <Content Include="Assets\css\classcard.css" />
+    <Content Include="Assets\css\ihover.css" />
+    <Content Include="Assets\css\nav.css" />
+    <Content Include="Assets\css\slick-theme.css" />
+    <Content Include="Assets\css\slick.css" />
+    <Content Include="Assets\css\star-rating.css" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\css\theme2.css" />
+    <Content Include="Assets\css\tour.css" />
+    <Content Include="Assets\img\148-1489124_badge-icon-pencil-link-wray-trail-of-the.png" />
+    <Content Include="Assets\img\20180402_071817.jpg" />
+    <Content Include="Assets\img\2020-05-08_102444.png" />
+    <Content Include="Assets\img\28d1ccc826be2ae209d8f354dbb9122e.png" />
+    <Content Include="Assets\img\375-3750422_messi-face-png-transparent-png.png" />
+    <Content Include="Assets\img\83047536_1559061280917786_3640823053601996800_o.jpg" />
+    <Content Include="Assets\img\award.png" />
+    <Content Include="Assets\img\casilas.jpg" />
+    <Content Include="Assets\img\coach member.png" />
+    <Content Include="Assets\img\cristiano-ronaldo-portugal-juventus.jpeg" />
+    <Content Include="Assets\img\dang-ky-hoc-banh.png" />
+    <Content Include="Assets\img\DN_HLV1.jpg" />
+    <Content Include="Assets\img\football-stadium.jpg" />
+    <Content Include="Assets\img\header_bg_1.jpg" />
+    <Content Include="Assets\img\header_bg_2.jpg" />
+    <Content Include="Assets\img\header_bg_3.jpg" />
+    <Content Include="Assets\img\header_bg_4.jpg" />
+    <Content Include="Assets\img\header_bg_5.jpg" />
+    <Content Include="Assets\img\header_bg_6.jpg" />
+    <Content Include="Assets\img\header_bg_7.jpg" />
+    <Content Include="Assets\img\HLV_HV1.jpg" />
+    <Content Include="Assets\img\HLV_HV2.jpg" />
+    <Content Include="Assets\img\HLV_HV3.jpg" />
+    <Content Include="Assets\img\HLV_HV4.jpg" />
+    <Content Include="Assets\img\HLV_HV5.jpg" />
+    <Content Include="Assets\img\HLV_HV6.jpg" />
+    <Content Include="Assets\img\home_slider_img_1.png" />
+    <Content Include="Assets\img\khoa1.jpg" />
+    <Content Include="Assets\img\khoa2.jpg" />
+    <Content Include="Assets\img\lesson-1.png" />
+    <Content Include="Assets\img\logo-bayern-munich-thoi-diem-hien-tai.jpg" />
+    <Content Include="Assets\img\logo.jpg" />
+    <Content Include="Assets\img\Lop1.jpg" />
+    <Content Include="Assets\img\Lop2.jpg" />
+    <Content Include="Assets\img\Lop3 %282%29.jpg" />
+    <Content Include="Assets\img\Lop3.jpg" />
+    <Content Include="Assets\img\MU-logo.jpg" />
+    <Content Include="Assets\img\neuer.jpg" />
+    <Content Include="Assets\img\neymar-brazil.jpg" />
+    <Content Include="Assets\img\NGO75851.jpg" />
+    <Content Include="Assets\img\promo2.jpg" />
+    <Content Include="Assets\img\promo3.jpg" />
+    <Content Include="Assets\img\Red_Background_03.jpg" />
+    <Content Include="Assets\img\ronaldo-cr7.jpg" />
+    <Content Include="Assets\img\ronaldo1.jpg" />
+    <Content Include="Assets\img\Sign-in-bg.jpeg" />
+    <Content Include="Assets\img\student member.png" />
+    <Content Include="Assets\img\SVD-A.jpg" />
+    <Content Include="Assets\img\SVD-B.jpg" />
+    <Content Include="Assets\img\SVD_A.jpg" />
+    <Content Include="Assets\img\SVD_B.png" />
+    <Content Include="Assets\img\TEAM-1.png" />
+    <Content Include="Assets\img\TEAM-2.png" />
+    <Content Include="Assets\img\TEAM_A.jpg" />
+    <Content Include="Assets\img\TEAM_B.jpg" />
+    <Content Include="Assets\img\tour-bg.jpg" />
+    <Content Include="Assets\img\tour-card-bg.jpg" />
+    <Content Include="Assets\img\Tourament.jpg" />
+    <Content Include="Assets\img\Tourament_BG.jpg" />
+    <Content Include="Assets\js\caleandar.js" />
+    <Content Include="Assets\js\calendardemo.js" />
+    <Content Include="Assets\js\main.js" />
+    <Content Include="Assets\js\slick.min.js" />
+    <Content Include="Assets\js\star-rating.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -135,8 +414,57 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\BITSoccerDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BITSoccerDB.Context.cs</LastGenOutput>
+      <DependentUpon>BITSoccerDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BITSoccerDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BITSoccerDB.edmx</DependentUpon>
+      <LastGenOutput>BITSoccerDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="AdminAssets\dist\css\adminlte.css.map" />
+    <Content Include="AdminAssets\dist\css\adminlte.min.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="AdminAssets\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="AdminAssets\dist\js\adminlte.js.map" />
+    <Content Include="AdminAssets\dist\js\adminlte.min.js.map" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="AdminAssets\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="AdminAssets\plugins\jquery\jquery.min.map" />
+    <Content Include="AdminAssets\plugins\jquery\jquery.slim.min.map" />
+    <EntityDeploy Include="Models\BITSoccerDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BITSoccerDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BITSoccerDB.edmx.diagram">
+      <DependentUpon>BITSoccerDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -160,12 +488,19 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminControl.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminHome.cshtml" />
+    <Content Include="Views\Shared\_LayoutStudent.cshtml" />
+    <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
+    <Content Include="Views\Home\Classes.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Tournaments.cshtml" />
+    <Content Include="Views\Home\Coach.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -179,6 +514,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

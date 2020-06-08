@@ -1,0 +1,62 @@
+.new-class{
+    padding: 15px 0px;
+    /* display: inline-block; */
+}
+
+.card{
+    box-shadow: 0 5px 10px rgba(0,0,0,.05);
+    margin: 5px 0;
+}
+
+.card-body a{
+    color: black;
+}
+
+.card-body a:hover{
+    text-decoration: none;
+    color:rgb(156, 238, 34) ;
+}
+
+.card .inner{
+    overflow: hidden;
+}
+
+
+.card .inner img{
+    transition: all 1.5s ease;
+}
+
+.card img:hover{
+    transform: scale(1.25);
+}
+
+.card-body .class-number i{
+    color:rgb(156, 238, 34) ;
+    font-size: 20px;
+    padding-right: 2px;
+}
+.star-prices{
+    border-top: 1px solid rgb(78, 75, 75);
+    padding-top: 15px;
+}
+
+.star-prices i{
+    color: rgb(156, 238, 34);
+    font-size: 16px;
+}
+
+.star-prices span{
+    color: rgb(70, 66, 66);
+    font-size: 12px;
+}
+
+.star-prices .prices-before{
+    font-size: 12px;
+    color:rgb(148, 137, 137);
+}
+
+.achievements .achieve .card .card-title{
+    padding-top: 15px;
+    border-top: 1px solid rgb(78, 75, 75);
+    text-transform: uppercase;
+}

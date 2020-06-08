@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Giải đấu";
+}
+
+<main>
+
+    <div class="titile-bg" style="background-image: url('../../Assets/img/header_bg_6.jpg');">
+        <div class="container">
+            <div class="titile-name">giải đấu</div>
+        </div>
+        <div class="text-shadow"></div>
+    </div>
+    <div id="background_main">
+        <div class="container">
+            <div id="background_content">
+                <div class="row">
+                    <!-- Filter -->
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="filter" style="margin: 30px 0px;">
+                            <ul class="tag-inline tag-col-2 d-lg-inline-block">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">TẤT CẢ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Đang diễn ra</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Sắp diễn ra</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Đã diễn ra</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Sort, Search -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div class="sort_search" style="margin: 30px 10px;">
+                            <form class="form-inline float-right">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Team Name" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <div class="row flex-row-reverse col-md-12 col-xs-12">
+                                <div class="btn-sort float-right">
+                                    <div class="btn-group ">
+                                        <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Sân Vận Động <span><i class="fas fa-chevron-down"></i></span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Sân Vận Động A</a>
+                                            <a class="dropdown-item" href="#">Sân Vận Động B</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tourament -->
+                <!--Giải đấu 1-->
+
+                <div id="match">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Netro FC</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="match-score" style="margin:0px 0px">0:0</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Trishal FC</span>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
+                            <div class="datetime">
+                                <em>21 TH5 2020 16:30 (GMT 7+)</em>
+                                <div class="location">
+                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
+                                    <em>SÂN VẬN ĐỘNG A</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Giải đấu 2-->
+                <div id="match">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Badda FC</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="match-score" style="margin:0px 0px">3:2</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Romna FC</span>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
+                            <div class="datetime">
+                                <em>11 TH5 2020 17:30 (GMT 7+)</em>
+                                <div class="location">
+                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
+                                    <em>SÂN VẬN ĐỘNG B</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                            <a href="tourament_detail_Thi.html" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Giải đấu 3-->
+                <div id="match">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Trishal FC</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="match-score" style="margin:0px 0px">2:4</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Cheta FC</span>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
+                            <div class="datetime">
+                                <em>24 TH4 2020 15:00 (GMT 7+)</em>
+                                <div class="location">
+                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
+                                    <em>SÂN VẬN ĐỘNG A</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Giải đấu 4-->
+                <div id="match">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Joypur FC</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="match-score" style="margin:0px 0px">2:0</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Mirpur FC</span>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
+                            <div class="datetime">
+                                <em>23 TH4 2020 16:30 (GMT 7+)</em>
+                                <div class="location">
+                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
+                                    <em>SÂN VẬN ĐỘNG A</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Giải đấu 5-->
+                <div id="match">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->BBI FC</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="match-score" style="margin:0px 0px">1:2</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->SEN FC</span>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
+                            <div class="datetime">
+                                <em>02 TH3 2020 16:30 (GMT 7+)</em>
+                                <div class="location">
+                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
+                                    <em>SÂN VẬN ĐỘNG B</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--pagination-->
+                <div style="text-align:center">
+                    <div class="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

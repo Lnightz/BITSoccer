@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BITSoccerModelStoreContainer" CdmEntityContainer="BITSoccerEntities">
+    <EntitySetMapping Name="Abouts">
+      <EntityTypeMapping TypeName="BITSoccerModel.About">
+        <MappingFragment StoreEntitySet="About">
+          <ScalarProperty Name="About_ID" ColumnName="About_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="About_Image" ColumnName="About_Image" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="About_Slide_ID" ColumnName="About_Slide_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="About_Slide">
+      <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
+        <MappingFragment StoreEntitySet="About_Slide">
+          <ScalarProperty Name="About_Slide_ID" ColumnName="About_Slide_ID" />
+          <ScalarProperty Name="Image_1" ColumnName="Image_1" />
+          <ScalarProperty Name="Image_2" ColumnName="Image_2" />
+          <ScalarProperty Name="Image_3" ColumnName="Image_3" />
+          <ScalarProperty Name="Image_4" ColumnName="Image_4" />
+          <ScalarProperty Name="Image_5" ColumnName="Image_5" />
+          <ScalarProperty Name="Image_6" ColumnName="Image_6" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Archives">
+      <EntityTypeMapping TypeName="BITSoccerModel.Archive">
+        <MappingFragment StoreEntitySet="Archive">
+          <ScalarProperty Name="Archive_ID" ColumnName="Archive_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="BITSoccerModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="DatePay" ColumnName="DatePay" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="TotalPaid" ColumnName="TotalPaid" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="VISAPay" ColumnName="VISAPay" />
+          <ScalarProperty Name="ATMPay" ColumnName="ATMPay" />
+          <ScalarProperty Name="MoMoPay" ColumnName="MoMoPay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillDetails">
+      <EntityTypeMapping TypeName="BITSoccerModel.BillDetail">
+        <MappingFragment StoreEntitySet="BillDetail">
+          <ScalarProperty Name="BillDetailID" ColumnName="BillDetailID" />
+          <ScalarProperty Name="BillID" ColumnName="BillID" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="DateSignIN" ColumnName="DateSignIN" />
+          <ScalarProperty Name="DateExpierd" ColumnName="DateExpierd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="BITSoccerModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="Quanity" ColumnName="Quanity" />
+          <ScalarProperty Name="Prices" ColumnName="Prices" />
+          <ScalarProperty Name="PromoPrices" ColumnName="PromoPrices" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="EndDay" ColumnName="EndDay" />
+          <ScalarProperty Name="MinQuanity" ColumnName="MinQuanity" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+          <ScalarProperty Name="Class_Detail_ID" ColumnName="Class_Detail_ID" />
+          <ScalarProperty Name="Coach_ID" ColumnName="Coach_ID" />
+          <ScalarProperty Name="LevelStudentID" ColumnName="LevelStudentID" />
+          <ScalarProperty Name="RangeAgeID" ColumnName="RangeAgeID" />
+          <ScalarProperty Name="PartOfDayID" ColumnName="PartOfDayID" />
+          <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+          <ScalarProperty Name="RangeTimeID" ColumnName="RangeTimeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Class_Detail">
+      <EntityTypeMapping TypeName="BITSoccerModel.Class_Detail">
+        <MappingFragment StoreEntitySet="Class_Detail">
+          <ScalarProperty Name="ClassDetail_ID" ColumnName="ClassDetail_ID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coaches">
+      <EntityTypeMapping TypeName="BITSoccerModel.Coach">
+        <MappingFragment StoreEntitySet="Coach">
+          <ScalarProperty Name="Coach_ID" ColumnName="Coach_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MetaTilte" ColumnName="MetaTilte" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Insta" ColumnName="Insta" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coach_Moment">
+      <EntityTypeMapping TypeName="BITSoccerModel.Coach_Moment">
+        <MappingFragment StoreEntitySet="Coach_Moment">
+          <ScalarProperty Name="Coach_Moment_ID" ColumnName="Coach_Moment_ID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="BITSoccerModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
+          <ScalarProperty Name="New_ID" ColumnName="New_ID" />
+          <ScalarProperty Name="RootCommentID" ColumnName="RootCommentID" />
+          <ScalarProperty Name="ReplyToCommentID" ColumnName="ReplyToCommentID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscountCodes">
+      <EntityTypeMapping TypeName="BITSoccerModel.DiscountCode">
+        <MappingFragment StoreEntitySet="DiscountCode">
+          <ScalarProperty Name="DiscountCodeID" ColumnName="DiscountCodeID" />
+          <ScalarProperty Name="DiscountCode1" ColumnName="DiscountCode" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Footers">
+      <EntityTypeMapping TypeName="BITSoccerModel.Footer">
+        <MappingFragment StoreEntitySet="Footer">
+          <ScalarProperty Name="Footer_ID" ColumnName="Footer_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Insta" ColumnName="Insta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="BITSoccerModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+          <ScalarProperty Name="Gender1" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Headers">
+      <EntityTypeMapping TypeName="BITSoccerModel.Header">
+        <MappingFragment StoreEntitySet="Header">
+          <ScalarProperty Name="Header_ID" ColumnName="Header_ID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Home_Slide">
+      <EntityTypeMapping TypeName="BITSoccerModel.Home_Slide">
+        <MappingFragment StoreEntitySet="Home_Slide">
+          <ScalarProperty Name="HomeSlide_ID" ColumnName="HomeSlide_ID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomePage_Content">
+      <EntityTypeMapping TypeName="BITSoccerModel.HomePage_Content">
+        <MappingFragment StoreEntitySet="HomePage_Content">
+          <ScalarProperty Name="Home_Content_ID" ColumnName="Home_Content_ID" />
+          <ScalarProperty Name="Coach_Content" ColumnName="Coach_Content" />
+          <ScalarProperty Name="HotClass_Content" ColumnName="HotClass_Content" />
+          <ScalarProperty Name="Tour_Content" ColumnName="Tour_Content" />
+          <ScalarProperty Name="Stadium_Content" ColumnName="Stadium_Content" />
+          <ScalarProperty Name="Archive_Content" ColumnName="Archive_Content" />
+          <ScalarProperty Name="Quote1_Content" ColumnName="Quote1_Content" />
+          <ScalarProperty Name="Quote2_Content" ColumnName="Quote2_Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LevelCoaches">
+      <EntityTypeMapping TypeName="BITSoccerModel.LevelCoach">
+        <MappingFragment StoreEntitySet="LevelCoach">
+          <ScalarProperty Name="LevelCoachID" ColumnName="LevelCoachID" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LevelStudents">
+      <EntityTypeMapping TypeName="BITSoccerModel.LevelStudent">
+        <MappingFragment StoreEntitySet="LevelStudent">
+          <ScalarProperty Name="LevelStudentID" ColumnName="LevelStudentID" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="BITSoccerModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="News_ID" ColumnName="News_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="NewCate_ID" ColumnName="NewCate_ID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News_Category">
+      <EntityTypeMapping TypeName="BITSoccerModel.News_Category">
+        <MappingFragment StoreEntitySet="News_Category">
+          <ScalarProperty Name="NewCate_ID" ColumnName="NewCate_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartOfDays">
+      <EntityTypeMapping TypeName="BITSoccerModel.PartOfDay">
+        <MappingFragment StoreEntitySet="PartOfDay">
+          <ScalarProperty Name="PartOfDayID" ColumnName="PartOfDayID" />
+          <ScalarProperty Name="PartOfDay1" ColumnName="PartOfDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RangeAges">
+      <EntityTypeMapping TypeName="BITSoccerModel.RangeAge">
+        <MappingFragment StoreEntitySet="RangeAge">
+          <ScalarProperty Name="RangeAgeID" ColumnName="RangeAgeID" />
+          <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+          <ScalarProperty Name="MaxAge" ColumnName="MaxAge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RangeTimes">
+      <EntityTypeMapping TypeName="BITSoccerModel.RangeTime">
+        <MappingFragment StoreEntitySet="RangeTime">
+          <ScalarProperty Name="RangeTimeID" ColumnName="RangeTimeID" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="BITSoccerModel.Rating">
+        <MappingFragment StoreEntitySet="Rating">
+          <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
+          <ScalarProperty Name="NumberStar" ColumnName="NumberStar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stadia">
+      <EntityTypeMapping TypeName="BITSoccerModel.Stadium">
+        <MappingFragment StoreEntitySet="Stadium">
+          <ScalarProperty Name="Stadium_ID" ColumnName="Stadium_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BITSoccerModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="BITSoccerModel.Tag">
+        <MappingFragment StoreEntitySet="Tags">
+          <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Touraments">
+      <EntityTypeMapping TypeName="BITSoccerModel.Tourament">
+        <MappingFragment StoreEntitySet="Tourament">
+          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MetaTitlte" ColumnName="MetaTitlte" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreaedBy" ColumnName="CreaedBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Team_A" ColumnName="Team_A" />
+          <ScalarProperty Name="Team_B" ColumnName="Team_B" />
+          <ScalarProperty Name="Team_A_Score" ColumnName="Team_A_Score" />
+          <ScalarProperty Name="Team_B_Score" ColumnName="Team_B_Score" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Stadium_ID" ColumnName="Stadium_ID" />
+          <ScalarProperty Name="Team_A_Player" ColumnName="Team_A_Player" />
+          <ScalarProperty Name="Team_B_Player" ColumnName="Team_B_Player" />
+          <ScalarProperty Name="TeamARedCard" ColumnName="TeamARedCard" />
+          <ScalarProperty Name="TeamAYellowCart" ColumnName="TeamAYellowCart" />
+          <ScalarProperty Name="TeamAFouls_Conceded" ColumnName="TeamAFouls_Conceded" />
+          <ScalarProperty Name="TeamBRedCard" ColumnName="TeamBRedCard" />
+          <ScalarProperty Name="TeamBYellowCart" ColumnName="TeamBYellowCart" />
+          <ScalarProperty Name="TeamBFouls_Conceded" ColumnName="TeamBFouls_Conceded" />
+          <ScalarProperty Name="TeamAFormation" ColumnName="TeamAFormation" />
+          <ScalarProperty Name="TeamBFormation" ColumnName="TeamBFormation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BITSoccerModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="UserType_ID" ColumnName="UserType_ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="BITSoccerModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="UserType_ID" ColumnName="UserType_ID" />
+          <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClassUser" TypeName="BITSoccerModel.ClassUser" StoreEntitySet="ClassUser">
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="NewsTags" TypeName="BITSoccerModel.NewsTags" StoreEntitySet="NewsTags">
+      <EndProperty Name="News">
+        <ScalarProperty Name="News_ID" ColumnName="News_ID" />
+      </EndProperty>
+      <EndProperty Name="Tags">
+        <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

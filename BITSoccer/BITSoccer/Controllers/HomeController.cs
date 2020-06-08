@@ -15,15 +15,22 @@ namespace BITSoccer.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult Classes()
         {
-            ViewBag.Message = "Your contact page.";
-
+            return View();
+        }
+        public ActionResult News()
+        {
+            return View();
+        }
+        public ActionResult Tournaments()
+        {
+            return View();
+        }
+        public ActionResult Coach()
+        {
             return View();
         }
     }

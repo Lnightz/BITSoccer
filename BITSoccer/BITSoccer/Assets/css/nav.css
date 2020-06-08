@@ -1,0 +1,83 @@
+header .navbar{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.navbar-brand img{
+    width: 75px;
+    height: 60px;
+    background-color: transparent;
+}
+
+.navbar-dark{
+    background-color: transparent !important;
+    transition: .3s ease;
+}
+
+.navbar-dark.scrolled{
+    background-color: rgb(119, 190, 67) !important;
+}
+.navbar-nav li{
+    padding: 0 5px;
+}
+.navbar-nav li a{
+    font-size: 13px;
+    color: white !important;
+    font-weight: 600;
+}
+
+header .nav-link{
+    color: white !important;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.text-shadow{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .3;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header nav{
+    z-index: 999999;
+}
+
+header .hover-effect::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width .3s;
+}
+
+header .hover-effect:hover::after{
+    width: 100%;
+    transition: width .3s;
+}
+
+header .nav-item.active::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+}
+
+header .dropdown:hover > .dropdown-menu{
+    display: block;
+}
+
+header .dropdown-menu{
+    background-color: rgb(119, 190, 67) ;
+}
+
+header .dropdown-item:hover{
+    background: none;
+}

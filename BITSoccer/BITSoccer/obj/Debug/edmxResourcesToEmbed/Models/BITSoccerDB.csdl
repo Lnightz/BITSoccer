@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BITSoccerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="About_ID" />
+    </Key>
+    <Property Name="About_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="About_Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="About_Slide_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="About_Slide" Relationship="Self.FK_About_About_Slide" FromRole="About" ToRole="About_Slide" />
+  </EntityType>
+  <EntityType Name="About_Slide">
+    <Key>
+      <PropertyRef Name="About_Slide_ID" />
+    </Key>
+    <Property Name="About_Slide_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image_1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image_2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image_3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image_4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image_5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image_6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Abouts" Relationship="Self.FK_About_About_Slide" FromRole="About_Slide" ToRole="About" />
+  </EntityType>
+  <EntityType Name="Archive">
+    <Key>
+      <PropertyRef Name="Archive_ID" />
+    </Key>
+    <Property Name="Archive_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Bill_ID" />
+    </Key>
+    <Property Name="Bill_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="DatePay" Type="DateTime" Precision="0" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalPaid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="VISAPay" Type="Boolean" />
+    <Property Name="ATMPay" Type="Boolean" />
+    <Property Name="MoMoPay" Type="Boolean" />
+    <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__BillI__4316F928" FromRole="Bill" ToRole="BillDetail" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />
+  </EntityType>
+  <EntityType Name="BillDetail">
+    <Key>
+      <PropertyRef Name="BillDetailID" />
+    </Key>
+    <Property Name="BillDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BillID" Type="Int32" />
+    <Property Name="ClassID" Type="Int32" />
+    <Property Name="DateSignIN" Type="DateTime" Precision="0" />
+    <Property Name="DateExpierd" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK__BillDetai__BillI__4316F928" FromRole="BillDetail" ToRole="Bill" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__BillDetai__Class__440B1D61" FromRole="BillDetail" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="Class_ID" />
+    </Key>
+    <Property Name="Class_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Quanity" Type="Int32" />
+    <Property Name="Prices" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PromoPrices" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="StartDay" Type="DateTime" Precision="3" />
+    <Property Name="EndDay" Type="DateTime" Precision="3" />
+    <Property Name="MinQuanity" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ViewCount" Type="Int32" />
+    <Property Name="Class_Detail_ID" Type="Int32" Nullable="false" />
+    <Property Name="Coach_ID" Type="Int32" Nullable="false" />
+    <Property Name="LevelStudentID" Type="Int32" />
+    <Property Name="RangeAgeID" Type="Int32" />
+    <Property Name="PartOfDayID" Type="Int32" />
+    <Property Name="GenderID" Type="Int32" />
+    <Property Name="RangeTimeID" Type="Int32" />
+    <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__Class__440B1D61" FromRole="Class" ToRole="BillDetail" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FK__Rating__Class_ID__52593CB8" FromRole="Class" ToRole="Rating" />
+    <NavigationProperty Name="Class_Detail" Relationship="Self.FK_Class_Class_Detail" FromRole="Class" ToRole="Class_Detail" />
+    <NavigationProperty Name="Coach" Relationship="Self.FK_Class_Coach" FromRole="Class" ToRole="Coach" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Class_Gender" FromRole="Class" ToRole="Gender" />
+    <NavigationProperty Name="LevelStudent" Relationship="Self.FK_Class_LevelStudent" FromRole="Class" ToRole="LevelStudent" />
+    <NavigationProperty Name="PartOfDay" Relationship="Self.FK_Class_PartOfDay" FromRole="Class" ToRole="PartOfDay" />
+    <NavigationProperty Name="RangeAge" Relationship="Self.FK_Class_RangeAge" FromRole="Class" ToRole="RangeAge" />
+    <NavigationProperty Name="RangeTime" Relationship="Self.FK_Class_RangeOfTime" FromRole="Class" ToRole="RangeTime" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Class" FromRole="Class" ToRole="Comment" />
+    <NavigationProperty Name="Users" Relationship="Self.ClassUser" FromRole="Class" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Class_Detail">
+    <Key>
+      <PropertyRef Name="ClassDetail_ID" />
+    </Key>
+    <Property Name="ClassDetail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Class_Detail" FromRole="Class_Detail" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="Coach">
+    <Key>
+      <PropertyRef Name="Coach_ID" />
+    </Key>
+    <Property Name="Coach_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTilte" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Passport" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Insta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_ID" Type="Int32" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Coach" FromRole="Coach" ToRole="Class" />
+    <NavigationProperty Name="LevelCoach" Relationship="Self.FK_Coach_Level" FromRole="Coach" ToRole="LevelCoach" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Coach_User" FromRole="Coach" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Coach_Moment">
+    <Key>
+      <PropertyRef Name="Coach_Moment_ID" />
+    </Key>
+    <Property Name="Coach_Moment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Comment_ID" />
+    </Key>
+    <Property Name="Comment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="Class_ID" Type="Int32" />
+    <Property Name="New_ID" Type="Int32" />
+    <Property Name="RootCommentID" Type="Int32" />
+    <Property Name="ReplyToCommentID" Type="Int32" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PostDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_Comment_Class" FromRole="Comment" ToRole="Class" />
+    <NavigationProperty Name="News" Relationship="Self.FK_Comment_News" FromRole="Comment" ToRole="News" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+    <NavigationProperty Name="Comment1" Relationship="Self.FK_ReplyToCommentID" FromRole="Comment" ToRole="Comment1" />
+    <NavigationProperty Name="Comment2" Relationship="Self.FK_ReplyToCommentID" FromRole="Comment1" ToRole="Comment" />
+    <NavigationProperty Name="Comment11" Relationship="Self.FK_RootCommentID" FromRole="Comment" ToRole="Comment1" />
+    <NavigationProperty Name="Comment3" Relationship="Self.FK_RootCommentID" FromRole="Comment1" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="DiscountCode">
+    <Key>
+      <PropertyRef Name="DiscountCodeID" />
+    </Key>
+    <Property Name="DiscountCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscountCode1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="Double" />
+  </EntityType>
+  <EntityType Name="Footer">
+    <Key>
+      <PropertyRef Name="Footer_ID" />
+    </Key>
+    <Property Name="Footer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Insta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="GenderID" />
+    </Key>
+    <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Gender" FromRole="Gender" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="Header">
+    <Key>
+      <PropertyRef Name="Header_ID" />
+    </Key>
+    <Property Name="Header_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Home_Slide">
+    <Key>
+      <PropertyRef Name="HomeSlide_ID" />
+    </Key>
+    <Property Name="HomeSlide_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="HomePage_Content">
+    <Key>
+      <PropertyRef Name="Home_Content_ID" />
+    </Key>
+    <Property Name="Home_Content_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Coach_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HotClass_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tour_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stadium_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Archive_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quote1_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quote2_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LevelCoach">
+    <Key>
+      <PropertyRef Name="LevelCoachID" />
+    </Key>
+    <Property Name="LevelCoachID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LevelName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Coaches" Relationship="Self.FK_Coach_Level" FromRole="LevelCoach" ToRole="Coach" />
+  </EntityType>
+  <EntityType Name="LevelStudent">
+    <Key>
+      <PropertyRef Name="LevelStudentID" />
+    </Key>
+    <Property Name="LevelStudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LevelName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_LevelStudent" FromRole="LevelStudent" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="News_ID" />
+    </Key>
+    <Property Name="News_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="NewCate_ID" Type="Int32" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ViewsCount" Type="Int32" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_News" FromRole="News" ToRole="Comment" />
+    <NavigationProperty Name="News_Category" Relationship="Self.FK_News_News_Category" FromRole="News" ToRole="News_Category" />
+    <NavigationProperty Name="Tags" Relationship="Self.NewsTags" FromRole="News" ToRole="Tags" />
+  </EntityType>
+  <EntityType Name="News_Category">
+    <Key>
+      <PropertyRef Name="NewCate_ID" />
+    </Key>
+    <Property Name="NewCate_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="News" Relationship="Self.FK_News_News_Category" FromRole="News_Category" ToRole="News" />
+  </EntityType>
+  <EntityType Name="PartOfDay">
+    <Key>
+      <PropertyRef Name="PartOfDayID" />
+    </Key>
+    <Property Name="PartOfDayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartOfDay1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_PartOfDay" FromRole="PartOfDay" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="RangeAge">
+    <Key>
+      <PropertyRef Name="RangeAgeID" />
+    </Key>
+    <Property Name="RangeAgeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MinAge" Type="Int32" />
+    <Property Name="MaxAge" Type="Int32" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_RangeAge" FromRole="RangeAge" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="RangeTime">
+    <Key>
+      <PropertyRef Name="RangeTimeID" />
+    </Key>
+    <Property Name="RangeTimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_RangeOfTime" FromRole="RangeTime" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="RatingID" />
+    </Key>
+    <Property Name="RatingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="Class_ID" Type="Int32" />
+    <Property Name="NumberStar" Type="Int32" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__Rating__Class_ID__52593CB8" FromRole="Rating" ToRole="Class" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Rating__User_ID__534D60F1" FromRole="Rating" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Stadium">
+    <Key>
+      <PropertyRef Name="Stadium_ID" />
+    </Key>
+    <Property Name="Stadium_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Touraments" Relationship="Self.FK_Tourament_Stadium" FromRole="Stadium" ToRole="Tourament" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Tag_ID" />
+    </Key>
+    <Property Name="Tag_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TagName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="News" Relationship="Self.NewsTags" FromRole="Tags" ToRole="News" />
+  </EntityType>
+  <EntityType Name="Tourament">
+    <Key>
+      <PropertyRef Name="Tour_ID" />
+    </Key>
+    <Property Name="Tour_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MetaTitlte" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreaedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Team_A" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Team_B" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Team_A_Score" Type="Int32" />
+    <Property Name="Team_B_Score" Type="Int32" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="Stadium_ID" Type="Int32" Nullable="false" />
+    <Property Name="Team_A_Player" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Team_B_Player" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TeamARedCard" Type="Int32" />
+    <Property Name="TeamAYellowCart" Type="Int32" />
+    <Property Name="TeamAFouls_Conceded" Type="Int32" />
+    <Property Name="TeamBRedCard" Type="Int32" />
+    <Property Name="TeamBYellowCart" Type="Int32" />
+    <Property Name="TeamBFouls_Conceded" Type="Int32" />
+    <Property Name="TeamAFormation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TeamBFormation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Stadium" Relationship="Self.FK_Tourament_Stadium" FromRole="Tourament" ToRole="Stadium" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType_ID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDay" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_User" FromRole="User" ToRole="Bill" />
+    <NavigationProperty Name="Coaches" Relationship="Self.FK_Coach_User" FromRole="User" ToRole="Coach" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FK__Rating__User_ID__534D60F1" FromRole="User" ToRole="Rating" />
+    <NavigationProperty Name="UserType" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
+    <NavigationProperty Name="Classes" Relationship="Self.ClassUser" FromRole="User" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserType_ID" />
+    </Key>
+    <Property Name="UserType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_About_About_Slide">
+    <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="About" Type="Self.About" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="About_Slide">
+        <PropertyRef Name="About_Slide_ID" />
+      </Principal>
+      <Dependent Role="About">
+        <PropertyRef Name="About_Slide_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__BillI__4316F928">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="Bill_ID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__Class__440B1D61">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class_ID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__Class_ID__52593CB8">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class_ID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="Class_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Class_Detail">
+    <End Role="Class_Detail" Type="Self.Class_Detail" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class_Detail">
+        <PropertyRef Name="ClassDetail_ID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="Class_Detail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Coach">
+    <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="Coach_ID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="Coach_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_LevelStudent">
+    <End Role="LevelStudent" Type="Self.LevelStudent" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LevelStudent">
+        <PropertyRef Name="LevelStudentID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="LevelStudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_PartOfDay">
+    <End Role="PartOfDay" Type="Self.PartOfDay" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartOfDay">
+        <PropertyRef Name="PartOfDayID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="PartOfDayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_RangeAge">
+    <End Role="RangeAge" Type="Self.RangeAge" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RangeAge">
+        <PropertyRef Name="RangeAgeID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="RangeAgeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_RangeOfTime">
+    <End Role="RangeTime" Type="Self.RangeTime" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RangeTime">
+        <PropertyRef Name="RangeTimeID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="RangeTimeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class_ID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Class_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coach_Level">
+    <End Role="LevelCoach" Type="Self.LevelCoach" Multiplicity="0..1" />
+    <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LevelCoach">
+        <PropertyRef Name="LevelCoachID" />
+      </Principal>
+      <Dependent Role="Coach">
+        <PropertyRef Name="Level" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coach_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Coach">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_News">
+    <End Role="News" Type="Self.News" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="News_ID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="New_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReplyToCommentID">
+    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+    <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_ID" />
+      </Principal>
+      <Dependent Role="Comment1">
+        <PropertyRef Name="ReplyToCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RootCommentID">
+    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+    <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_ID" />
+      </Principal>
+      <Dependent Role="Comment1">
+        <PropertyRef Name="RootCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_News_Category">
+    <End Role="News_Category" Type="Self.News_Category" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News_Category">
+        <PropertyRef Name="NewCate_ID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="NewCate_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__User_ID__534D60F1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tourament_Stadium">
+    <End Role="Stadium" Type="Self.Stadium" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tourament" Type="Self.Tourament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stadium">
+        <PropertyRef Name="Stadium_ID" />
+      </Principal>
+      <Dependent Role="Tourament">
+        <PropertyRef Name="Stadium_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserType_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClassUser">
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <Association Name="NewsTags">
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="BITSoccerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Abouts" EntityType="Self.About" />
+    <EntitySet Name="About_Slide" EntityType="Self.About_Slide" />
+    <EntitySet Name="Archives" EntityType="Self.Archive" />
+    <EntitySet Name="Bills" EntityType="Self.Bill" />
+    <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
+    <EntitySet Name="Classes" EntityType="Self.Class" />
+    <EntitySet Name="Class_Detail" EntityType="Self.Class_Detail" />
+    <EntitySet Name="Coaches" EntityType="Self.Coach" />
+    <EntitySet Name="Coach_Moment" EntityType="Self.Coach_Moment" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="DiscountCodes" EntityType="Self.DiscountCode" />
+    <EntitySet Name="Footers" EntityType="Self.Footer" />
+    <EntitySet Name="Genders" EntityType="Self.Gender" />
+    <EntitySet Name="Headers" EntityType="Self.Header" />
+    <EntitySet Name="Home_Slide" EntityType="Self.Home_Slide" />
+    <EntitySet Name="HomePage_Content" EntityType="Self.HomePage_Content" />
+    <EntitySet Name="LevelCoaches" EntityType="Self.LevelCoach" />
+    <EntitySet Name="LevelStudents" EntityType="Self.LevelStudent" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="News_Category" EntityType="Self.News_Category" />
+    <EntitySet Name="PartOfDays" EntityType="Self.PartOfDay" />
+    <EntitySet Name="RangeAges" EntityType="Self.RangeAge" />
+    <EntitySet Name="RangeTimes" EntityType="Self.RangeTime" />
+    <EntitySet Name="Ratings" EntityType="Self.Rating" />
+    <EntitySet Name="Stadia" EntityType="Self.Stadium" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
+    <EntitySet Name="Touraments" EntityType="Self.Tourament" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+    <AssociationSet Name="FK_About_About_Slide" Association="Self.FK_About_About_Slide">
+      <End Role="About_Slide" EntitySet="About_Slide" />
+      <End Role="About" EntitySet="Abouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__BillI__4316F928" Association="Self.FK__BillDetai__BillI__4316F928">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__Class__440B1D61" Association="Self.FK__BillDetai__Class__440B1D61">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__Class_ID__52593CB8" Association="Self.FK__Rating__Class_ID__52593CB8">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Class_Detail" Association="Self.FK_Class_Class_Detail">
+      <End Role="Class_Detail" EntitySet="Class_Detail" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Coach" Association="Self.FK_Class_Coach">
+      <End Role="Coach" EntitySet="Coaches" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Gender" Association="Self.FK_Class_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_LevelStudent" Association="Self.FK_Class_LevelStudent">
+      <End Role="LevelStudent" EntitySet="LevelStudents" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_PartOfDay" Association="Self.FK_Class_PartOfDay">
+      <End Role="PartOfDay" EntitySet="PartOfDays" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_RangeAge" Association="Self.FK_Class_RangeAge">
+      <End Role="RangeAge" EntitySet="RangeAges" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_RangeOfTime" Association="Self.FK_Class_RangeOfTime">
+      <End Role="RangeTime" EntitySet="RangeTimes" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Class" Association="Self.FK_Comment_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coach_Level" Association="Self.FK_Coach_Level">
+      <End Role="LevelCoach" EntitySet="LevelCoaches" />
+      <End Role="Coach" EntitySet="Coaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coach_User" Association="Self.FK_Coach_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Coach" EntitySet="Coaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_News" Association="Self.FK_Comment_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReplyToCommentID" Association="Self.FK_ReplyToCommentID">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Comment1" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RootCommentID" Association="Self.FK_RootCommentID">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Comment1" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_News_Category" Association="Self.FK_News_News_Category">
+      <End Role="News_Category" EntitySet="News_Category" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__User_ID__534D60F1" Association="Self.FK__Rating__User_ID__534D60F1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tourament_Stadium" Association="Self.FK_Tourament_Stadium">
+      <End Role="Stadium" EntitySet="Stadia" />
+      <End Role="Tourament" EntitySet="Touraments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ClassUser" Association="Self.ClassUser">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="NewsTags" Association="Self.NewsTags">
+      <End Role="News" EntitySet="News" />
+      <End Role="Tags" EntitySet="Tags" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

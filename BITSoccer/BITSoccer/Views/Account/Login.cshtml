@@ -1,0 +1,62 @@
+﻿@model BITSoccer.Models.User
+@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<div class="main-wrapper">
+    <div div class="titile-bg">
+        <div class="container">
+            <div class="titile-name">đăng nhập</div>
+        </div>
+    </div>
+
+    <div id="background_main">
+        <div class="container">
+            <div id="background_content" style="padding: 20px 0px">
+                <section class="login-titile">
+                    <div><h2>Đăng nhập vào tài khoản của bạn</h2></div>
+                </section>
+                <div class="container">
+                    <div class="accordion divcenter" style="max-width: 550px;">
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="login-form">
+                                @*<label for="username">Tên đăng nhập</label>*@
+                                @Html.LabelFor(m => m.UserName)
+                                @*<input id="username" type="text" placeholder="User Name" class="form-control">*@
+                                @Html.TextBoxFor(m => m.UserName, "", new { @class = "form-control", @placeholder = "User Name" })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                <br>
+                                @*<label for="password">Mật khẩu</label>*@
+                                @Html.LabelFor(m => m.Password)
+                                @*<input id="password" type="password" placeholder="Pass Words" class="form-control">*@
+                                @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control", @placeholder = "PassWords", @type = "password" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                <br>
+                                
+                                <br />
+                                @*<input type="submit" name="submit" class="btn btn-primary" value="Login" />*@
+                                <button id="loginbtn" class="button" type="submit">Login</button>
+                                <a href="@Url.Action("ForgotPassword","Account")" class="fright">Quên mật khẩu ?</a>
+                            </div>
+                        }
+                        <br>
+                        <div class="no-account">
+                            <a href="@Url.Action("Register","Account")" style="color:rgb(119, 190, 67);">Bạn chưa có tài khoản? Đăng ký ngay !</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
