@@ -297,6 +297,7 @@
     <Property Name="Stadium_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
     <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

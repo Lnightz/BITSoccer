@@ -322,6 +322,7 @@
     <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Touraments" Relationship="Self.FK_Tourament_Stadium" FromRole="Stadium" ToRole="Tourament" />
     <NavigationProperty Name="Classes" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Stadium" ToRole="Class" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>

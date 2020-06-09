@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Coach
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -44,5 +45,7 @@ namespace BITSoccer.Models
         public virtual ICollection<Class> Classes { get; set; }
         public virtual LevelCoach LevelCoach { get; set; }
         public virtual User User { get; set; }
+
+        public HttpPostedFileBase PictureUpload { get; set; }
     }
 }

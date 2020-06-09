@@ -8,7 +8,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Danh sách @ViewBag.Title</h3>
-        <a href="@Url.Action("Create","Coaches")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm loại</a>
+        <a href="@Url.Action("Create","Coaches")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm @ViewBag.Title</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -31,7 +31,7 @@
                     <td>@item.Gender</td>
                     <td>@item.Age</td>
                     <td>@item.LevelCoach.LevelName</td>
-                    <td>@item.Image</td>
+                    <td><img src="@item.Image" style="width:200px" /></td>
                     <td class="text-center">
                         <a href="@Url.Action("Details","Coaches", new { id = item.Coach_ID })" class="btn btn-info btn-sm">
                             <i class="fas fa-eye"></i> Xem

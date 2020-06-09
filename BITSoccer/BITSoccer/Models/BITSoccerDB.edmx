@@ -302,6 +302,7 @@
           <Property Name="Stadium_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1236,6 +1237,7 @@
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Touraments" Relationship="Self.FK_Tourament_Stadium" FromRole="Stadium" ToRole="Tourament" />
           <NavigationProperty Name="Classes" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Stadium" ToRole="Class" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -2043,6 +2045,7 @@
           <EntitySetMapping Name="Stadia">
             <EntityTypeMapping TypeName="BITSoccerModel.Stadium">
               <MappingFragment StoreEntitySet="Stadium">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Stadium_ID" ColumnName="Stadium_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

@@ -7,10 +7,10 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Coaches", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Coach</h4>
         <hr />
@@ -107,13 +107,25 @@
             </div>
         </div>
 
+        @if (Model.Image != null)
+        {
         <div class="form-group">
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(Model => Model.Image)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                <img src="@Url.Content(Model.Image)" alt="Alternate Text" style="width:200px" />
             </div>
         </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PictureUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PictureUpload, new { @type = "file" })
+                @Html.ValidationMessageFor(model => model.PictureUpload, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Facebook, htmlAttributes: new { @class = "control-label col-md-2" })

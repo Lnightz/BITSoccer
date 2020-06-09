@@ -301,6 +301,7 @@
     <EntitySetMapping Name="Stadia">
       <EntityTypeMapping TypeName="BITSoccerModel.Stadium">
         <MappingFragment StoreEntitySet="Stadium">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Stadium_ID" ColumnName="Stadium_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Address" ColumnName="Address" />

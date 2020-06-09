@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Stadium
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,9 @@ namespace BITSoccer.Models
         public int Stadium_ID { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public string Image { get; set; }
+
+        public HttpPostedFileBase PictureUpload { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tourament> Touraments { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,8 +50,16 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Passport,Image,Facebook,Insta,Twitter,Level,Description,User_ID")] Coach coach)
+        public ActionResult Create([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Passport,Image,Facebook,Insta,Twitter,Level,Description,User_ID,PictureUpload")] Coach coach)
         {
+            if (coach.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(coach.PictureUpload.FileName));
+                coach.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(coach.PictureUpload.FileName);
+                coach.Image = pathinDB;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Coaches.Add(coach);
@@ -85,8 +94,17 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Passport,Image,Facebook,Insta,Twitter,Level,Description,User_ID")] Coach coach)
+        public ActionResult Edit([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Image,Passport,Facebook,Insta,Twitter,Level,Description,User_ID,PictureUpload")] Coach coach)
         {
+
+            if (coach.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(coach.PictureUpload.FileName));
+                coach.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(coach.PictureUpload.FileName);
+                coach.Image = pathinDB;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(coach).State = EntityState.Modified;
@@ -95,21 +113,6 @@ namespace BITSoccer.Areas.Admin.Controllers
             }
             ViewBag.Level = new SelectList(db.LevelCoaches, "LevelCoachID", "LevelName", coach.Level);
             ViewBag.User_ID = new SelectList(db.Users, "User_ID", "UserName", coach.User_ID);
-            return View(coach);
-        }
-
-        // GET: Admin/Coaches/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Coach coach = db.Coaches.Find(id);
-            if (coach == null)
-            {
-                return HttpNotFound();
-            }
             return View(coach);
         }
 

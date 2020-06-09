@@ -147,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\PartOfDaysController.cs" />
     <Compile Include="Areas\Admin\Controllers\RangeAgesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RangeTimesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StadiumsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -380,12 +381,19 @@
     <Content Include="Assets\img\header_bg_5.jpg" />
     <Content Include="Assets\img\header_bg_6.jpg" />
     <Content Include="Assets\img\header_bg_7.jpg" />
+    <Content Include="Assets\img\hlv_chu.jpg" />
+    <Content Include="Assets\img\hlv_chung.jfif" />
+    <Content Include="Assets\img\hlv_chung.jpg" />
+    <Content Include="Assets\img\hlv_faio.jpg" />
     <Content Include="Assets\img\HLV_HV1.jpg" />
     <Content Include="Assets\img\HLV_HV2.jpg" />
     <Content Include="Assets\img\HLV_HV3.jpg" />
     <Content Include="Assets\img\HLV_HV4.jpg" />
     <Content Include="Assets\img\HLV_HV5.jpg" />
     <Content Include="Assets\img\HLV_HV6.jpg" />
+    <Content Include="Assets\img\hlv_jose.jpg" />
+    <Content Include="Assets\img\hlv_mai.jpg" />
+    <Content Include="Assets\img\hlv_park_.jpg" />
     <Content Include="Assets\img\home_slider_img_1.png" />
     <Content Include="Assets\img\khoa1.jpg" />
     <Content Include="Assets\img\khoa2.jpg" />
@@ -504,10 +512,12 @@
     <Content Include="Areas\Admin\Views\LevelStudents\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LevelStudents\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Coaches\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Coaches\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Coaches\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Coaches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Coaches\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Stadiums\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Stadiums\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Stadiums\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -545,6 +555,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Views\Coach\" />
     <Folder Include="Views\Student\" />
   </ItemGroup>
