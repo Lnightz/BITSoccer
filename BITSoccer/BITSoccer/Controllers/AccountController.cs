@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BITSoccer.Controllers
 {
@@ -25,20 +26,43 @@ namespace BITSoccer.Controllers
 
             if(userdetails != null)
             {
-                Session["UserID"] = userdetails.User_ID.ToString();
-                Session["UserName"] = userdetails.UserName.ToString();
-                Session["UserTypeID"] = userdetails.UserType_ID.ToString();
+                //Session["UserID"] = userdetails.User_ID.ToString();
+                //Session["UserName"] = userdetails.UserName.ToString();
+                //Session["UserTypeID"] = userdetails.UserType_ID.ToString();
+
+
+                ///Setup lưu cookies người dùng
+                FormsAuthentication.SetAuthCookie(userdetails.UserName, false);
+
+                var authTicket = new FormsAuthenticationTicket(1, 
+                    userdetails.UserName, 
+                    DateTime.Now, 
+                    DateTime.Now.AddMinutes(30), 
+                    false, 
+                    userdetails.UserType.UserTypeName);
+
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+
+                HttpContext.Response.Cookies.Add(authCookie);
+
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                ViewBag.Message = "Đăng nhập không thành công";
-                return View(ViewBag.Message);
+                ModelState.AddModelError("Error", "Đăng nhập không thành công");
+                return View();
             }
         }
         public ActionResult Logout()
         {
-            Session.Clear();
+            string username = User.Identity.Name;
+
+            //Session.Clear();
+
+            FormsAuthentication.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
     }

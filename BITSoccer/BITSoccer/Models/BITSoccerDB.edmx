@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BITSoccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BITSoccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="About_ID" />
@@ -87,26 +87,14 @@
           <Property Name="ModifyBy" Type="nvarchar" MaxLength="255" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="ViewCount" Type="int" />
-          <Property Name="Class_Detail_ID" Type="int" Nullable="false" />
           <Property Name="Coach_ID" Type="int" Nullable="false" />
           <Property Name="LevelStudentID" Type="int" />
           <Property Name="RangeAgeID" Type="int" />
           <Property Name="PartOfDayID" Type="int" />
           <Property Name="GenderID" Type="int" />
           <Property Name="RangeTimeID" Type="int" />
-        </EntityType>
-        <EntityType Name="Class_Detail">
-          <Key>
-            <PropertyRef Name="ClassDetail_ID" />
-          </Key>
-          <Property Name="ClassDetail_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="MetaTitle" Type="nvarchar" MaxLength="255" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
-          <Property Name="ModifyDate" Type="datetime" />
-          <Property Name="ModifyBy" Type="nvarchar" MaxLength="255" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="StadiumID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="ClassUser">
           <Key>
@@ -122,7 +110,6 @@
           </Key>
           <Property Name="Coach_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="MetaTilte" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="ModifyDate" Type="datetime" />
@@ -386,7 +373,7 @@
           <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__BillDetai__BillI__4316F928">
+        <Association Name="FK__BillDetai__BillI__05D8E0BE">
           <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -398,7 +385,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__Class__440B1D61">
+        <Association Name="FK__BillDetai__BillI__06CD04F7">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Bill_ID" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillDetai__Class__07C12930">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -410,7 +409,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__Class_ID__52593CB8">
+        <Association Name="FK__BillDetai__Class__08B54D69">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Class_ID" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__Class_ID__1BC821DD">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -422,7 +433,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__User_ID__534D60F1">
+        <Association Name="FK__Rating__Class_ID__1CBC4616">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Class_ID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="Class_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__User_ID__1DB06A4F">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__User_ID__1EA48E88">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -459,18 +494,6 @@
             </Principal>
             <Dependent Role="Bill">
               <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Class_Class_Detail">
-          <End Role="Class_Detail" Type="Self.Class_Detail" Multiplicity="1" />
-          <End Role="Class" Type="Self.Class" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class_Detail">
-              <PropertyRef Name="ClassDetail_ID" />
-            </Principal>
-            <Dependent Role="Class">
-              <PropertyRef Name="Class_Detail_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -543,6 +566,18 @@
             </Principal>
             <Dependent Role="Class">
               <PropertyRef Name="RangeTimeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_Stadium">
+          <End Role="Stadium" Type="Self.Stadium" Multiplicity="0..1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stadium">
+              <PropertyRef Name="Stadium_ID" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="StadiumID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -725,7 +760,6 @@
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Class_Detail" EntityType="Self.Class_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClassUser" EntityType="Self.ClassUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coach_Moment" EntityType="Self.Coach_Moment" Schema="dbo" store:Type="Tables" />
@@ -751,19 +785,35 @@
           <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BillDetai__BillI__4316F928" Association="Self.FK__BillDetai__BillI__4316F928">
+          <AssociationSet Name="FK__BillDetai__BillI__05D8E0BE" Association="Self.FK__BillDetai__BillI__05D8E0BE">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__Class__440B1D61" Association="Self.FK__BillDetai__Class__440B1D61">
+          <AssociationSet Name="FK__BillDetai__BillI__06CD04F7" Association="Self.FK__BillDetai__BillI__06CD04F7">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillDetail" EntitySet="BillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillDetai__Class__07C12930" Association="Self.FK__BillDetai__Class__07C12930">
             <End Role="Class" EntitySet="Class" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__Class_ID__52593CB8" Association="Self.FK__Rating__Class_ID__52593CB8">
+          <AssociationSet Name="FK__BillDetai__Class__08B54D69" Association="Self.FK__BillDetai__Class__08B54D69">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="BillDetail" EntitySet="BillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rating__Class_ID__1BC821DD" Association="Self.FK__Rating__Class_ID__1BC821DD">
             <End Role="Class" EntitySet="Class" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__User_ID__534D60F1" Association="Self.FK__Rating__User_ID__534D60F1">
+          <AssociationSet Name="FK__Rating__Class_ID__1CBC4616" Association="Self.FK__Rating__Class_ID__1CBC4616">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rating__User_ID__1DB06A4F" Association="Self.FK__Rating__User_ID__1DB06A4F">
+            <End Role="User" EntitySet="User" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rating__User_ID__1EA48E88" Association="Self.FK__Rating__User_ID__1EA48E88">
             <End Role="User" EntitySet="User" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
@@ -774,10 +824,6 @@
           <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
             <End Role="User" EntitySet="User" />
             <End Role="Bill" EntitySet="Bill" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Class_Class_Detail" Association="Self.FK_Class_Class_Detail">
-            <End Role="Class_Detail" EntitySet="Class_Detail" />
-            <End Role="Class" EntitySet="Class" />
           </AssociationSet>
           <AssociationSet Name="FK_Class_Coach" Association="Self.FK_Class_Coach">
             <End Role="Coach" EntitySet="Coach" />
@@ -801,6 +847,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Class_RangeOfTime" Association="Self.FK_Class_RangeOfTime">
             <End Role="RangeTime" EntitySet="RangeTime" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_Stadium" Association="Self.FK_Class_Stadium">
+            <End Role="Stadium" EntitySet="Stadium" />
             <End Role="Class" EntitySet="Class" />
           </AssociationSet>
           <AssociationSet Name="FK_ClassUser_Class" Association="Self.FK_ClassUser_Class">
@@ -860,8 +910,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BITSoccerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -953,7 +1002,6 @@
           <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="ViewCount" Type="Int32" />
-          <Property Name="Class_Detail_ID" Type="Int32" Nullable="false" />
           <Property Name="Coach_ID" Type="Int32" Nullable="false" />
           <Property Name="LevelStudentID" Type="Int32" />
           <Property Name="RangeAgeID" Type="Int32" />
@@ -962,7 +1010,6 @@
           <Property Name="RangeTimeID" Type="Int32" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__Class__440B1D61" FromRole="Class" ToRole="BillDetail" />
           <NavigationProperty Name="Ratings" Relationship="Self.FK__Rating__Class_ID__52593CB8" FromRole="Class" ToRole="Rating" />
-          <NavigationProperty Name="Class_Detail" Relationship="Self.FK_Class_Class_Detail" FromRole="Class" ToRole="Class_Detail" />
           <NavigationProperty Name="Coach" Relationship="Self.FK_Class_Coach" FromRole="Class" ToRole="Coach" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Class_Gender" FromRole="Class" ToRole="Gender" />
           <NavigationProperty Name="LevelStudent" Relationship="Self.FK_Class_LevelStudent" FromRole="Class" ToRole="LevelStudent" />
@@ -971,20 +1018,9 @@
           <NavigationProperty Name="RangeTime" Relationship="Self.FK_Class_RangeOfTime" FromRole="Class" ToRole="RangeTime" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Class" FromRole="Class" ToRole="Comment" />
           <NavigationProperty Name="Users" Relationship="Self.ClassUser" FromRole="Class" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Class_Detail">
-          <Key>
-            <PropertyRef Name="ClassDetail_ID" />
-          </Key>
-          <Property Name="ClassDetail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Class_Detail" FromRole="Class_Detail" ToRole="Class" />
+          <Property Name="StadiumID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Stadium" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Class" ToRole="Stadium" />
         </EntityType>
         <EntityType Name="Coach">
           <Key>
@@ -992,7 +1028,6 @@
           </Key>
           <Property Name="Coach_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MetaTilte" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
@@ -1200,6 +1235,7 @@
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Touraments" Relationship="Self.FK_Tourament_Stadium" FromRole="Stadium" ToRole="Tourament" />
+          <NavigationProperty Name="Classes" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Stadium" ToRole="Class" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1341,18 +1377,6 @@
             </Principal>
             <Dependent Role="Rating">
               <PropertyRef Name="Class_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Class_Class_Detail">
-          <End Role="Class_Detail" Type="Self.Class_Detail" Multiplicity="1" />
-          <End Role="Class" Type="Self.Class" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class_Detail">
-              <PropertyRef Name="ClassDetail_ID" />
-            </Principal>
-            <Dependent Role="Class">
-              <PropertyRef Name="Class_Detail_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1577,7 +1601,6 @@
           <EntitySet Name="Bills" EntityType="Self.Bill" />
           <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
           <EntitySet Name="Classes" EntityType="Self.Class" />
-          <EntitySet Name="Class_Detail" EntityType="Self.Class_Detail" />
           <EntitySet Name="Coaches" EntityType="Self.Coach" />
           <EntitySet Name="Coach_Moment" EntityType="Self.Coach_Moment" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
@@ -1620,10 +1643,6 @@
           <AssociationSet Name="FK__Rating__Class_ID__52593CB8" Association="Self.FK__Rating__Class_ID__52593CB8">
             <End Role="Class" EntitySet="Classes" />
             <End Role="Rating" EntitySet="Ratings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Class_Class_Detail" Association="Self.FK_Class_Class_Detail">
-            <End Role="Class_Detail" EntitySet="Class_Detail" />
-            <End Role="Class" EntitySet="Classes" />
           </AssociationSet>
           <AssociationSet Name="FK_Class_Coach" Association="Self.FK_Class_Coach">
             <End Role="Coach" EntitySet="Coaches" />
@@ -1701,7 +1720,23 @@
             <End Role="News" EntitySet="News" />
             <End Role="Tags" EntitySet="Tags" />
           </AssociationSet>
+          <AssociationSet Name="FK_Class_Stadium" Association="BITSoccerModel.FK_Class_Stadium">
+            <End Role="Stadium" EntitySet="Stadia" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Class_Stadium">
+          <End Type="BITSoccerModel.Stadium" Role="Stadium" Multiplicity="0..1" />
+          <End Type="BITSoccerModel.Class" Role="Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stadium">
+              <PropertyRef Name="Stadium_ID" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="StadiumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1778,6 +1813,8 @@
           <EntitySetMapping Name="Classes">
             <EntityTypeMapping TypeName="BITSoccerModel.Class">
               <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
                 <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
@@ -1794,7 +1831,6 @@
                 <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
-                <ScalarProperty Name="Class_Detail_ID" ColumnName="Class_Detail_ID" />
                 <ScalarProperty Name="Coach_ID" ColumnName="Coach_ID" />
                 <ScalarProperty Name="LevelStudentID" ColumnName="LevelStudentID" />
                 <ScalarProperty Name="RangeAgeID" ColumnName="RangeAgeID" />
@@ -1804,26 +1840,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Class_Detail">
-            <EntityTypeMapping TypeName="BITSoccerModel.Class_Detail">
-              <MappingFragment StoreEntitySet="Class_Detail">
-                <ScalarProperty Name="ClassDetail_ID" ColumnName="ClassDetail_ID" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Coaches">
             <EntityTypeMapping TypeName="BITSoccerModel.Coach">
               <MappingFragment StoreEntitySet="Coach">
                 <ScalarProperty Name="Coach_ID" ColumnName="Coach_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MetaTilte" ColumnName="MetaTilte" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />

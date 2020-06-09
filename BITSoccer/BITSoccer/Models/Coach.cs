@@ -22,7 +22,6 @@ namespace BITSoccer.Models
     
         public int Coach_ID { get; set; }
         public string Name { get; set; }
-        public string MetaTilte { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }

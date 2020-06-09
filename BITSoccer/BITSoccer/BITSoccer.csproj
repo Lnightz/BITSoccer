@@ -55,6 +55,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -63,6 +66,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -128,8 +137,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoachesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GendersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LevelCoachesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LevelStudentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PartOfDaysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RangeAgesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RangeTimesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,9 +185,6 @@
       <DependentUpon>BITSoccerDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Class.cs">
-      <DependentUpon>BITSoccerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Class_Detail.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Coach.cs">
@@ -416,8 +434,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\BITSoccerDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BITSoccerDB.Context.cs</LastGenOutput>
       <DependentUpon>BITSoccerDB.edmx</DependentUpon>
+      <LastGenOutput>BITSoccerDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\BITSoccerDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -458,6 +476,14 @@
     <Content Include="AdminAssets\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="AdminAssets\plugins\jquery\jquery.min.map" />
     <Content Include="AdminAssets\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RangeAges\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RangeAges\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RangeAges\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCoaches\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCoaches\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCoaches\Index.cshtml" />
     <EntityDeploy Include="Models\BITSoccerDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BITSoccerDB.Designer.cs</LastGenOutput>
@@ -465,6 +491,23 @@
     <Content Include="Models\BITSoccerDB.edmx.diagram">
       <DependentUpon>BITSoccerDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\RangeTimes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RangeTimes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RangeTimes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Genders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Genders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Genders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PartOfDays\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PartOfDays\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PartOfDays\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelStudents\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelStudents\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelStudents\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Coaches\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Coaches\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Coaches\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Coaches\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Coaches\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -476,7 +519,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -490,9 +535,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdminControl.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdminHome.cshtml" />
-    <Content Include="Views\Shared\_LayoutStudent.cshtml" />
-    <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
     <Content Include="Views\Home\Classes.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Home\Tournaments.cshtml" />
@@ -501,6 +543,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Coach\" />
+    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

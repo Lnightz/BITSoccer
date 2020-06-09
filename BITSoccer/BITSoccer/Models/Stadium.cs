@@ -18,6 +18,7 @@ namespace BITSoccer.Models
         public Stadium()
         {
             this.Touraments = new HashSet<Tourament>();
+            this.Classes = new HashSet<Class>();
         }
     
         public int Stadium_ID { get; set; }
@@ -26,5 +27,7 @@ namespace BITSoccer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tourament> Touraments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Class> Classes { get; set; }
     }
 }

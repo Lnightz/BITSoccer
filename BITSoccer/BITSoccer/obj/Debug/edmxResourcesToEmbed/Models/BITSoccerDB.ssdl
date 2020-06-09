@@ -82,26 +82,14 @@
     <Property Name="ModifyBy" Type="nvarchar" MaxLength="255" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="ViewCount" Type="int" />
-    <Property Name="Class_Detail_ID" Type="int" Nullable="false" />
     <Property Name="Coach_ID" Type="int" Nullable="false" />
     <Property Name="LevelStudentID" Type="int" />
     <Property Name="RangeAgeID" Type="int" />
     <Property Name="PartOfDayID" Type="int" />
     <Property Name="GenderID" Type="int" />
     <Property Name="RangeTimeID" Type="int" />
-  </EntityType>
-  <EntityType Name="Class_Detail">
-    <Key>
-      <PropertyRef Name="ClassDetail_ID" />
-    </Key>
-    <Property Name="ClassDetail_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Content" Type="nvarchar(max)" />
-    <Property Name="MetaTitle" Type="nvarchar" MaxLength="255" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="ModifyDate" Type="datetime" />
-    <Property Name="ModifyBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="IsActive" Type="bit" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="ClassUser">
     <Key>
@@ -117,7 +105,6 @@
     </Key>
     <Property Name="Coach_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="MetaTilte" Type="nvarchar" MaxLength="255" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
     <Property Name="ModifyDate" Type="datetime" />
@@ -381,7 +368,7 @@
     <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
   </EntityType>
-  <Association Name="FK__BillDetai__BillI__4316F928">
+  <Association Name="FK__BillDetai__BillI__05D8E0BE">
     <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -393,7 +380,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__Class__440B1D61">
+  <Association Name="FK__BillDetai__BillI__06CD04F7">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="Bill_ID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__Class__07C12930">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -405,7 +404,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__Class_ID__52593CB8">
+  <Association Name="FK__BillDetai__Class__08B54D69">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class_ID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__Class_ID__1BC821DD">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
     <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -417,7 +428,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__User_ID__534D60F1">
+  <Association Name="FK__Rating__Class_ID__1CBC4616">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class_ID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="Class_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__User_ID__1DB06A4F">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__User_ID__1EA48E88">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -454,18 +489,6 @@
       </Principal>
       <Dependent Role="Bill">
         <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Class_Class_Detail">
-    <End Role="Class_Detail" Type="Self.Class_Detail" Multiplicity="1" />
-    <End Role="Class" Type="Self.Class" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class_Detail">
-        <PropertyRef Name="ClassDetail_ID" />
-      </Principal>
-      <Dependent Role="Class">
-        <PropertyRef Name="Class_Detail_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -538,6 +561,18 @@
       </Principal>
       <Dependent Role="Class">
         <PropertyRef Name="RangeTimeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Stadium">
+    <End Role="Stadium" Type="Self.Stadium" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stadium">
+        <PropertyRef Name="Stadium_ID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="StadiumID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -720,7 +755,6 @@
     <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Class_Detail" EntityType="Self.Class_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClassUser" EntityType="Self.ClassUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coach_Moment" EntityType="Self.Coach_Moment" Schema="dbo" store:Type="Tables" />
@@ -746,19 +780,35 @@
     <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__BillDetai__BillI__4316F928" Association="Self.FK__BillDetai__BillI__4316F928">
+    <AssociationSet Name="FK__BillDetai__BillI__05D8E0BE" Association="Self.FK__BillDetai__BillI__05D8E0BE">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__Class__440B1D61" Association="Self.FK__BillDetai__Class__440B1D61">
+    <AssociationSet Name="FK__BillDetai__BillI__06CD04F7" Association="Self.FK__BillDetai__BillI__06CD04F7">
+      <End Role="Bill" EntitySet="Bill" />
+      <End Role="BillDetail" EntitySet="BillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__Class__07C12930" Association="Self.FK__BillDetai__Class__07C12930">
       <End Role="Class" EntitySet="Class" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__Class_ID__52593CB8" Association="Self.FK__Rating__Class_ID__52593CB8">
+    <AssociationSet Name="FK__BillDetai__Class__08B54D69" Association="Self.FK__BillDetai__Class__08B54D69">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="BillDetail" EntitySet="BillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__Class_ID__1BC821DD" Association="Self.FK__Rating__Class_ID__1BC821DD">
       <End Role="Class" EntitySet="Class" />
       <End Role="Rating" EntitySet="Rating" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__User_ID__534D60F1" Association="Self.FK__Rating__User_ID__534D60F1">
+    <AssociationSet Name="FK__Rating__Class_ID__1CBC4616" Association="Self.FK__Rating__Class_ID__1CBC4616">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__User_ID__1DB06A4F" Association="Self.FK__Rating__User_ID__1DB06A4F">
+      <End Role="User" EntitySet="User" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__User_ID__1EA48E88" Association="Self.FK__Rating__User_ID__1EA48E88">
       <End Role="User" EntitySet="User" />
       <End Role="Rating" EntitySet="Rating" />
     </AssociationSet>
@@ -769,10 +819,6 @@
     <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
       <End Role="User" EntitySet="User" />
       <End Role="Bill" EntitySet="Bill" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Class_Class_Detail" Association="Self.FK_Class_Class_Detail">
-      <End Role="Class_Detail" EntitySet="Class_Detail" />
-      <End Role="Class" EntitySet="Class" />
     </AssociationSet>
     <AssociationSet Name="FK_Class_Coach" Association="Self.FK_Class_Coach">
       <End Role="Coach" EntitySet="Coach" />
@@ -796,6 +842,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Class_RangeOfTime" Association="Self.FK_Class_RangeOfTime">
       <End Role="RangeTime" EntitySet="RangeTime" />
+      <End Role="Class" EntitySet="Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Stadium" Association="Self.FK_Class_Stadium">
+      <End Role="Stadium" EntitySet="Stadium" />
       <End Role="Class" EntitySet="Class" />
     </AssociationSet>
     <AssociationSet Name="FK_ClassUser_Class" Association="Self.FK_ClassUser_Class">

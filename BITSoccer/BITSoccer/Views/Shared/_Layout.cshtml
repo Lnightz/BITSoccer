@@ -40,10 +40,10 @@
                             <a class="nav-link" href="@Url.Action("Index","Home")">Trang chủ <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Classes","Home")"">Khoá học</a>
+                            <a class="nav-link" href="@Url.Action("Classes","Home")" ">Khoá học</a>
                         </li>
                         <li class="nav-item dropdown hover-effect">
-                            <a class="nav-link" href="@Url.Action("News","Home")"" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="@Url.Action("News","Home")" " id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Tin tức
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,10 +53,10 @@
                             </div>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Tournaments","Home")"">Giải đấu</a>
+                            <a class="nav-link" href="@Url.Action("Tournaments","Home")" ">Giải đấu</a>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Coach","Home")"">Huấn luyện viên</a>
+                            <a class="nav-link" href="@Url.Action("Coach","Home")" ">Huấn luyện viên</a>
                         </li>
                         <li class="nav-item hover-effect">
                             <a class="nav-link" href="@Url.Action("About","Home")">Về chúng tôi</a>
@@ -65,14 +65,69 @@
                           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> -->
                     </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Login","Account")">Đăng nhập</a>
-                        </li>
-                        <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Register","Account")">Đăng ký</a>
-                        </li>
-                    </ul>
+
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown hover-effect">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            @User.Identity.Name
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Index","Admin", new { area = "Admin"})">Admin</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                            else if (User.IsInRole("Student"))
+                            {
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown hover-effect">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            @User.Identity.Name
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Student_Profile","Users")">Thông tin cá nhân</a>
+                                            <a class="dropdown-item hover-effect" href="userclasses.html">Lớp của tôi</a>
+                                            <a class="dropdown-item hover-effect" href="student_account.html">Tài khoản học viên</a>
+                                            <a class="dropdown-item hover-effect" href="student_pay.html">Thanh Toán</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                            else if (User.IsInRole("Teacher"))
+                            {
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown hover-effect">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            @User.Identity.Name
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item hover-effect" href="@Url.Action()">Thông tin cá nhân</a>
+                                            <a class="dropdown-item hover-effect" href="userclasses.html">Lớp của tôi</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item hover-effect">
+                                    <a class="nav-link" href="@Url.Action("Login","Account")">Đăng nhập</a>
+                                </li>
+                                <li class="nav-item hover-effect">
+                                    <a class="nav-link" href="@Url.Action("Register","Account")">Đăng ký</a>
+                                </li>
+                            </ul>
+                        }
+                    }
                 </div>
             </div>
         </nav>

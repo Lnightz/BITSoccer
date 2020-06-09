@@ -31,7 +31,6 @@ namespace BITSoccer.Models
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillDetail> BillDetails { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
-        public virtual DbSet<Class_Detail> Class_Detail { get; set; }
         public virtual DbSet<Coach> Coaches { get; set; }
         public virtual DbSet<Coach_Moment> Coach_Moment { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }

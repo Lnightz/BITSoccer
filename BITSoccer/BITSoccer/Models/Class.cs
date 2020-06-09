@@ -39,19 +39,19 @@ namespace BITSoccer.Models
         public string ModifyBy { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> ViewCount { get; set; }
-        public int Class_Detail_ID { get; set; }
         public int Coach_ID { get; set; }
         public Nullable<int> LevelStudentID { get; set; }
         public Nullable<int> RangeAgeID { get; set; }
         public Nullable<int> PartOfDayID { get; set; }
         public Nullable<int> GenderID { get; set; }
         public Nullable<int> RangeTimeID { get; set; }
+        public Nullable<int> StadiumID { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
-        public virtual Class_Detail Class_Detail { get; set; }
         public virtual Coach Coach { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual LevelStudent LevelStudent { get; set; }
@@ -62,5 +62,6 @@ namespace BITSoccer.Models
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+        public virtual Stadium Stadium { get; set; }
     }
 }

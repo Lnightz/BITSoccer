@@ -1,4 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+
+        }
+        else
+        {
+            Response.Redirect("~/Home/Index");
+        }
+    }
+    else
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -33,7 +50,7 @@
                     <a href="index3.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">@ViewBag.Title</a>
                 </li>
             </ul>
             <!-- SEARCH FORM -->
@@ -73,17 +90,17 @@
                         <img src="~/AdminAssets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">@User.Identity.Name</a>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+    with font-awesome or any other icon font library -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Lớp học
                                     <i class="right fas fa-angle-left"></i>
@@ -91,15 +108,62 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Class_Category","Admin")" class="nav-link">
+                                    <a href="@Url.Action("","", new { area = "Admin" })" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Loại lớp</p>
+                                        <p>Lớp</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Class","Admin")" class="nav-link">
+                                    <a href="@Url.Action("Index","LevelStudents", new { area = "Admin" })" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Lớp</p>
+                                        <p>Trình độ lớp</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Genders", new { area = "Admin" })" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Giới tính</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","RangeTimes", new { area = "Admin" })" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thời gian học</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","PartOfDays", new { area = "Admin" })" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Buổi học</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","RangeAges", new { area = "Admin" })" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Giới hạn tuổi</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Huấn luyện viên
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Coaches", new { area = "Admin" })" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Huấn luyện viên</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","LevelCoaches", new { area = "Admin" })" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Trình độ huấn luyện viên</p>
                                     </a>
                                 </li>
                             </ul>

@@ -71,6 +71,8 @@
     <EntitySetMapping Name="Classes">
       <EntityTypeMapping TypeName="BITSoccerModel.Class">
         <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
           <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
@@ -87,7 +89,6 @@
           <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
-          <ScalarProperty Name="Class_Detail_ID" ColumnName="Class_Detail_ID" />
           <ScalarProperty Name="Coach_ID" ColumnName="Coach_ID" />
           <ScalarProperty Name="LevelStudentID" ColumnName="LevelStudentID" />
           <ScalarProperty Name="RangeAgeID" ColumnName="RangeAgeID" />
@@ -97,26 +98,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Class_Detail">
-      <EntityTypeMapping TypeName="BITSoccerModel.Class_Detail">
-        <MappingFragment StoreEntitySet="Class_Detail">
-          <ScalarProperty Name="ClassDetail_ID" ColumnName="ClassDetail_ID" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Coaches">
       <EntityTypeMapping TypeName="BITSoccerModel.Coach">
         <MappingFragment StoreEntitySet="Coach">
           <ScalarProperty Name="Coach_ID" ColumnName="Coach_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MetaTilte" ColumnName="MetaTilte" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />

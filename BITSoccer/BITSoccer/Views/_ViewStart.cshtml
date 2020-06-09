@@ -17,25 +17,25 @@
     //        break;
     //}
 
-    if (Session["UserTypeID"] == null)
-    {
-        clayout = "~/Views/Shared/_Layout.cshtml";
-    }
-    else
-    {
-        if (Session["UserTypeID"].ToString() == "1")
-        {
-            clayout = "~/Views/Shared/_LayoutAdminHome.cshtml";
-        }
-        else if (Session["UserTypeID"].ToString() == "2")
-        {
-            clayout = "~/Views/Shared/_LayoutStudent.cshtml";
-        }
-        else if (Session["UserTypeID"].ToString() == "3")
-        {
-            clayout = "~/Views/Shared/_LayoutTeacher.cshtml";
-        }
-    }
+    //if (Session["UserTypeID"] == null)
+    //{
+    //    clayout = "~/Views/Shared/_Layout.cshtml";
+    //}
+    //else
+    //{
+    //    if (Session["UserTypeID"].ToString() == "1")
+    //    {
+    //        clayout = "~/Views/Shared/_LayoutAdminHome.cshtml";
+    //    }
+    //    else if (Session["UserTypeID"].ToString() == "2")
+    //    {
+    //        clayout = "~/Views/Shared/_LayoutStudent.cshtml";
+    //    }
+    //    else if (Session["UserTypeID"].ToString() == "3")
+    //    {
+    //        clayout = "~/Views/Shared/_LayoutTeacher.cshtml";
+    //    }
+    //}
 
-    Layout = clayout;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }

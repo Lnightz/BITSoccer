@@ -4,14 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9544ae4259264693a627711b50412a24" Name="Diagram1">
+      <Diagram DiagramId="9544ae4259264693a627711b50412a24" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="BITSoccerModel.About" Width="1.5" PointX="15" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.About_Slide" Width="1.5" PointX="12.75" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Archive" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Bill" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.BillDetail" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Class" Width="1.5" PointX="12.5" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Class_Detail" Width="1.5" PointX="10.25" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Coach" Width="1.5" PointX="10.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Coach_Moment" Width="1.5" PointX="2.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Comment" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
@@ -40,7 +39,6 @@
         <AssociationConnector Association="BITSoccerModel.FK_Bill_User" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK__BillDetai__Class__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK__Rating__Class_ID__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK_Class_Class_Detail" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_Coach" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_LevelStudent" ManuallyRouted="false" />
@@ -60,6 +58,7 @@
         <AssociationConnector Association="BITSoccerModel.FK_User_UserType" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.ClassUser" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.NewsTags" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK_Class_Stadium" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

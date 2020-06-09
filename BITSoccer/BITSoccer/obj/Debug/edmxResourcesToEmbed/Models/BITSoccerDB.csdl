@@ -88,7 +88,6 @@
     <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="ViewCount" Type="Int32" />
-    <Property Name="Class_Detail_ID" Type="Int32" Nullable="false" />
     <Property Name="Coach_ID" Type="Int32" Nullable="false" />
     <Property Name="LevelStudentID" Type="Int32" />
     <Property Name="RangeAgeID" Type="Int32" />
@@ -97,7 +96,6 @@
     <Property Name="RangeTimeID" Type="Int32" />
     <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__Class__440B1D61" FromRole="Class" ToRole="BillDetail" />
     <NavigationProperty Name="Ratings" Relationship="Self.FK__Rating__Class_ID__52593CB8" FromRole="Class" ToRole="Rating" />
-    <NavigationProperty Name="Class_Detail" Relationship="Self.FK_Class_Class_Detail" FromRole="Class" ToRole="Class_Detail" />
     <NavigationProperty Name="Coach" Relationship="Self.FK_Class_Coach" FromRole="Class" ToRole="Coach" />
     <NavigationProperty Name="Gender" Relationship="Self.FK_Class_Gender" FromRole="Class" ToRole="Gender" />
     <NavigationProperty Name="LevelStudent" Relationship="Self.FK_Class_LevelStudent" FromRole="Class" ToRole="LevelStudent" />
@@ -106,20 +104,9 @@
     <NavigationProperty Name="RangeTime" Relationship="Self.FK_Class_RangeOfTime" FromRole="Class" ToRole="RangeTime" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Class" FromRole="Class" ToRole="Comment" />
     <NavigationProperty Name="Users" Relationship="Self.ClassUser" FromRole="Class" ToRole="User" />
-  </EntityType>
-  <EntityType Name="Class_Detail">
-    <Key>
-      <PropertyRef Name="ClassDetail_ID" />
-    </Key>
-    <Property Name="ClassDetail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="IsActive" Type="Boolean" />
-    <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Class_Detail" FromRole="Class_Detail" ToRole="Class" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Stadium" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Class" ToRole="Stadium" />
   </EntityType>
   <EntityType Name="Coach">
     <Key>
@@ -127,7 +114,6 @@
     </Key>
     <Property Name="Coach_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MetaTilte" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="ModifyDate" Type="DateTime" Precision="3" />
@@ -335,6 +321,7 @@
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Touraments" Relationship="Self.FK_Tourament_Stadium" FromRole="Stadium" ToRole="Tourament" />
+    <NavigationProperty Name="Classes" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Stadium" ToRole="Class" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -476,18 +463,6 @@
       </Principal>
       <Dependent Role="Rating">
         <PropertyRef Name="Class_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Class_Class_Detail">
-    <End Role="Class_Detail" Type="Self.Class_Detail" Multiplicity="1" />
-    <End Role="Class" Type="Self.Class" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class_Detail">
-        <PropertyRef Name="ClassDetail_ID" />
-      </Principal>
-      <Dependent Role="Class">
-        <PropertyRef Name="Class_Detail_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -712,7 +687,6 @@
     <EntitySet Name="Bills" EntityType="Self.Bill" />
     <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
     <EntitySet Name="Classes" EntityType="Self.Class" />
-    <EntitySet Name="Class_Detail" EntityType="Self.Class_Detail" />
     <EntitySet Name="Coaches" EntityType="Self.Coach" />
     <EntitySet Name="Coach_Moment" EntityType="Self.Coach_Moment" />
     <EntitySet Name="Comments" EntityType="Self.Comment" />
@@ -755,10 +729,6 @@
     <AssociationSet Name="FK__Rating__Class_ID__52593CB8" Association="Self.FK__Rating__Class_ID__52593CB8">
       <End Role="Class" EntitySet="Classes" />
       <End Role="Rating" EntitySet="Ratings" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Class_Class_Detail" Association="Self.FK_Class_Class_Detail">
-      <End Role="Class_Detail" EntitySet="Class_Detail" />
-      <End Role="Class" EntitySet="Classes" />
     </AssociationSet>
     <AssociationSet Name="FK_Class_Coach" Association="Self.FK_Class_Coach">
       <End Role="Coach" EntitySet="Coaches" />
@@ -836,5 +806,21 @@
       <End Role="News" EntitySet="News" />
       <End Role="Tags" EntitySet="Tags" />
     </AssociationSet>
+    <AssociationSet Name="FK_Class_Stadium" Association="BITSoccerModel.FK_Class_Stadium">
+      <End Role="Stadium" EntitySet="Stadia" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Class_Stadium">
+    <End Type="BITSoccerModel.Stadium" Role="Stadium" Multiplicity="0..1" />
+    <End Type="BITSoccerModel.Class" Role="Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stadium">
+        <PropertyRef Name="Stadium_ID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="StadiumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

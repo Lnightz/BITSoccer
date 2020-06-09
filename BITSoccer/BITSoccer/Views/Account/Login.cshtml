@@ -1,6 +1,10 @@
 ﻿@model BITSoccer.Models.User
 @{
     ViewBag.Title = "Đăng nhập";
+    if (Session["UserID"] != null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
 }
 
 <div class="main-wrapper">
@@ -33,8 +37,8 @@
                                 @*<input id="password" type="password" placeholder="Pass Words" class="form-control">*@
                                 @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control", @placeholder = "PassWords", @type = "password" })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                <br>
-                                
+                                <br />
+                                @Html.ValidationMessage("Error", new { @class = "text-danger" })
                                 <br />
                                 @*<input type="submit" name="submit" class="btn btn-primary" value="Login" />*@
                                 <button id="loginbtn" class="button" type="submit">Login</button>
