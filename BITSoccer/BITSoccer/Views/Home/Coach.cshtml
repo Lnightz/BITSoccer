@@ -1,7 +1,92 @@
-﻿
+﻿@model IEnumerable<BITSoccer.Models.Coach>
 @{
-    ViewBag.Title = "Coach";
+    ViewBag.Title = "Huấn luyện viên";
 }
 
-<h2>Coach</h2>
+<main>
+    <div class="titile-bg">
+        <div class="container">
+            <div class="titile-name">Huấn luyện viên</div>
+        </div>
+        <div class="text-shadow"></div>
+    </div>
 
+    <!-- Coach Qoutes section -->
+
+    <div class="container-fluid">
+        <div class="row coach-quotes-section">
+            <div class="col-lg-8 col-md-12 padding-0">
+                <div class="coach-img-left">
+                    <div class="coach-qoutes">
+                        <q class="coach-qoutes-content">
+                            Tôi không hoàn hảo nhưng tôi biết học hỏi.
+                        </q>
+                        <p class="coach-qoutes-name">--Cristiano Ronaldo--</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 padding-0">
+                <div class="coach-img-right">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coach Qoutes section -->
+    <!-- <div class="hlv-titile">
+        <h2>ĐỘI NGŨ HUẤN LUYỆN VIÊN</h2>
+    </div> -->
+
+    <div class="container mt-5 ">
+        <div class="row">
+            <div class="col-12">
+                <div class="sc_heading clone_title">
+                    <h2 class="title">ĐỘI NGŨ HUẤN LUYỆN VIÊN</h2>
+                    <div class="clone">ĐỘI NGŨ HUẤN LUYỆN VIÊN</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coachs infor section -->
+    <div class="container-fluid my-5">
+        <div class="row mx-5">
+            @{
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="container-fluid">
+                            <div class="row coach-card">
+                                <div class="col-md-4 col-sm-12 coach-card-img ">
+                                    <div class="embed-responsive embed-responsive-1by1">
+                                        <img src="@Url.Content(item.Image)" class="embed-responsive-item" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-sm-12 px-3 coach-card-padding">
+                                    <div class="coard-card-detail">
+                                        <h2 class="coach-card-name">@item.Name</h2>
+                                        <p class="coach-card-level">HLV @item.LevelCoach.LevelName</p>
+                                        <ul class="social-line d-flex">
+                                            <li><a class="social-link" href=""><i class="fab fa-facebook"></i></a></li>
+                                            <li><a class="social-link" href=""><i class="fab fa-instagram"></i></a></li>
+                                            <li><a class="social-link" href=""><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                        <div>
+                                            <div class="coach-card-description">@item.Description</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="coach-card-bottom">
+                                    <div class="dateposted-zone" style="color: white;">
+                                        <i class="fas fa-phone-alt"> <span class="dateposted">@item.Phone</span> </i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</main>

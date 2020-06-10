@@ -1,0 +1,113 @@
+﻿@model IEnumerable<BITSoccer.Models.Class>
+    @using System.Globalization
+@{
+    ViewBag.Title = "Lớp học";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+        <a href="@Url.Action("Create","Classes")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm @ViewBag.Title</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên lớp</th>
+                    <th>Lịch học</th>
+                    <th>Trình độ lớp</th>
+                    <th>Giới hạn độ tuổi</th>
+                    <th>Khung giờ</th>
+                    <th>Giá tiền</th>
+                    <th>Huấn luyện viên</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        @{ 
+                            string startday = item.StartDay.HasValue ? item.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            string endday = item.EndDay.HasValue ? item.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            <p>@startday - @endday</p>
+                        }
+                    </td>
+                    <td>@item.LevelStudent.LevelName</td>
+                    <td>@item.RangeAge.MinAge - @item.RangeAge.MaxAge</td>
+                    <td>@item.RangeTime.StartTime - @item.RangeTime.EndTime</td>
+                    <td>
+                        @{
+                            if (item.PromoPrices == 0)
+                            {
+                                @Convert.ToDouble(item.Prices).ToString("C0", new CultureInfo("vi-VN"))
+                            }
+                            else
+                            {
+                                @Convert.ToDouble(item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))
+                            }
+                        }
+                    </td>
+                    <td>@item.Coach.Name</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Details","Classes", new { id = item.Class_ID })" class="btn btn-info btn-sm">
+                            <i class="fas fa-eye"></i> Xem
+                        </a>
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("Edit","Classes", new { id = item.Class_ID  })">
+                            <i class="fas fa-pencil-alt"></i> Sửa
+                        </a>
+                        <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#exampleModalCenter",item.Class_ID)">
+                            <i class="fas fa-trash"></i> Xóa
+                        </a>
+                    </td>
+                </tr>
+                    <div class="modal fade" id="@string.Concat("exampleModalCenter",item.Class_ID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xóa lớp "@item.Name" ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    @using (Html.BeginForm("Delete", "Classes", new { id = item.Class_ID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fas fa-trash"></i> Xóa
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên lớp</th>
+                    <th>Lịch học</th>
+                    <th>Trình độ lớp</th>
+                    <th>Giới hạn độ tuổi</th>
+                    <th>Khung giờ</th>
+                    <th>Giá tiền</th>
+                    <th>Huấn luyện viên</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+

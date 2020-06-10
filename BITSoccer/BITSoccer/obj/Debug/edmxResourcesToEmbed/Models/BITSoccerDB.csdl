@@ -79,8 +79,8 @@
     <Property Name="Prices" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="PromoPrices" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="StartDay" Type="DateTime" Precision="3" />
-    <Property Name="EndDay" Type="DateTime" Precision="3" />
+    <Property Name="StartDay" Type="DateTime" Precision="0" />
+    <Property Name="EndDay" Type="DateTime" Precision="0" />
     <Property Name="MinQuanity" Type="Int32" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -121,7 +121,7 @@
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Age" Type="Int32" />
-    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Passport" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

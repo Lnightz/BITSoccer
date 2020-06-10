@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Class
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -47,6 +48,8 @@ namespace BITSoccer.Models
         public Nullable<int> RangeTimeID { get; set; }
         public Nullable<int> StadiumID { get; set; }
         public string Description { get; set; }
+
+        public HttpPostedFileBase PictureUpload { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }

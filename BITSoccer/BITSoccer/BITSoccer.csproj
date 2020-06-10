@@ -140,6 +140,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoachesController.cs" />
     <Compile Include="Areas\Admin\Controllers\GendersController.cs" />
     <Compile Include="Areas\Admin\Controllers\LevelCoachesController.cs" />
@@ -518,6 +519,10 @@
     <Content Include="Areas\Admin\Views\Stadiums\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Stadiums\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Stadiums\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

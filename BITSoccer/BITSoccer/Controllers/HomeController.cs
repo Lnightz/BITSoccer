@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BITSoccer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace BITSoccer.Controllers
 {
     public class HomeController : Controller
     {
+        BITSoccerEntities db = new BITSoccerEntities();
         public ActionResult Index()
         {
             return View();
@@ -19,7 +21,7 @@ namespace BITSoccer.Controllers
         }
         public ActionResult Classes()
         {
-            return View();
+            return View(db.Classes.ToList());
         }
         public ActionResult News()
         {
@@ -31,7 +33,8 @@ namespace BITSoccer.Controllers
         }
         public ActionResult Coach()
         {
-            return View();
+            return View(db.Coaches.ToList());
         }
+
     }
 }

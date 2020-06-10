@@ -163,3 +163,4 @@ D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CoreCompileIn
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CopyComplete
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.dll
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.pdb
+D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csprojAssemblyReference.cache

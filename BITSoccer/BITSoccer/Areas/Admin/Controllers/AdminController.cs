@@ -13,5 +13,6 @@ namespace BITSoccer.Areas.Admin.Controllers
         {
             return View();
         }
+        
     }
 }

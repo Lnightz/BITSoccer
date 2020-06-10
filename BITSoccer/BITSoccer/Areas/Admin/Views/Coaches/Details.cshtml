@@ -1,15 +1,12 @@
 ﻿@model BITSoccer.Models.Coach
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Thông tin Huấn luyện viên";
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Coach</h4>
-    <hr />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -104,7 +101,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content(Model.Image)" alt="Alternate Text" style="width:200px" />
         </dd>
 
         <dt>

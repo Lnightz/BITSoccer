@@ -45,7 +45,6 @@ namespace BITSoccer.Models
         public virtual ICollection<Class> Classes { get; set; }
         public virtual LevelCoach LevelCoach { get; set; }
         public virtual User User { get; set; }
-
         public HttpPostedFileBase PictureUpload { get; set; }
     }
 }
