@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+
+    <div class="titile-bg">
+        <div class="container">
+            <div class="titile-name">thông tin cá nhân</div>
+        </div>
+        <div class="text-shadow"></div>
+    </div>
+    <div id="background_main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary card-outline mb-3">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="img/NGO75851.jpg" alt="" class="profile-user-img img-fluid img-circle">
+                            </div>
+                            <h3 class="profile-user-name text-center">Nguyễn Văn A</h3>
+                            <p class="text-muted text-center">Học Viên</p>
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b>Lớp đã tham gia</b>
+                                    <p class="float-right" style="margin: 0;">0</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>asdasd</b>
+                                    <p class="float-right" style="margin: 0;">0</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card card-primary">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a href="#inform" class="nav-link active" data-toggle="tab">Thông tin cá nhân</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#resetpass" class="nav-link" data-toggle="tab">Thay đổi mật khẩu</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="inform">
+                                    <form class="form-horizontal">
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">Giới tính</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group">
+                                                    <select class="custom-select" id="inputGroupSelect04">
+                                                        <option value="Female">Nữ</option>
+                                                        <option value="Male">Nam</option>
+                                                        <option value="Other">Khác</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="birthday" class="col-sm-2 col-form-label">Ngày sinh</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" id="birthday" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="address" class="col-sm-2 col-form-label">Địa chỉ</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="address" placeholder="Address">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="phonenumber" class="col-sm-2 col-form-label">Số điện thoại</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="phonenumber" placeholder="Phone Number">
+                                            </div>
+                                        </div>
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button class="btn btn-primary" type="submit">Thay đổi</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="resetpass">
+                                    <form class="form-horizontal">
+                                        <div class="form-group row">
+                                            <label for="oldPass" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="oldPass" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newPass" class="col-sm-2 col-form-label">Mật khẩu mới</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="newPass" placeholder="New Password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="confirmPass" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="confirmPass" placeholder="Confirm Password">
+                                            </div>
+                                        </div>
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button class="btn btn-danger" type="submit">Thay đổi</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

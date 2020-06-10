@@ -9,7 +9,7 @@ namespace BITSoccer.Controllers
     public class StudentController : Controller
     {
         // GET: Student
-        public ActionResult Index()
+        public ActionResult ProFile()
         {
             return View();
         }

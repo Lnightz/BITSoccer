@@ -159,8 +159,8 @@ D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.WebPages.Razor.xml
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\Newtonsoft.Json.xml
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\Antlr3.Runtime.pdb
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csprojAssemblyReference.cache
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CoreCompileInputs.cache
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CopyComplete
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.dll
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.pdb
-D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csprojAssemblyReference.cache

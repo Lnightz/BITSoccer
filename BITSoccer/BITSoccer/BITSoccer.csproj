@@ -149,6 +149,7 @@
     <Compile Include="Areas\Admin\Controllers\RangeAgesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RangeTimesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StadiumsController.cs" />
+    <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -255,6 +256,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserType.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -555,6 +557,8 @@
     <Content Include="Views\Home\Tournaments.cshtml" />
     <Content Include="Views\Home\Coach.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Student\ProFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -562,7 +566,6 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Views\Coach\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

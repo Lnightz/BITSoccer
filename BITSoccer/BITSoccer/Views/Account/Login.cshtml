@@ -40,8 +40,12 @@
                                 <br />
                                 @Html.ValidationMessage("Error", new { @class = "text-danger" })
                                 <br />
-                                @*<input type="submit" name="submit" class="btn btn-primary" value="Login" />*@
-                                <button id="loginbtn" class="button" type="submit">Login</button>
+                                @if (!string.IsNullOrEmpty(ViewBag.Message))
+                                {
+                                    <p class="alert alert-danger text-center">@ViewBag.Message</p>
+                                }
+                                <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+                                @*<button id="loginbtn" class="button" type="submit">Login</button>*@
                                 <a href="@Url.Action("ForgotPassword","Account")" class="fright">Quên mật khẩu ?</a>
                             </div>
                         }

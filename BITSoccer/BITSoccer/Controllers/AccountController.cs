@@ -1,4 +1,5 @@
-﻿using BITSoccer.Models;
+﻿using BITSoccer.BLL;
+using BITSoccer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,40 +27,71 @@ namespace BITSoccer.Controllers
 
             if(userdetails != null)
             {
-                //Session["UserID"] = userdetails.User_ID.ToString();
-                //Session["UserName"] = userdetails.UserName.ToString();
-                //Session["UserTypeID"] = userdetails.UserType_ID.ToString();
-
-
-                ///Setup lưu cookies người dùng
-                FormsAuthentication.SetAuthCookie(userdetails.UserName, false);
-
-                var authTicket = new FormsAuthenticationTicket(1, 
-                    userdetails.UserName, 
-                    DateTime.Now, 
-                    DateTime.Now.AddMinutes(30), 
-                    false, 
-                    userdetails.UserType.UserTypeName);
-
-                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-
-                HttpContext.Response.Cookies.Add(authCookie);
+                Authencicate(userdetails);
 
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError("Error", "Đăng nhập không thành công");
+                ViewBag.Message = "Sai tên tài khoản hoặc mật khẩu. Vui lòng nhập lại";
                 return View();
             }
         }
+
+        public void Authencicate (User user)
+        {
+            ///Setup lưu cookies người dùng
+            FormsAuthentication.SetAuthCookie(user.UserName, false);
+
+            var authTicket = new FormsAuthenticationTicket(1,
+                user.UserName,
+                DateTime.Now,
+                DateTime.Now.AddMinutes(30),
+                false,
+                user.UserType.UserTypeName);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+
+            HttpContext.Response.Cookies.Add(authCookie);
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(UserModel model)
+        {
+            if (!model.IsEqualPass)
+            {
+                ViewBag.Message = "Mật khẩu nhập lại không đúng";
+                return View();
+            }
+
+            User user = AccountBLL.Instance.CreateAccount(model);
+
+            var userdetails = db.Users.Any(x => x.UserName == model.UserName);
+
+            if (userdetails != null)
+            {
+                ViewBag.Message = "Tài khoản đã tồn tại";
+                return View();
+            }
+            else
+            {
+                Authencicate(user);
+
+                return RedirectToAction("Index", "Home");
+
+            }
+        }
+
         public ActionResult Logout()
         {
-            string username = User.Identity.Name;
-
-            //Session.Clear();
 
             FormsAuthentication.SignOut();
 
