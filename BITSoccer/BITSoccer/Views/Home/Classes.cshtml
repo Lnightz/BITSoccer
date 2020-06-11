@@ -1,6 +1,9 @@
-﻿@model IEnumerable<BITSoccer.Models.Class>
-@using BITSoccer.Models
-@using System.Globalization
+﻿@*@model IEnumerable<BITSoccer.Models.Class>*@
+@using BITSoccer.Models;
+@using System.Globalization;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<BITSoccer.Models.Class>
 @{
     ViewBag.Title = "Khoá học";
 }
@@ -254,7 +257,7 @@
                             </div>
                         </div>
                         <!-- Cards -->
-                        <div class="new-class" style="padding: top 25px">
+                        <div class="new-class" style="padding-top: 25px">
                             <div class="container">
                                 <div class="row divcenter">
                                     @{
@@ -291,16 +294,29 @@
                                                         <p class="card-text">
                                                             Huấn luyện viên: <span>@item.Coach.Name</span>
                                                         </p>
-                                                        <p class="card-text">
-                                                            Thời gian: <span>@item.StartDay</span> - <span>@item.EndDay</span>
-                                                        </p>
+                                                        @{
+                                                            string startday = item.StartDay.HasValue ? item.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                                            string endday = item.EndDay.HasValue ? item.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                                            <p class="card-text">
+                                                                Thời gian: <span>@startday</span> - <span>@endday</span>
+                                                            </p>
+                                                        }
                                                         <div class="star-prices d-flex justify-content-between">
                                                             <div class="star d-flex">
                                                                 <i class="fas fa-star"></i><span>(4,5)</span>
                                                             </div>
                                                             <div class="prices position-relative">
-                                                                <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                                                <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                                                @{
+                                                                    if (item.PromoPrices > 0)
+                                                                    {
+                                                                        <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                                                        <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="prices-now">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                                                    }
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
@@ -319,15 +335,9 @@
     <!-- Cards -->
     <!--pagination-->
     <div style="text-align:center">
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+        @*Page @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount)*@
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, }))
         </div>
     </div>
 </main>

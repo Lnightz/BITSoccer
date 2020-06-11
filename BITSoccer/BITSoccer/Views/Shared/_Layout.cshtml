@@ -8,7 +8,6 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="~/Assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/Assets/css/ihover.css">
-    <link href="~/Assets/" rel="stylesheet" />
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="~/Assets/css/slick.css" />
     <link rel="stylesheet" type="text/css" href="~/Assets/css/slick-theme.css">
@@ -21,6 +20,13 @@
 
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
+
+    @if (IsSectionDefined("AddToHead"))
+    {
+        @RenderSection("AddToHead", required: false)
+    }
+
+    @RenderSection("AddToHeadAnotherWay", required: false)
 
 </head>
 <body>
@@ -91,10 +97,10 @@
                                             @User.Identity.Name
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student")">Thông tin cá nhân</a>
-                                            <a class="dropdown-item hover-effect" href="userclasses.html">Lớp của tôi</a>
-                                            <a class="dropdown-item hover-effect" href="student_account.html">Tài khoản học viên</a>
-                                            <a class="dropdown-item hover-effect" href="student_pay.html">Thanh Toán</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student", new { username = User.Identity.Name })">Thông tin cá nhân</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentClass","Student")">Lớp của tôi</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("AddClass","Student")">Tài khoản học viên</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentPay","Student")">Thanh Toán</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
                                         </div>
                                     </li>

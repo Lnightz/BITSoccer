@@ -117,8 +117,10 @@ namespace BITSoccer.Areas.Admin.Controllers
                 string pathinDB = "/Content/Images/" + Path.GetFileName(@class.PictureUpload.FileName);
                 @class.Image = pathinDB;
             }
+
             if (ModelState.IsValid)
             {
+                //if (DateTime.Compare(@class.StartDay,))
                 db.Entry(@class).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

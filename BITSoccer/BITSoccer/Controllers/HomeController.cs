@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BITSoccer.Controllers
 {
@@ -19,9 +20,12 @@ namespace BITSoccer.Controllers
         {
             return View();
         }
-        public ActionResult Classes()
+        public ActionResult Classes(int? page)
         {
-            return View(db.Classes.ToList());
+            var pageNumber = page ?? 1;
+            var pageSize = 3;
+            var classlist = db.Classes.OrderBy(x => x.CreatedDate).ToPagedList(pageNumber, pageSize);
+            return View(classlist);
         }
         public ActionResult News()
         {

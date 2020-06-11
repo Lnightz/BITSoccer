@@ -1,4 +1,4 @@
-﻿
+﻿@model BITSoccer.Models.User
 @{
     ViewBag.Title = "Thông tin cá nhân";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,15 +21,11 @@
                             <div class="text-center">
                                 <img src="img/NGO75851.jpg" alt="" class="profile-user-img img-fluid img-circle">
                             </div>
-                            <h3 class="profile-user-name text-center">Nguyễn Văn A</h3>
-                            <p class="text-muted text-center">Học Viên</p>
+                            <h3 class="profile-user-name text-center">@Model.CustomerName</h3>
+                            <p class="text-muted text-center">@Model.UserType.UserTypeName</p>
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
                                     <b>Lớp đã tham gia</b>
-                                    <p class="float-right" style="margin: 0;">0</p>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>asdasd</b>
                                     <p class="float-right" style="margin: 0;">0</p>
                                 </li>
                             </ul>
@@ -51,21 +47,25 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="inform">
+                                    @using (Html.BeginForm("ChangeProfile", "Student", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
                                     <form class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                <input type="text" class="form-control" id="inputName" placeholder="Name" name="CustomerName" value="@Model.CustomerName">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Giới tính</label>
                                             <div class="col-sm-10">
                                                 <div class="input-group">
-                                                    <select class="custom-select" id="inputGroupSelect04">
-                                                        <option value="Female">Nữ</option>
-                                                        <option value="Male">Nam</option>
-                                                        <option value="Other">Khác</option>
+                                                    <select class="custom-select" id="inputGroupSelect04" name="Gender">
+                                                        <option value="@Model.Gender" selected hidden>@Model.Gender</option>
+                                                        <option value="Nữ">Nữ</option>
+                                                        <option value="Nam">Nam</option>
+                                                        <option value="Khác">Khác</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -73,31 +73,40 @@
                                         <div class="form-group row">
                                             <label for="birthday" class="col-sm-2 col-form-label">Ngày sinh</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" id="birthday" placeholder="">
+                                                @{
+                                                    string birthDay = Model.BirthDay.GetValueOrDefault().ToString("yyyy/MM/dd");
+                                                    <input type="date" class="form-control" id="birthday" placeholder="" name="BirthDay" value="@birthDay">
+                                                }
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                                <input type="email" class="form-control" id="email" placeholder="Email" name="Email" value="@Model.Email">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="address" class="col-sm-2 col-form-label">Địa chỉ</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="address" placeholder="Address">
+                                                <input type="text" class="form-control" id="address" placeholder="Address" name="Address" value="@Model.Address">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="phonenumber" class="col-sm-2 col-form-label">Số điện thoại</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="phonenumber" placeholder="Phone Number">
+                                                <input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" name="PhoneNumber" value="@Model.PhoneNumber">
                                             </div>
                                         </div>
+                                        <input type="hidden" name="UserName" value="@Model.UserName" />
+                                        <input type="hidden" name="User_ID" value="@Model.User_ID" />
+                                        <input type="hidden" name="UserType_ID" value="@Model.UserType_ID" />
+                                        <input type="hidden" name="Password" value="@Model.Password" />
+                                        @*<input type="hidden" name="IsActive" value="true" />*@
                                         <div class="offset-sm-2 col-sm-10">
                                             <button class="btn btn-primary" type="submit">Thay đổi</button>
                                         </div>
                                     </form>
+                                    }
                                 </div>
                                 <div class="tab-pane" id="resetpass">
                                     <form class="form-horizontal">

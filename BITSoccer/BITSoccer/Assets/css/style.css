@@ -685,7 +685,13 @@ footer .Infor span {
 /*pagination*/
 
 .pagination {
-  display: inline-block;
+  display: inline-block !important;
+}
+
+ul.pagination{
+    display: flex !important;
+    list-style-type : none !important;
+    justify-content : center !important;
 }
 
 .pagination a {
@@ -696,17 +702,16 @@ footer .Infor span {
   transition: background-color .3s;
   border: 1px solid #ddd;
   margin: 0 4px;
+  border-radius:5px;
 }
 
-.pagination a.active {
+.pagination li.active a{
   background-color: #4CAF50;
   color: white;
-  border-radius: 5px;
 }
 
-.pagination a:hover:not(.active) {
+.pagination li:hover:not(.active) a{
 	background-color: #ddd;
-	border-radius: 5px;
 }
 
 /*pagination*/

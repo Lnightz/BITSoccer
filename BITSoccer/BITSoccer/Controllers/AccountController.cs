@@ -76,8 +76,6 @@ namespace BITSoccer.Controllers
                     return View();
                 }
 
-                User user = AccountBLL.Instance.CreateAccount(model);
-
                 var userdetails = db.Users.Any(x => x.UserName == model.UserName);
 
                 if (userdetails != null)
@@ -86,7 +84,10 @@ namespace BITSoccer.Controllers
                     return View();
                 }
                 else
+
                 {
+                    User user = AccountBLL.Instance.CreateAccount(model);
+
                     Authencicate(user);
 
                     return RedirectToAction("Index", "Home");

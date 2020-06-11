@@ -12,7 +12,6 @@ namespace BITSoccer.Models
         public string UserName { get; set; }
         [Required]
         public string Password { get; set; }
-        [Required]
         public string RePassword { get; set; }
 
         public bool IsEqualPass
