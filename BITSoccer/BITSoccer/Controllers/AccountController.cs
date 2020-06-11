@@ -31,7 +31,9 @@ namespace BITSoccer.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
+
             else
+
             {
                 ViewBag.Message = "Sai tên tài khoản hoặc mật khẩu. Vui lòng nhập lại";
                 return View();
@@ -66,28 +68,32 @@ namespace BITSoccer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserModel model)
         {
-            if (!model.IsEqualPass)
+            if (ModelState.IsValid)
             {
-                ViewBag.Message = "Mật khẩu nhập lại không đúng";
-                return View();
+                if (!model.IsEqualPass)
+                {
+                    ViewBag.Message = "Mật khẩu nhập lại không đúng";
+                    return View();
+                }
+
+                User user = AccountBLL.Instance.CreateAccount(model);
+
+                var userdetails = db.Users.Any(x => x.UserName == model.UserName);
+
+                if (userdetails != null)
+                {
+                    ViewBag.Message = "Tài khoản đã tồn tại";
+                    return View();
+                }
+                else
+                {
+                    Authencicate(user);
+
+                    return RedirectToAction("Index", "Home");
+
+                }
             }
-
-            User user = AccountBLL.Instance.CreateAccount(model);
-
-            var userdetails = db.Users.Any(x => x.UserName == model.UserName);
-
-            if (userdetails != null)
-            {
-                ViewBag.Message = "Tài khoản đã tồn tại";
-                return View();
-            }
-            else
-            {
-                Authencicate(user);
-
-                return RedirectToAction("Index", "Home");
-
-            }
+            return View();
         }
 
         public ActionResult Logout()

@@ -36,11 +36,12 @@
                                 @Html.LabelFor(m => m.Password)
                                 @*<input id="password" type="password" placeholder="Pass Words" class="form-control">*@
                                 @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control", @placeholder = "PassWords", @type = "password" })
+
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 <br />
                                 @Html.ValidationMessage("Error", new { @class = "text-danger" })
                                 <br />
-                                @if (!string.IsNullOrEmpty(ViewBag.Message))
+                                @if (!string.IsNullOrEmpty(ViewBag.Message)) 
                                 {
                                     <p class="alert alert-danger text-center">@ViewBag.Message</p>
                                 }

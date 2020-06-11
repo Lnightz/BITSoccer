@@ -1,4 +1,5 @@
-﻿
+﻿@model BITSoccer.Models.UserModel
+
 @{
     ViewBag.Title = "Đăng ký";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,15 +31,19 @@
                                 }
                                 <label for="username">Tên đăng nhập</label>
                                 <input id="username" type="text" placeholder="User Name" class="form-control" name="UserName">
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="password">Mật khẩu</label>
                                 <input id="password" type="password" placeholder="Pass Words" class="form-control" name="Password">
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="password">Nhập lại mật khẩu</label>
                                 <input id="password" type="password" placeholder="Pass Words" class="form-control" name="RePassword">
+                                @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="student-name">Họ và Tên Học viên</label>
                                 <input id="student-name" type="text" placeholder="Name" class="form-control" name="CustomerName">
+                                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="">Giới tính</label>
                                 <div class="input-group">
@@ -51,15 +56,19 @@
                                 <br>
                                 <label for="student-birthday">Ngày sinh</label>
                                 <input id="student-birthday" type="date" placeholder="Birth Day" class="form-control" name="BirthDay">
+                                @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="student-mail">Email</label>
                                 <input id="student-mail" type="text" placeholder="Email" class="form-control" name="Email">
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="student-address">Địa chỉ</label>
                                 <input id="student-address" type="text" placeholder="Address" class="form-control" name="Address">
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                                 <br>
                                 <label for="student-phone">Số Điện thoại</label>
                                 <input id="student-phone" type="text" placeholder="Phone_number" class="form-control" name="PhoneNumber">
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                                 <br />
                                 <div class="row d-flex justify-content-center">
                                     <button id="loginbtn" class="button" type="submit">Đăng ký</button>
