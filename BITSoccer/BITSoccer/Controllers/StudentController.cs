@@ -13,6 +13,7 @@ namespace BITSoccer.Controllers
     {
         BITSoccerEntities db = new BITSoccerEntities();
         // GET: Student
+        //Get Student Profile
         public ActionResult ProFile(string username)
         {
             if (User.Identity.IsAuthenticated)
@@ -40,13 +41,11 @@ namespace BITSoccer.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
+        //User thay đổi thông tin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeProfile(User model)
         {
-            
-
             if (ModelState.IsValid)
             {
                 db.Users.Add(model);
@@ -56,18 +55,91 @@ namespace BITSoccer.Controllers
             return View("ProFile",model);
         }
 
-        public ActionResult StudentClass()
+        //Lớp của học viên
+        public ActionResult StudentClass(string username)
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                if (username == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User user = db.Users.Where(x => x.UserName == username).FirstOrDefault();
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                if (User.IsInRole("Student"))
+                {
+                    if (User.Identity.Name == user.UserName)
+                    {
+                        return View(user);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult AddClass()
+        //Thêm lớp vào tài khoản -> Add to Cart
+        public ActionResult AddClass(string username)
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                if (username == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User user = db.Users.Where(x => x.UserName == username).FirstOrDefault();
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                if (User.IsInRole("Student"))
+                {
+                    if (User.Identity.Name == user.UserName)
+                    {
+                        return View(user);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
-        public ActionResult StudentPay()
+
+        //Thanh Toán
+        public ActionResult StudentPay(string username)
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                if (username == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User user = db.Users.Where(x => x.UserName == username).FirstOrDefault();
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                if (User.IsInRole("Student"))
+                {
+                    if (User.Identity.Name == user.UserName)
+                    {
+                        return View(user);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

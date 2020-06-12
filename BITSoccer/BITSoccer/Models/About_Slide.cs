@@ -14,21 +14,10 @@ namespace BITSoccer.Models
     
     public partial class About_Slide
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public About_Slide()
-        {
-            this.Abouts = new HashSet<About>();
-        }
+        public int AboutSlideID { get; set; }
+        public Nullable<int> AboutID { get; set; }
+        public string Image { get; set; }
     
-        public int About_Slide_ID { get; set; }
-        public string Image_1 { get; set; }
-        public string Image_2 { get; set; }
-        public string Image_3 { get; set; }
-        public string Image_4 { get; set; }
-        public string Image_5 { get; set; }
-        public string Image_6 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<About> Abouts { get; set; }
+        public virtual About About { get; set; }
     }
 }

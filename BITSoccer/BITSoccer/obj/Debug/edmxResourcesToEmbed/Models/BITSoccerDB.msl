@@ -1,36 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BITSoccerModelStoreContainer" CdmEntityContainer="BITSoccerEntities">
-    <EntitySetMapping Name="Abouts">
-      <EntityTypeMapping TypeName="BITSoccerModel.About">
-        <MappingFragment StoreEntitySet="About">
-          <ScalarProperty Name="About_ID" ColumnName="About_ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="About_Image" ColumnName="About_Image" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="About_Slide_ID" ColumnName="About_Slide_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="About_Slide">
-      <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
-        <MappingFragment StoreEntitySet="About_Slide">
-          <ScalarProperty Name="About_Slide_ID" ColumnName="About_Slide_ID" />
-          <ScalarProperty Name="Image_1" ColumnName="Image_1" />
-          <ScalarProperty Name="Image_2" ColumnName="Image_2" />
-          <ScalarProperty Name="Image_3" ColumnName="Image_3" />
-          <ScalarProperty Name="Image_4" ColumnName="Image_4" />
-          <ScalarProperty Name="Image_5" ColumnName="Image_5" />
-          <ScalarProperty Name="Image_6" ColumnName="Image_6" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Archives">
       <EntityTypeMapping TypeName="BITSoccerModel.Archive">
         <MappingFragment StoreEntitySet="Archive">
@@ -44,6 +14,7 @@
     <EntitySetMapping Name="Bills">
       <EntityTypeMapping TypeName="BITSoccerModel.Bill">
         <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="DatePay" ColumnName="DatePay" />
@@ -71,6 +42,8 @@
     <EntitySetMapping Name="Classes">
       <EntityTypeMapping TypeName="BITSoccerModel.Class">
         <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="GeneralDescription" ColumnName="GeneralDescription" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
           <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
@@ -399,5 +372,25 @@
         <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Abouts">
+      <EntityTypeMapping TypeName="BITSoccerModel.About">
+        <MappingFragment StoreEntitySet="About">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CoachDescription" ColumnName="CoachDescription" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AboutID" ColumnName="AboutID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="About_Slide">
+      <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
+        <MappingFragment StoreEntitySet="About_Slide">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="AboutID" ColumnName="AboutID" />
+          <ScalarProperty Name="AboutSlideID" ColumnName="AboutSlideID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

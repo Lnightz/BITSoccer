@@ -14,18 +14,19 @@ namespace BITSoccer.Models
     
     public partial class About
     {
-        public int About_ID { get; set; }
-        public string Name { get; set; }
-        public string MetaTitle { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
-        public string ModifyBy { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public string About_Image { get; set; }
-        public string Content { get; set; }
-        public int About_Slide_ID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public About()
+        {
+            this.About_Slide = new HashSet<About_Slide>();
+        }
     
-        public virtual About_Slide About_Slide { get; set; }
+        public int AboutID { get; set; }
+        public string Description { get; set; }
+        public string CoachDescription { get; set; }
+        public string Image { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<About_Slide> About_Slide { get; set; }
     }
 }

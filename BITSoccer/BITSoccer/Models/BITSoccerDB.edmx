@@ -7,31 +7,21 @@
     <Schema Namespace="BITSoccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
-            <PropertyRef Name="About_ID" />
+            <PropertyRef Name="AboutID" />
           </Key>
-          <Property Name="About_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="MetaTitle" Type="nvarchar" MaxLength="255" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
-          <Property Name="ModifyDate" Type="datetime" />
-          <Property Name="ModifyBy" Type="nvarchar" MaxLength="255" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="About_Image" Type="nvarchar" MaxLength="255" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="About_Slide_ID" Type="int" Nullable="false" />
+          <Property Name="AboutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CoachDescription" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="About_Slide">
           <Key>
-            <PropertyRef Name="About_Slide_ID" />
+            <PropertyRef Name="AboutSlideID" />
           </Key>
-          <Property Name="About_Slide_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Image_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Image_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Image_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Image_4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Image_5" Type="nvarchar" MaxLength="255" />
-          <Property Name="Image_6" Type="nvarchar" MaxLength="255" />
+          <Property Name="AboutSlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AboutID" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Archive">
           <Key>
@@ -56,6 +46,7 @@
           <Property Name="VISAPay" Type="bit" />
           <Property Name="ATMPay" Type="bit" />
           <Property Name="MoMoPay" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -95,6 +86,8 @@
           <Property Name="RangeTimeID" Type="int" />
           <Property Name="StadiumID" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="GeneralDescription" Type="nvarchar(max)" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="ClassUser">
           <Key>
@@ -374,6 +367,18 @@
           <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <Association Name="FK__About_Sli__About__40058253">
+          <End Role="About" Type="Self.About" Multiplicity="0..1" />
+          <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="About">
+              <PropertyRef Name="AboutID" />
+            </Principal>
+            <Dependent Role="About_Slide">
+              <PropertyRef Name="AboutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__BillDetai__BillI__05D8E0BE">
           <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -467,20 +472,6 @@
             </Principal>
             <Dependent Role="Rating">
               <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_About_About_Slide">
-          <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="About" Type="Self.About" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="About_Slide">
-              <PropertyRef Name="About_Slide_ID" />
-            </Principal>
-            <Dependent Role="About">
-              <PropertyRef Name="About_Slide_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -786,6 +777,10 @@
           <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__About_Sli__About__40058253" Association="Self.FK__About_Sli__About__40058253">
+            <End Role="About" EntitySet="About" />
+            <End Role="About_Slide" EntitySet="About_Slide" />
+          </AssociationSet>
           <AssociationSet Name="FK__BillDetai__BillI__05D8E0BE" Association="Self.FK__BillDetai__BillI__05D8E0BE">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillDetail" EntitySet="BillDetail" />
@@ -817,10 +812,6 @@
           <AssociationSet Name="FK__Rating__User_ID__1EA48E88" Association="Self.FK__Rating__User_ID__1EA48E88">
             <End Role="User" EntitySet="User" />
             <End Role="Rating" EntitySet="Rating" />
-          </AssociationSet>
-          <AssociationSet Name="FK_About_About_Slide" Association="Self.FK_About_About_Slide">
-            <End Role="About_Slide" EntitySet="About_Slide" />
-            <End Role="About" EntitySet="About" />
           </AssociationSet>
           <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
             <End Role="User" EntitySet="User" />
@@ -915,36 +906,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BITSoccerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="About">
-          <Key>
-            <PropertyRef Name="About_ID" />
-          </Key>
-          <Property Name="About_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="About_Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="About_Slide_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="About_Slide" Relationship="Self.FK_About_About_Slide" FromRole="About" ToRole="About_Slide" />
-        </EntityType>
-        <EntityType Name="About_Slide">
-          <Key>
-            <PropertyRef Name="About_Slide_ID" />
-          </Key>
-          <Property Name="About_Slide_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Image_1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Image_2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Image_3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Image_4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Image_5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Image_6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Abouts" Relationship="Self.FK_About_About_Slide" FromRole="About_Slide" ToRole="About" />
-        </EntityType>
         <EntityType Name="Archive">
           <Key>
             <PropertyRef Name="Archive_ID" />
@@ -970,6 +931,7 @@
           <Property Name="MoMoPay" Type="Boolean" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__BillI__4316F928" FromRole="Bill" ToRole="BillDetail" />
           <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -1022,6 +984,8 @@
           <Property Name="StadiumID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Stadium" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Class" ToRole="Stadium" />
+          <Property Name="GeneralDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Coach">
           <Key>
@@ -1318,20 +1282,6 @@
           <Property Name="UserTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
         </EntityType>
-        <Association Name="FK_About_About_Slide">
-          <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="About" Type="Self.About" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="About_Slide">
-              <PropertyRef Name="About_Slide_ID" />
-            </Principal>
-            <Dependent Role="About">
-              <PropertyRef Name="About_Slide_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__BillDetai__BillI__4316F928">
           <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -1597,8 +1547,6 @@
           <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
         </Association>
         <EntityContainer Name="BITSoccerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Abouts" EntityType="Self.About" />
-          <EntitySet Name="About_Slide" EntityType="Self.About_Slide" />
           <EntitySet Name="Archives" EntityType="Self.Archive" />
           <EntitySet Name="Bills" EntityType="Self.Bill" />
           <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
@@ -1626,10 +1574,6 @@
           <EntitySet Name="Touraments" EntityType="Self.Tourament" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
-          <AssociationSet Name="FK_About_About_Slide" Association="Self.FK_About_About_Slide">
-            <End Role="About_Slide" EntitySet="About_Slide" />
-            <End Role="About" EntitySet="Abouts" />
-          </AssociationSet>
           <AssociationSet Name="FK__BillDetai__BillI__4316F928" Association="Self.FK__BillDetai__BillI__4316F928">
             <End Role="Bill" EntitySet="Bills" />
             <End Role="BillDetail" EntitySet="BillDetails" />
@@ -1726,6 +1670,12 @@
             <End Role="Stadium" EntitySet="Stadia" />
             <End Role="Class" EntitySet="Classes" />
           </AssociationSet>
+          <EntitySet Name="Abouts" EntityType="BITSoccerModel.About" />
+          <EntitySet Name="About_Slide" EntityType="BITSoccerModel.About_Slide" />
+          <AssociationSet Name="FK__About_Sli__About__40058253" Association="BITSoccerModel.FK__About_Sli__About__40058253">
+            <End Role="About" EntitySet="Abouts" />
+            <End Role="About_Slide" EntitySet="About_Slide" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Class_Stadium">
           <End Type="BITSoccerModel.Stadium" Role="Stadium" Multiplicity="0..1" />
@@ -1739,42 +1689,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="AboutID" />
+          </Key>
+          <Property Name="AboutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CoachDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="About_Slide" Relationship="BITSoccerModel.FK__About_Sli__About__40058253" FromRole="About" ToRole="About_Slide" />
+        </EntityType>
+        <EntityType Name="About_Slide">
+          <Key>
+            <PropertyRef Name="AboutSlideID" />
+          </Key>
+          <Property Name="AboutSlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AboutID" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="About" Relationship="BITSoccerModel.FK__About_Sli__About__40058253" FromRole="About_Slide" ToRole="About" />
+        </EntityType>
+        <Association Name="FK__About_Sli__About__40058253">
+          <End Type="BITSoccerModel.About" Role="About" Multiplicity="0..1" />
+          <End Type="BITSoccerModel.About_Slide" Role="About_Slide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="About">
+              <PropertyRef Name="AboutID" />
+            </Principal>
+            <Dependent Role="About_Slide">
+              <PropertyRef Name="AboutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BITSoccerModelStoreContainer" CdmEntityContainer="BITSoccerEntities">
-          <EntitySetMapping Name="Abouts">
-            <EntityTypeMapping TypeName="BITSoccerModel.About">
-              <MappingFragment StoreEntitySet="About">
-                <ScalarProperty Name="About_ID" ColumnName="About_ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="About_Image" ColumnName="About_Image" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="About_Slide_ID" ColumnName="About_Slide_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="About_Slide">
-            <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
-              <MappingFragment StoreEntitySet="About_Slide">
-                <ScalarProperty Name="About_Slide_ID" ColumnName="About_Slide_ID" />
-                <ScalarProperty Name="Image_1" ColumnName="Image_1" />
-                <ScalarProperty Name="Image_2" ColumnName="Image_2" />
-                <ScalarProperty Name="Image_3" ColumnName="Image_3" />
-                <ScalarProperty Name="Image_4" ColumnName="Image_4" />
-                <ScalarProperty Name="Image_5" ColumnName="Image_5" />
-                <ScalarProperty Name="Image_6" ColumnName="Image_6" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Archives">
             <EntityTypeMapping TypeName="BITSoccerModel.Archive">
               <MappingFragment StoreEntitySet="Archive">
@@ -1788,6 +1740,7 @@
           <EntitySetMapping Name="Bills">
             <EntityTypeMapping TypeName="BITSoccerModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="DatePay" ColumnName="DatePay" />
@@ -1815,6 +1768,8 @@
           <EntitySetMapping Name="Classes">
             <EntityTypeMapping TypeName="BITSoccerModel.Class">
               <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="GeneralDescription" ColumnName="GeneralDescription" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
                 <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
@@ -2143,6 +2098,26 @@
               <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Abouts">
+            <EntityTypeMapping TypeName="BITSoccerModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CoachDescription" ColumnName="CoachDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AboutID" ColumnName="AboutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="About_Slide">
+            <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
+              <MappingFragment StoreEntitySet="About_Slide">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AboutID" ColumnName="AboutID" />
+                <ScalarProperty Name="AboutSlideID" ColumnName="AboutSlideID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

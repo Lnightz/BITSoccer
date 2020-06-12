@@ -1,35 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="BITSoccerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="About">
-    <Key>
-      <PropertyRef Name="About_ID" />
-    </Key>
-    <Property Name="About_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-    <Property Name="ModifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="IsActive" Type="Boolean" />
-    <Property Name="About_Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="About_Slide_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="About_Slide" Relationship="Self.FK_About_About_Slide" FromRole="About" ToRole="About_Slide" />
-  </EntityType>
-  <EntityType Name="About_Slide">
-    <Key>
-      <PropertyRef Name="About_Slide_ID" />
-    </Key>
-    <Property Name="About_Slide_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Image_1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Image_2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Image_3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Image_4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Image_5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Image_6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Abouts" Relationship="Self.FK_About_About_Slide" FromRole="About_Slide" ToRole="About" />
-  </EntityType>
   <EntityType Name="Archive">
     <Key>
       <PropertyRef Name="Archive_ID" />
@@ -55,6 +25,7 @@
     <Property Name="MoMoPay" Type="Boolean" />
     <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__BillI__4316F928" FromRole="Bill" ToRole="BillDetail" />
     <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="BillDetail">
     <Key>
@@ -107,6 +78,8 @@
     <Property Name="StadiumID" Type="Int32" />
     <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Stadium" Relationship="BITSoccerModel.FK_Class_Stadium" FromRole="Class" ToRole="Stadium" />
+    <Property Name="GeneralDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Coach">
     <Key>
@@ -403,20 +376,6 @@
     <Property Name="UserTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Users" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
   </EntityType>
-  <Association Name="FK_About_About_Slide">
-    <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="About" Type="Self.About" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="About_Slide">
-        <PropertyRef Name="About_Slide_ID" />
-      </Principal>
-      <Dependent Role="About">
-        <PropertyRef Name="About_Slide_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__BillDetai__BillI__4316F928">
     <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -682,8 +641,6 @@
     <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
   </Association>
   <EntityContainer Name="BITSoccerEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Abouts" EntityType="Self.About" />
-    <EntitySet Name="About_Slide" EntityType="Self.About_Slide" />
     <EntitySet Name="Archives" EntityType="Self.Archive" />
     <EntitySet Name="Bills" EntityType="Self.Bill" />
     <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
@@ -711,10 +668,6 @@
     <EntitySet Name="Touraments" EntityType="Self.Tourament" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="UserTypes" EntityType="Self.UserType" />
-    <AssociationSet Name="FK_About_About_Slide" Association="Self.FK_About_About_Slide">
-      <End Role="About_Slide" EntitySet="About_Slide" />
-      <End Role="About" EntitySet="Abouts" />
-    </AssociationSet>
     <AssociationSet Name="FK__BillDetai__BillI__4316F928" Association="Self.FK__BillDetai__BillI__4316F928">
       <End Role="Bill" EntitySet="Bills" />
       <End Role="BillDetail" EntitySet="BillDetails" />
@@ -811,6 +764,12 @@
       <End Role="Stadium" EntitySet="Stadia" />
       <End Role="Class" EntitySet="Classes" />
     </AssociationSet>
+    <EntitySet Name="Abouts" EntityType="BITSoccerModel.About" />
+    <EntitySet Name="About_Slide" EntityType="BITSoccerModel.About_Slide" />
+    <AssociationSet Name="FK__About_Sli__About__40058253" Association="BITSoccerModel.FK__About_Sli__About__40058253">
+      <End Role="About" EntitySet="Abouts" />
+      <End Role="About_Slide" EntitySet="About_Slide" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Class_Stadium">
     <End Type="BITSoccerModel.Stadium" Role="Stadium" Multiplicity="0..1" />
@@ -821,6 +780,38 @@
       </Principal>
       <Dependent Role="Class">
         <PropertyRef Name="StadiumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="AboutID" />
+    </Key>
+    <Property Name="AboutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CoachDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="About_Slide" Relationship="BITSoccerModel.FK__About_Sli__About__40058253" FromRole="About" ToRole="About_Slide" />
+  </EntityType>
+  <EntityType Name="About_Slide">
+    <Key>
+      <PropertyRef Name="AboutSlideID" />
+    </Key>
+    <Property Name="AboutSlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AboutID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="About" Relationship="BITSoccerModel.FK__About_Sli__About__40058253" FromRole="About_Slide" ToRole="About" />
+  </EntityType>
+  <Association Name="FK__About_Sli__About__40058253">
+    <End Type="BITSoccerModel.About" Role="About" Multiplicity="0..1" />
+    <End Type="BITSoccerModel.About_Slide" Role="About_Slide" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="About">
+        <PropertyRef Name="AboutID" />
+      </Principal>
+      <Dependent Role="About_Slide">
+        <PropertyRef Name="AboutID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

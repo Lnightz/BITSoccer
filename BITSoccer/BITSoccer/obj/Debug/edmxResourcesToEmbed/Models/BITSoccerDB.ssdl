@@ -2,31 +2,21 @@
 <Schema Namespace="BITSoccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="About">
     <Key>
-      <PropertyRef Name="About_ID" />
+      <PropertyRef Name="AboutID" />
     </Key>
-    <Property Name="About_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="MetaTitle" Type="nvarchar" MaxLength="255" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="ModifyDate" Type="datetime" />
-    <Property Name="ModifyBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="IsActive" Type="bit" />
-    <Property Name="About_Image" Type="nvarchar" MaxLength="255" />
-    <Property Name="Content" Type="nvarchar(max)" />
-    <Property Name="About_Slide_ID" Type="int" Nullable="false" />
+    <Property Name="AboutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CoachDescription" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" />
   </EntityType>
   <EntityType Name="About_Slide">
     <Key>
-      <PropertyRef Name="About_Slide_ID" />
+      <PropertyRef Name="AboutSlideID" />
     </Key>
-    <Property Name="About_Slide_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Image_1" Type="nvarchar" MaxLength="255" />
-    <Property Name="Image_2" Type="nvarchar" MaxLength="255" />
-    <Property Name="Image_3" Type="nvarchar" MaxLength="255" />
-    <Property Name="Image_4" Type="nvarchar" MaxLength="255" />
-    <Property Name="Image_5" Type="nvarchar" MaxLength="255" />
-    <Property Name="Image_6" Type="nvarchar" MaxLength="255" />
+    <Property Name="AboutSlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AboutID" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Archive">
     <Key>
@@ -51,6 +41,7 @@
     <Property Name="VISAPay" Type="bit" />
     <Property Name="ATMPay" Type="bit" />
     <Property Name="MoMoPay" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
   </EntityType>
   <EntityType Name="BillDetail">
     <Key>
@@ -90,6 +81,8 @@
     <Property Name="RangeTimeID" Type="int" />
     <Property Name="StadiumID" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="GeneralDescription" Type="nvarchar(max)" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="ClassUser">
     <Key>
@@ -369,6 +362,18 @@
     <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
   </EntityType>
+  <Association Name="FK__About_Sli__About__40058253">
+    <End Role="About" Type="Self.About" Multiplicity="0..1" />
+    <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="About">
+        <PropertyRef Name="AboutID" />
+      </Principal>
+      <Dependent Role="About_Slide">
+        <PropertyRef Name="AboutID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__BillDetai__BillI__05D8E0BE">
     <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -462,20 +467,6 @@
       </Principal>
       <Dependent Role="Rating">
         <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_About_About_Slide">
-    <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="About" Type="Self.About" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="About_Slide">
-        <PropertyRef Name="About_Slide_ID" />
-      </Principal>
-      <Dependent Role="About">
-        <PropertyRef Name="About_Slide_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -781,6 +772,10 @@
     <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__About_Sli__About__40058253" Association="Self.FK__About_Sli__About__40058253">
+      <End Role="About" EntitySet="About" />
+      <End Role="About_Slide" EntitySet="About_Slide" />
+    </AssociationSet>
     <AssociationSet Name="FK__BillDetai__BillI__05D8E0BE" Association="Self.FK__BillDetai__BillI__05D8E0BE">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillDetail" EntitySet="BillDetail" />
@@ -812,10 +807,6 @@
     <AssociationSet Name="FK__Rating__User_ID__1EA48E88" Association="Self.FK__Rating__User_ID__1EA48E88">
       <End Role="User" EntitySet="User" />
       <End Role="Rating" EntitySet="Rating" />
-    </AssociationSet>
-    <AssociationSet Name="FK_About_About_Slide" Association="Self.FK_About_About_Slide">
-      <End Role="About_Slide" EntitySet="About_Slide" />
-      <End Role="About" EntitySet="About" />
     </AssociationSet>
     <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
       <End Role="User" EntitySet="User" />

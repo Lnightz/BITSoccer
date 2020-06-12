@@ -25,8 +25,6 @@ namespace BITSoccer.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<About> Abouts { get; set; }
-        public virtual DbSet<About_Slide> About_Slide { get; set; }
         public virtual DbSet<Archive> Archives { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillDetail> BillDetails { get; set; }
@@ -54,5 +52,7 @@ namespace BITSoccer.Models
         public virtual DbSet<Tourament> Touraments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<About> Abouts { get; set; }
+        public virtual DbSet<About_Slide> About_Slide { get; set; }
     }
 }

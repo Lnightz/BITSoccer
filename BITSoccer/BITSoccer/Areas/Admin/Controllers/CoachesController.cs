@@ -40,7 +40,7 @@ namespace BITSoccer.Areas.Admin.Controllers
         // GET: Admin/Coaches/Create
         public ActionResult Create()
         {
-            ViewBag.Level = new SelectList(db.LevelCoaches, "LevelCoachID", "LevelName");
+            ViewBag.Level = new SelectList(db.LevelCoaches, "LevelCoachID", "LevelN1ame");
             ViewBag.User_ID = new SelectList(db.Users, "User_ID", "UserName");
             return View();
         }

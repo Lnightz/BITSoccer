@@ -30,6 +30,7 @@ namespace BITSoccer.Models
         public Nullable<bool> VISAPay { get; set; }
         public Nullable<bool> ATMPay { get; set; }
         public Nullable<bool> MoMoPay { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }

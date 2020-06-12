@@ -193,6 +193,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BITSoccerDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Class.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -259,6 +260,7 @@
     <Compile Include="Models\Tourament.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UploadImage.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -569,6 +571,7 @@
     <Content Include="Views\Student\StudentClass.cshtml" />
     <Content Include="Views\Student\AddClass.cshtml" />
     <Content Include="Views\Student\StudentPay.cshtml" />
+    <Content Include="Views\Home\ClassDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
