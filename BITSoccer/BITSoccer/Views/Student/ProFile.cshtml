@@ -1,4 +1,5 @@
 ﻿@model BITSoccer.Models.User
+
 @{
     ViewBag.Title = "Thông tin cá nhân";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,8 +22,8 @@
                             <div class="text-center">
                                 <img src="img/NGO75851.jpg" alt="" class="profile-user-img img-fluid img-circle">
                             </div>
-                            <h3 class="profile-user-name text-center">@Model.CustomerName</h3>
-                            <p class="text-muted text-center">@Model.UserType.UserTypeName</p>
+                            <h3 class="profile-user-name text-center">@Model.UserName</h3>
+                            <p class="text-muted text-center">Học viên</p>
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
                                     <b>Lớp đã tham gia</b>
@@ -33,6 +34,24 @@
                     </div>
                 </div>
                 <div class="col-md-9">
+                    @{
+                        if (ViewBag.Message == "FAIL")
+                        {
+                            <div class="alert alert-danger text-center mt-3">Thay đổi mật khẩu thất bại</div>
+                        }
+                        else if (ViewBag.Message == "SUCCESS")
+                        {
+                            <div class="alert alert-success text-center mt-3">Thay đổi mật khẩu thành công</div>
+                        }
+                        else if (ViewBag.Message == "ReFAIL")
+                        {
+                            <div class="alert alert-danger text-center mt-3">Nhập lại mật khẩu mới sai</div>
+                        }
+                        else if (ViewBag.Message == "PROFILESUCCESS")
+                        {
+                            <div class="alert alert-success text-center mt-3">Thay đổi thông tin cá nhân thành công</div>
+                        }
+                    }
                     <div class="card card-primary">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
@@ -50,88 +69,87 @@
                                     @using (Html.BeginForm("ChangeProfile", "Student", FormMethod.Post))
                                     {
                                         @Html.AntiForgeryToken()
-                                    <form class="form-horizontal">
-                                        <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="Name" name="CustomerName" value="@Model.CustomerName">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Giới tính</label>
-                                            <div class="col-sm-10">
-                                                <div class="input-group">
-                                                    <select class="custom-select" id="inputGroupSelect04" name="Gender">
-                                                        <option value="@Model.Gender" selected hidden>@Model.Gender</option>
-                                                        <option value="Nữ">Nữ</option>
-                                                        <option value="Nam">Nam</option>
-                                                        <option value="Khác">Khác</option>
-                                                    </select>
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputName" placeholder="Name" name="CustomerName" value="@Model.CustomerName">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="birthday" class="col-sm-2 col-form-label">Ngày sinh</label>
-                                            <div class="col-sm-10">
-                                                @{
-                                                    string birthDay = Model.BirthDay.GetValueOrDefault().ToString("yyyy/MM/dd");
-                                                    <input type="date" class="form-control" id="birthday" placeholder="" name="BirthDay" value="@birthDay">
-                                                }
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Giới tính</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group">
+                                                        <select class="custom-select" id="inputGroupSelect04" name="Gender">
+                                                            <option value="@Model.Gender" selected hidden>@Model.Gender</option>
+                                                            <option value="Nữ">Nữ</option>
+                                                            <option value="Nam">Nam</option>
+                                                            <option value="Khác">Khác</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="email" placeholder="Email" name="Email" value="@Model.Email">
+                                            <div class="form-group row">
+                                                <label for="birthday" class="col-sm-2 col-form-label">Ngày sinh</label>
+                                                <div class="col-sm-10">
+                                                    @{
+                                                        string birthDay = Model.BirthDay.GetValueOrDefault().ToString("yyyy/MM/dd");
+                                                        <input type="date" class="form-control" id="birthday" placeholder="" name="BirthDay" value="@birthDay">
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="address" class="col-sm-2 col-form-label">Địa chỉ</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="address" placeholder="Address" name="Address" value="@Model.Address">
+                                            <div class="form-group row">
+                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="email" placeholder="Email" name="Email" value="@Model.Email">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="phonenumber" class="col-sm-2 col-form-label">Số điện thoại</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" name="PhoneNumber" value="@Model.PhoneNumber">
+                                            <div class="form-group row">
+                                                <label for="address" class="col-sm-2 col-form-label">Địa chỉ</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="address" placeholder="Address" name="Address" value="@Model.Address">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="hidden" name="UserName" value="@Model.UserName" />
-                                        <input type="hidden" name="User_ID" value="@Model.User_ID" />
-                                        <input type="hidden" name="UserType_ID" value="@Model.UserType_ID" />
-                                        <input type="hidden" name="Password" value="@Model.Password" />
-                                        @*<input type="hidden" name="IsActive" value="true" />*@
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <button class="btn btn-primary" type="submit">Thay đổi</button>
-                                        </div>
-                                    </form>
+                                            <div class="form-group row">
+                                                <label for="phonenumber" class="col-sm-2 col-form-label">Số điện thoại</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" name="PhoneNumber" value="@Model.PhoneNumber">
+                                                </div>
+                                            </div>
+                                            @Html.HiddenFor(model => model.Password)
+                                            @Html.HiddenFor(model => model.UserName)
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button class="btn btn-primary" type="submit">Thay đổi</button>
+                                            </div>
+                                        </form>
                                     }
                                 </div>
                                 <div class="tab-pane" id="resetpass">
-                                    <form class="form-horizontal">
+                                    @using (Html.BeginForm("ChangePassword", "Student", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
                                         <div class="form-group row">
                                             <label for="oldPass" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="oldPass" placeholder="Password">
+                                                <input type="password" class="form-control" id="oldPass" placeholder="Password" name="OldPassword">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="newPass" class="col-sm-2 col-form-label">Mật khẩu mới</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="newPass" placeholder="New Password">
+                                                <input type="password" class="form-control" id="newPass" placeholder="New Password" name="NewPassword">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="confirmPass" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="confirmPass" placeholder="Confirm Password">
+                                                <input type="password" class="form-control" id="confirmPass" placeholder="Confirm Password" name="ConFirmNewPassword">
                                             </div>
                                         </div>
                                         <div class="offset-sm-2 col-sm-10">
                                             <button class="btn btn-danger" type="submit">Thay đổi</button>
                                         </div>
-                                    </form>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -97,10 +97,10 @@
                                             @User.Identity.Name
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student", new { username = User.Identity.Name })">Thông tin cá nhân</a>
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentClass","Student", new { username = User.Identity.Name })">Lớp của tôi</a>
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("AddClass","Student", new { username = User.Identity.Name })">Tài khoản học viên</a>
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentPay","Student", new { username = User.Identity.Name })">Thanh Toán</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student")">Thông tin cá nhân</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentClass","Student")">Lớp của tôi</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("AddClass","Student")">Tài khoản học viên</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("AddToCart","Home")">Thanh Toán</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
                                         </div>
                                     </li>
@@ -191,6 +191,8 @@
     <script type="text/javascript" src="~/Assets/js/main.js"></script>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/16b5112f28.js" crossorigin="anonymous"></script>
+
+
 
     <!-- Facebook script -->
     <div id="fb-root"></div>

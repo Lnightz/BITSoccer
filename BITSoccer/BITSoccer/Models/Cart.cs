@@ -7,7 +7,18 @@ namespace BITSoccer.Models
 {
     public class Cart
     {
-        public int ClassID { get; set; }
+
+        
+        public Class Class { get; set; }
+
+        public User User { get; set; }
+
+        public Cart(User user, Class classes )
+        {
+            Class = classes;
+            User = user;
+        }
 
     }
+
 }

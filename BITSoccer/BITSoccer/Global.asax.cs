@@ -9,6 +9,8 @@ using System.Web.Security;
 
 namespace BITSoccer
 {
+
+    //https://www.codeproject.com/Articles/1111522/Custom-Authentication-and-Authorization-in-MVC
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()

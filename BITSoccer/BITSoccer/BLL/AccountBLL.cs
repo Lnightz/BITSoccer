@@ -19,11 +19,11 @@ namespace BITSoccer.BLL
         public User CreateAccount(UserModel model)
         {
             User users = null;
-
             using (var db = new BITSoccerEntities())
             {
                 users = new User()
                 {
+                    User_ID = 0,
                     UserType_ID = 2,
                     UserName = model.UserName,
                     Password = model.Password,
@@ -40,10 +40,64 @@ namespace BITSoccer.BLL
 
                 if (db.SaveChanges() > 0)
                 {
-                    return users;
+                    return db.Users.Include("UserType").FirstOrDefault(x => x.User_ID == users.User_ID);
                 }
             }
             return users;
+        }
+
+        public User ChangeProfile (string username, UserModel model)
+        {
+            User user = null;
+            using (var db = new BITSoccerEntities())
+            {
+                user = db.Users.FirstOrDefault(x => x.UserName == username);
+
+                if (user == null)
+                {
+                    return null;
+                }
+
+                user.CustomerName = model.CustomerName;
+                user.Gender = model.Gender;
+                user.BirthDay = model.BirthDay;
+                user.Email = model.Email;
+                user.PhoneNumber = model.PhoneNumber;
+                user.Address = model.Address;
+
+                if (db.SaveChanges() > 0)
+                {
+                    return user;
+                }
+            }
+            return user;
+        }
+
+        public User ChangePassword(string username, ChangePasswordModel model)
+        {
+            User user = null;
+            using (var db = new BITSoccerEntities())
+            {
+                user = db.Users.FirstOrDefault(x => x.UserName == username);
+
+                if (user == null)
+                {
+                    return null;
+                }
+
+                if (user.Password != model.OldPassword)
+                {
+                    return null;
+                }
+
+                user.Password = model.NewPassword;
+
+                if (db.SaveChanges() > 0)
+                {
+                    return user;
+                }
+            }
+            return null;
         }
     }
 }

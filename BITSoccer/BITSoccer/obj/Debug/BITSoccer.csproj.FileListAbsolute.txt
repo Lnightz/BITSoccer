@@ -83,8 +83,11 @@ D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CoreCompileIn
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CopyComplete
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.dll
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.pdb
-E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Http.WebHost.dll
-E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Mvc.xml
+D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.dll
+D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.Mvc.dll
+D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.xml
+D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.Mvc.xml
+E:\BITSoccer\BITSoccer\BITSoccer\bin\EntityFramework.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\BITSoccer.dll.config
 E:\BITSoccer\BITSoccer\BITSoccer\bin\BITSoccer.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\BITSoccer.pdb
@@ -145,6 +148,7 @@ E:\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.Mvc.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Net.Http.Formatting.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Helpers.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Http.dll
+E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Http.WebHost.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Mvc.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Optimization.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Razor.dll
@@ -152,7 +156,6 @@ E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.WebPages.Deployment.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.WebPages.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.WebPages.Razor.dll
 E:\BITSoccer\BITSoccer\BITSoccer\bin\WebGrease.dll
-E:\BITSoccer\BITSoccer\BITSoccer\bin\EntityFramework.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\EntityFramework.SqlServer.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.Mvc.xml
@@ -160,6 +163,7 @@ E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Net.Http.Formatting.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Http.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Http.WebHost.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Helpers.xml
+E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Mvc.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Optimization.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.Razor.xml
 E:\BITSoccer\BITSoccer\BITSoccer\bin\System.Web.WebPages.xml
@@ -172,7 +176,4 @@ E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CoreCompileInputs.ca
 E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CopyComplete
 E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.dll
 E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.pdb
-D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.dll
-D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.Mvc.dll
-D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.xml
-D:\GitHub\BITSoccer\BITSoccer\BITSoccer\bin\PagedList.Mvc.xml
+E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csprojAssemblyReference.cache

@@ -76,7 +76,7 @@ namespace BITSoccer.Controllers
                     return View();
                 }
 
-                var userdetails = db.Users.Any(x => x.UserName == model.UserName);
+                var userdetails = db.Users.Where(x => x.UserName == model.UserName && x.Email == model.Email).FirstOrDefault();
 
                 if (userdetails != null)
                 {

@@ -307,7 +307,7 @@
                                                             </div>
                                                             <div class="prices position-relative">
                                                                 @{
-                                                                    if (item.PromoPrices > 0)
+                                                                    if (item.PromoPrices != item.Prices)
                                                                     {
                                                                         <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
                                                                         <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>

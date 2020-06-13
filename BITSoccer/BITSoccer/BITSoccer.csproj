@@ -194,6 +194,7 @@
       <DependentUpon>BITSoccerDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\Class.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -572,6 +573,7 @@
     <Content Include="Views\Student\AddClass.cshtml" />
     <Content Include="Views\Student\StudentPay.cshtml" />
     <Content Include="Views\Home\ClassDetails.cshtml" />
+    <Content Include="Views\Home\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
