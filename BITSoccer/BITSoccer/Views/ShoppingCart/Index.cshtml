@@ -107,10 +107,9 @@
                                             @User.Identity.Name
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student", new { username = User.Identity.Name })">Thông tin cá nhân</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student")">Thông tin cá nhân</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("StudentClass","Student", new { username = User.Identity.Name })">Lớp của tôi</a>
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("AddClass","Student", new { username = User.Identity.Name })">Tài khoản học viên</a>
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentPay","Student", new { username = User.Identity.Name })">Thanh Toán</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Index","ShoppingCart")">Tài khoản học viên</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
                                         </div>
                                     </li>
@@ -214,7 +213,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                                        @using (Html.BeginForm("DeleteCart", "Home", new { id = item.Class.Class_ID }, FormMethod.Post))
+                                                        @using (Html.BeginForm("DeleteCart", "ShoppingCart", new { id = item.Class.Class_ID }, FormMethod.Post))
                                                         {
                                                             @Html.AntiForgeryToken()
                                                             <button class="btn btn-danger btn-sm" type="submit">

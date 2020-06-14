@@ -36,9 +36,19 @@
                                         Lịch học:  15H ngày thứ hai, thứ tư và thứ sáu .
                                     </strong>
                                 </p>
-                                <a href="@Url.Action("AddToCart","Home",new { id = Model.Class_ID })">
-                                    <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">
-                                </a>
+                                @{
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("AddToCart","ShoppingCart",new { id = Model.Class_ID })">
+                                            <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Login","Account")">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                    }
+                                }
+
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <img class="float-right img-fluid" src="@Url.Content(Model.Image)" alt="Rê bóng">
@@ -309,7 +319,18 @@
                 </div>
 
                 <!-- Bình luận -->
-
+                @{
+                    if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="@Url.Action("Login","Account")">Vui lòng đăng nhập có thể bình luận</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
                 <div class="container">
                     <h2 class="text-center"></h2>
                     <div class="card card-comment">
@@ -336,45 +357,24 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-2 text-center">
-                                    <img src="~/Assets/img/20180402_071817.jpg" class="img img-rounded img-fluid" />
-                                    <p class="text-secondary">08/05/2020</p>
-                                </div>
-                                <div class="col-md-10">
-                                    <p>
-                                        <a class="float-left" href="#"><strong>Phan Thanh Tuấn</strong></a>
-                                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                    </p>
-                                    <div class="clearfix"></div>
-                                    <h4>"Khóa học mang lại rất nhiều niềm vui"</h4>
-                                    <p>Lớp học đã mang rất nhiều tiếng cười và niềm vui. cám ơn lớp rất nhiều.</p>
-                                    <p>
-                                        <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
-                                        <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Khung bình luận -->
-                <div class="container">
-                    <div class="card card-comment comment-box">
-                        <div class="row">
-                            <div class="col-12"> <img src="https://i.imgur.com/d2dKtI7.png" width="60" class="rounded-circle mt-2"> </div>
-                            <div class="col-12">
-                                <div class="comment-box ml-2">
-                                    <h4>Bình luận của bạn</h4>
-                                    <div class="comment-area">
-                                        <textarea class="form-control" placeholder="Bạn cảm thấy khóa học thế nào?" rows="4" style="height: 100px;"></textarea>
-                                    </div>
-                                    <div class="comment-btns mt-2">
-                                        <div class="comment-btns mt-2">
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="container">
+                            <div class="card card-comment comment-box">
+                                <div class="row">
+                                    <div class="col-12"> <img src="https://i.imgur.com/d2dKtI7.png" width="60" class="rounded-circle mt-2"> </div>
+                                    <div class="col-12">
+                                        <div class="comment-box ml-2">
+                                            <h4>Bình luận của bạn</h4>
+                                            <div class="comment-area">
+                                                <textarea class="form-control" placeholder="Bạn cảm thấy khóa học thế nào?" rows="4" style="height: 100px;"></textarea>
+                                            </div>
                                             <div class="comment-btns mt-2">
                                                 <div class="row">
                                                     <div class="col-6">
@@ -394,10 +394,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                </div>
-
+                    }
+                }
                 <!-- Lớp liên quan  -->
                 <div class="container mt-5 ">
                     <div class="row">
@@ -653,5 +651,5 @@
             </div>
         </div>
     </div>
-    </div>
+
 </main>
