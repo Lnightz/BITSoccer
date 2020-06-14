@@ -11,12 +11,9 @@ namespace BITSoccer.Models
         
         public Class Class { get; set; }
 
-        public User User { get; set; }
-
-        public Cart(User user, Class classes )
+        public Cart(Class classes )
         {
             Class = classes;
-            User = user;
         }
 
     }

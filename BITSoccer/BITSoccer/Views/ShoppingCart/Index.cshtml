@@ -5,6 +5,7 @@
 
     ViewBag.Title = "Tài khoản học viên";
     Layout = null;
+    var userdetails = ViewBag.UserDetails;
 }
 
 <!DOCTYPE html>
@@ -108,7 +109,7 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item hover-effect" href="@Url.Action("ProFile","Student")">Thông tin cá nhân</a>
-                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentClass","Student", new { username = User.Identity.Name })">Lớp của tôi</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("StudentClass","Student")">Lớp của tôi</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("Index","ShoppingCart")">Tài khoản học viên</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
                                         </div>
@@ -173,58 +174,70 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in (List<Cart>)Session["ClassCart"])
-                                    {
-                                        <tr>
-                                            <td>@item.Class.Name</td>
-                                            <td>@item.Class.Coach.Name</td>
-                                            <td>@item.Class.LevelStudent.LevelName</td>
-                                            <td>
-                                                @{
-                                                    if (item.Class.PromoPrices != 0)
-                                                    {
-                                                        @Convert.ToDouble(item.Class.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))
-                                                    }
-                                                    else
-                                                    {
-                                                        @Convert.ToDouble(item.Class.Prices).ToString("C0", new CultureInfo("vi-VN"))
-                                                    }
-                                                }
-                                            </td>
-                                            <td>@String.Format("{0:dd/MM/yyyy}", item.Class.StartDay)</td>
-                                            <td>@item.Class.RangeTime.StartTime - @item.Class.RangeTime.EndTime</td>
-                                            <td>
-                                                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#exampleModalCenter",item.Class.Class_ID)">
-                                                    <i class="fas fa-trash"></i> Xóa
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <div class="modal fade" id="@string.Concat("exampleModalCenter",item.Class.Class_ID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Bạn có muốn xóa lớp "@item.Class.Name" ?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                                        @using (Html.BeginForm("DeleteCart", "ShoppingCart", new { id = item.Class.Class_ID }, FormMethod.Post))
-                                                        {
-                                                            @Html.AntiForgeryToken()
-                                                            <button class="btn btn-danger btn-sm" type="submit">
-                                                                <i class="fas fa-trash"></i> Xóa
-                                                            </button>
+                                    @{
+                                        if (Session["ClassCart"] != null)
+                                        {
+                                            foreach (var item in (List<Cart>)Session["ClassCart"])
+                                            {
+                                                <tr>
+                                                    <td>@item.Class.Name</td>
+                                                    <td>@item.Class.Coach.Name</td>
+                                                    <td>@item.Class.LevelStudent.LevelName</td>
+                                                    <td>
+                                                        @{
+                                                            if (item.Class.PromoPrices != 0)
+                                                            {
+                                                                @Convert.ToDouble(item.Class.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))
+                                                            }
+                                                            else
+                                                            {
+                                                                @Convert.ToDouble(item.Class.Prices).ToString("C0", new CultureInfo("vi-VN"))
+                                                            }
                                                         }
+                                                    </td>
+                                                    <td>@String.Format("{0:dd/MM/yyyy}", item.Class.StartDay)</td>
+                                                    <td>@item.Class.RangeTime.StartTime - @item.Class.RangeTime.EndTime</td>
+                                                    <td>
+                                                        <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#exampleModalCenter",item.Class.Class_ID)">
+                                                            <i class="fas fa-trash"></i> Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <div class="modal fade" id="@string.Concat("exampleModalCenter",item.Class.Class_ID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Bạn có muốn xóa lớp "@item.Class.Name" ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                                @using (Html.BeginForm("DeleteCart", "ShoppingCart", new { id = item.Class.Class_ID }, FormMethod.Post))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+                                                                    <button class="btn btn-danger btn-sm" type="submit">
+                                                                        <i class="fas fa-trash"></i> Xóa
+                                                                    </button>
+                                                                }
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="7" class="text-info text-center" >Bạn chưa thêm lớp học nào</td>
+                                            </tr>
+                                        }
                                     }
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -247,52 +260,73 @@
                                 <span>
                                     @{
                                         List<Cart> temp = (List<Cart>)Session["ClassCart"];
-                                        var total = Convert.ToDouble(temp.Sum(x => x.Class.PromoPrices)).ToString("C0", new CultureInfo("vi-VN"));
+
+                                        var totalshow = "";
+
+                                        decimal total = 0;
+
+                                        if (temp != null)
+                                        {
+                                            var subtotal = temp.Sum(x => x.Class.PromoPrices);
+                                            var subtotalshow = Convert.ToDouble(temp.Sum(x => x.Class.PromoPrices)).ToString("C0", new CultureInfo("vi-VN"));
+                                            totalshow = subtotalshow;
+                                            total = Convert.ToDecimal(subtotal);
+                                        }
+                                        else
+                                        {
+                                            totalshow = "0";
+                                        }
+                                        @totalshow
                                     }
-                                    @total
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class="row px-3">
-                        <div class="col-md-12">
-                            <h2 class="title">Thông tin tài khoản</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="name">Tên Học Viên</label>
-                            <input id="name" class="form-control" readonly value="@ViewBag.UserDetails.CustomerName">
-                            <br>
-                            <label for="email">Email</label>
-                            <input id="email" class="form-control" readonly value="@ViewBag.UserDetails.Email">
-                            <br>
-                            <label for="phonenumber">Số Điện Thoại</label>
-                            <input id="phonenumber" class="form-control" readonly value="@ViewBag.UserDetails.PhoneNumber">
-                            <br>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="class-discount-code">Mã giảm giá</label>
-                            <input id="class-discount-code" class="form-control">
-                            <br>
-                            <label for="">Hình thức thanh toán</label>
-                            <form>
+                    @using (Html.BeginForm("Checkout", "ShoppingCart", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row px-3">
+                            <div class="col-md-12">
+                                <h2 class="title">Thông tin tài khoản</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name">Tên Học Viên</label>
+                                <input id="name" class="form-control" readonly value="@ViewBag.UserDetails.CustomerName">
+                                <br>
+                                <label for="email">Email</label>
+                                <input id="email" class="form-control" readonly value="@userdetails.Email">
+                                <br>
+                                <label for="phonenumber">Số Điện Thoại</label>
+                                <input id="phonenumber" class="form-control" readonly value="@userdetails.PhoneNumber">
+                                <br>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="class-discount-code">Mã giảm giá</label>
+                                <input id="class-discount-code" class="form-control" name="Discount" value="0">
+                                <br>
+                                <label for="">Hình thức thanh toán</label>
+
+
                                 <div class="input-group ml-3 py-2">
-                                    <input type="radio" name="payType" id="international-pay" class="radio-btn-pay">
+                                    <input type="radio" name="PayMethodID" id="international-pay" class="radio-btn-pay" value="1">
                                     <label for="international-pay">THẺ QUỐC TẾ, VISA, MASTER, JCB</label>
                                 </div>
                                 <div class="input-group ml-3 py-2">
-                                    <input type="radio" name="payType" id="internal-pay" class="radio-btn-pay">
+                                    <input type="radio" name="PayMethodID" id="internal-pay" class="radio-btn-pay" value="2">
                                     <label for="internal-pay">THẺ ATM NỘI ĐỊA/ INTERNET BANKING (MIỄN PHÍ THANH TOÁN)</label>
                                 </div>
                                 <div class="input-group ml-3 py-2">
-                                    <input type="radio" name="payType" id="momo-pay" class="radio-btn-pay">
+                                    <input type="radio" name="PayMethodID" id="momo-pay" class="radio-btn-pay" value="3">
                                     <label for="momo-pay">VÍ MOMO</label>
                                 </div>
-                            </form>
+                                <input type="hidden" value="@total" name="Total"/>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary btn-lg StudentPayBtn">Thanh Toán</button>
+                            </div>
                         </div>
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-primary btn-lg StudentPayBtn">Thanh Toán</button>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

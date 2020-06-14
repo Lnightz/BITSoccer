@@ -18,7 +18,7 @@ namespace BITSoccer.Models
         public News()
         {
             this.Comments = new HashSet<Comment>();
-            this.Tags = new HashSet<Tag>();
+            this.NewsTags = new HashSet<NewsTag>();
         }
     
         public int News_ID { get; set; }
@@ -36,8 +36,8 @@ namespace BITSoccer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual News_Category News_Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<NewsTag> NewsTags { get; set; }
+        public virtual News_Category News_Category { get; set; }
     }
 }

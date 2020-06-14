@@ -12,13 +12,13 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BillDetail
+    public partial class NewsTag
     {
-        public int BillDetailID { get; set; }
-        public Nullable<int> BillID { get; set; }
-        public Nullable<int> ClassID { get; set; }
+        public int NewsTagsID { get; set; }
+        public Nullable<int> NewsID { get; set; }
+        public Nullable<int> TagsID { get; set; }
     
-        public virtual Bill Bill { get; set; }
-        public virtual Class Class { get; set; }
+        public virtual News News { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

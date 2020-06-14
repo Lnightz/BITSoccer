@@ -33,15 +33,12 @@
     </Key>
     <Property Name="Bill_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="User_ID" Type="int" Nullable="false" />
-    <Property Name="DatePay" Type="date" />
     <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
     <Property Name="TotalPaid" Type="decimal" Precision="18" Scale="0" />
     <Property Name="Status" Type="bit" />
     <Property Name="Discount" Type="float" />
-    <Property Name="VISAPay" Type="bit" />
-    <Property Name="ATMPay" Type="bit" />
-    <Property Name="MoMoPay" Type="bit" />
     <Property Name="CreateDate" Type="datetime" />
+    <Property Name="PayMethodID" Type="int" />
   </EntityType>
   <EntityType Name="BillDetail">
     <Key>
@@ -50,8 +47,6 @@
     <Property Name="BillDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BillID" Type="int" />
     <Property Name="ClassID" Type="int" />
-    <Property Name="DateSignIN" Type="date" />
-    <Property Name="DateExpierd" Type="date" />
   </EntityType>
   <EntityType Name="Class">
     <Key>
@@ -84,13 +79,13 @@
     <Property Name="GeneralDescription" Type="nvarchar(max)" />
     <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
   </EntityType>
-  <EntityType Name="ClassUser">
+  <EntityType Name="ClassUsers">
     <Key>
-      <PropertyRef Name="Class_ID" />
-      <PropertyRef Name="User_ID" />
+      <PropertyRef Name="ClassUsersID" />
     </Key>
-    <Property Name="Class_ID" Type="int" Nullable="false" />
-    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="ClassUsersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ClassID" Type="int" />
   </EntityType>
   <EntityType Name="Coach">
     <Key>
@@ -245,11 +240,11 @@
   </EntityType>
   <EntityType Name="NewsTags">
     <Key>
-      <PropertyRef Name="Tag_ID" />
-      <PropertyRef Name="News_ID" />
+      <PropertyRef Name="NewsTagsID" />
     </Key>
-    <Property Name="Tag_ID" Type="int" Nullable="false" />
-    <Property Name="News_ID" Type="int" Nullable="false" />
+    <Property Name="NewsTagsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewsID" Type="int" />
+    <Property Name="TagsID" Type="int" />
   </EntityType>
   <EntityType Name="PartOfDay">
     <Key>
@@ -257,6 +252,13 @@
     </Key>
     <Property Name="PartOfDayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PartOfDay" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="PayMethod">
+    <Key>
+      <PropertyRef Name="PayMethodID" />
+    </Key>
+    <Property Name="PayMethodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PayMethodName" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="RangeAge">
     <Key>
@@ -386,18 +388,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__BillI__06CD04F7">
-    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bill">
-        <PropertyRef Name="Bill_ID" />
-      </Principal>
-      <Dependent Role="BillDetail">
-        <PropertyRef Name="BillID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__BillDetai__Class__07C12930">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -410,27 +400,51 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__Class__08B54D69">
+  <Association Name="FK__ClassUser__Class__5E8A0973">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Class">
         <PropertyRef Name="Class_ID" />
       </Principal>
-      <Dependent Role="BillDetail">
+      <Dependent Role="ClassUsers">
         <PropertyRef Name="ClassID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__Class_ID__1BC821DD">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+  <Association Name="FK__ClassUser__UserI__5D95E53A">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
       </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="Class_ID" />
+      <Dependent Role="ClassUsers">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NewsTags__TagsID__6166761E">
+    <End Role="News" Type="Self.News" Multiplicity="0..1" />
+    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="News_ID" />
+      </Principal>
+      <Dependent Role="NewsTags">
+        <PropertyRef Name="NewsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NewsTags__TagsID__625A9A57">
+    <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tags">
+        <PropertyRef Name="Tag_ID" />
+      </Principal>
+      <Dependent Role="NewsTags">
+        <PropertyRef Name="TagsID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -458,15 +472,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__User_ID__1EA48E88">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+  <Association Name="FK_Bill_PayMethod">
+    <End Role="PayMethod" Type="Self.PayMethod" Multiplicity="0..1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
+      <Principal Role="PayMethod">
+        <PropertyRef Name="PayMethodID" />
       </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="User_ID" />
+      <Dependent Role="Bill">
+        <PropertyRef Name="PayMethodID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -568,32 +582,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ClassUser_Class">
-    <End Role="Class" Type="Self.Class" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="ClassUser" Type="Self.ClassUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="ClassUser">
-        <PropertyRef Name="Class_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ClassUser_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="ClassUser" Type="Self.ClassUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="ClassUser">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Coach_Level">
     <End Role="LevelCoach" Type="Self.LevelCoach" Multiplicity="0..1" />
     <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
@@ -666,30 +654,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_NewsTags_News">
-    <End Role="News" Type="Self.News" Multiplicity="1" />
-    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="News">
-        <PropertyRef Name="News_ID" />
-      </Principal>
-      <Dependent Role="NewsTags">
-        <PropertyRef Name="News_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_NewsTags_Tags">
-    <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
-    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tags">
-        <PropertyRef Name="Tag_ID" />
-      </Principal>
-      <Dependent Role="NewsTags">
-        <PropertyRef Name="Tag_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ReplyToCommentID">
     <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
     <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
@@ -747,7 +711,7 @@
     <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ClassUser" EntityType="Self.ClassUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClassUsers" EntityType="Self.ClassUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coach_Moment" EntityType="Self.Coach_Moment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
@@ -763,6 +727,7 @@
     <EntitySet Name="News_Category" EntityType="Self.News_Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NewsTags" EntityType="Self.NewsTags" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PartOfDay" EntityType="Self.PartOfDay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayMethod" EntityType="Self.PayMethod" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RangeAge" EntityType="Self.RangeAge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RangeTime" EntityType="Self.RangeTime" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
@@ -780,21 +745,25 @@
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__BillI__06CD04F7" Association="Self.FK__BillDetai__BillI__06CD04F7">
-      <End Role="Bill" EntitySet="Bill" />
-      <End Role="BillDetail" EntitySet="BillDetail" />
-    </AssociationSet>
     <AssociationSet Name="FK__BillDetai__Class__07C12930" Association="Self.FK__BillDetai__Class__07C12930">
       <End Role="Class" EntitySet="Class" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__Class__08B54D69" Association="Self.FK__BillDetai__Class__08B54D69">
+    <AssociationSet Name="FK__ClassUser__Class__5E8A0973" Association="Self.FK__ClassUser__Class__5E8A0973">
       <End Role="Class" EntitySet="Class" />
-      <End Role="BillDetail" EntitySet="BillDetail" />
+      <End Role="ClassUsers" EntitySet="ClassUsers" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__Class_ID__1BC821DD" Association="Self.FK__Rating__Class_ID__1BC821DD">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="Rating" EntitySet="Rating" />
+    <AssociationSet Name="FK__ClassUser__UserI__5D95E53A" Association="Self.FK__ClassUser__UserI__5D95E53A">
+      <End Role="User" EntitySet="User" />
+      <End Role="ClassUsers" EntitySet="ClassUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NewsTags__TagsID__6166761E" Association="Self.FK__NewsTags__TagsID__6166761E">
+      <End Role="News" EntitySet="News" />
+      <End Role="NewsTags" EntitySet="NewsTags" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NewsTags__TagsID__625A9A57" Association="Self.FK__NewsTags__TagsID__625A9A57">
+      <End Role="Tags" EntitySet="Tags" />
+      <End Role="NewsTags" EntitySet="NewsTags" />
     </AssociationSet>
     <AssociationSet Name="FK__Rating__Class_ID__1CBC4616" Association="Self.FK__Rating__Class_ID__1CBC4616">
       <End Role="Class" EntitySet="Class" />
@@ -804,9 +773,9 @@
       <End Role="User" EntitySet="User" />
       <End Role="Rating" EntitySet="Rating" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__User_ID__1EA48E88" Association="Self.FK__Rating__User_ID__1EA48E88">
-      <End Role="User" EntitySet="User" />
-      <End Role="Rating" EntitySet="Rating" />
+    <AssociationSet Name="FK_Bill_PayMethod" Association="Self.FK_Bill_PayMethod">
+      <End Role="PayMethod" EntitySet="PayMethod" />
+      <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
     <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
       <End Role="User" EntitySet="User" />
@@ -840,14 +809,6 @@
       <End Role="Stadium" EntitySet="Stadium" />
       <End Role="Class" EntitySet="Class" />
     </AssociationSet>
-    <AssociationSet Name="FK_ClassUser_Class" Association="Self.FK_ClassUser_Class">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="ClassUser" EntitySet="ClassUser" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ClassUser_User" Association="Self.FK_ClassUser_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="ClassUser" EntitySet="ClassUser" />
-    </AssociationSet>
     <AssociationSet Name="FK_Coach_Level" Association="Self.FK_Coach_Level">
       <End Role="LevelCoach" EntitySet="LevelCoach" />
       <End Role="Coach" EntitySet="Coach" />
@@ -871,14 +832,6 @@
     <AssociationSet Name="FK_News_News_Category" Association="Self.FK_News_News_Category">
       <End Role="News_Category" EntitySet="News_Category" />
       <End Role="News" EntitySet="News" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NewsTags_News" Association="Self.FK_NewsTags_News">
-      <End Role="News" EntitySet="News" />
-      <End Role="NewsTags" EntitySet="NewsTags" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NewsTags_Tags" Association="Self.FK_NewsTags_Tags">
-      <End Role="Tags" EntitySet="Tags" />
-      <End Role="NewsTags" EntitySet="NewsTags" />
     </AssociationSet>
     <AssociationSet Name="FK_ReplyToCommentID" Association="Self.FK_ReplyToCommentID">
       <End Role="Comment" EntitySet="Comment" />

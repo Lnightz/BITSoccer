@@ -1,6 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BITSoccerModelStoreContainer" CdmEntityContainer="BITSoccerEntities">
+    <EntitySetMapping Name="Abouts">
+      <EntityTypeMapping TypeName="BITSoccerModel.About">
+        <MappingFragment StoreEntitySet="About">
+          <ScalarProperty Name="AboutID" ColumnName="AboutID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CoachDescription" ColumnName="CoachDescription" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="About_Slide">
+      <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
+        <MappingFragment StoreEntitySet="About_Slide">
+          <ScalarProperty Name="AboutSlideID" ColumnName="AboutSlideID" />
+          <ScalarProperty Name="AboutID" ColumnName="AboutID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Archives">
       <EntityTypeMapping TypeName="BITSoccerModel.Archive">
         <MappingFragment StoreEntitySet="Archive">
@@ -14,17 +34,14 @@
     <EntitySetMapping Name="Bills">
       <EntityTypeMapping TypeName="BITSoccerModel.Bill">
         <MappingFragment StoreEntitySet="Bill">
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-          <ScalarProperty Name="DatePay" ColumnName="DatePay" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="TotalPaid" ColumnName="TotalPaid" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Discount" ColumnName="Discount" />
-          <ScalarProperty Name="VISAPay" ColumnName="VISAPay" />
-          <ScalarProperty Name="ATMPay" ColumnName="ATMPay" />
-          <ScalarProperty Name="MoMoPay" ColumnName="MoMoPay" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="PayMethodID" ColumnName="PayMethodID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -34,18 +51,12 @@
           <ScalarProperty Name="BillDetailID" ColumnName="BillDetailID" />
           <ScalarProperty Name="BillID" ColumnName="BillID" />
           <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-          <ScalarProperty Name="DateSignIN" ColumnName="DateSignIN" />
-          <ScalarProperty Name="DateExpierd" ColumnName="DateExpierd" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Classes">
       <EntityTypeMapping TypeName="BITSoccerModel.Class">
         <MappingFragment StoreEntitySet="Class">
-          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
-          <ScalarProperty Name="GeneralDescription" ColumnName="GeneralDescription" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
           <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
@@ -68,6 +79,19 @@
           <ScalarProperty Name="PartOfDayID" ColumnName="PartOfDayID" />
           <ScalarProperty Name="GenderID" ColumnName="GenderID" />
           <ScalarProperty Name="RangeTimeID" ColumnName="RangeTimeID" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="GeneralDescription" ColumnName="GeneralDescription" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassUsers">
+      <EntityTypeMapping TypeName="BITSoccerModel.ClassUser">
+        <MappingFragment StoreEntitySet="ClassUsers">
+          <ScalarProperty Name="ClassUsersID" ColumnName="ClassUsersID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -235,11 +259,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NewsTags">
+      <EntityTypeMapping TypeName="BITSoccerModel.NewsTag">
+        <MappingFragment StoreEntitySet="NewsTags">
+          <ScalarProperty Name="NewsTagsID" ColumnName="NewsTagsID" />
+          <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+          <ScalarProperty Name="TagsID" ColumnName="TagsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PartOfDays">
       <EntityTypeMapping TypeName="BITSoccerModel.PartOfDay">
         <MappingFragment StoreEntitySet="PartOfDay">
           <ScalarProperty Name="PartOfDayID" ColumnName="PartOfDayID" />
           <ScalarProperty Name="PartOfDay1" ColumnName="PartOfDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayMethods">
+      <EntityTypeMapping TypeName="BITSoccerModel.PayMethod">
+        <MappingFragment StoreEntitySet="PayMethod">
+          <ScalarProperty Name="PayMethodID" ColumnName="PayMethodID" />
+          <ScalarProperty Name="PayMethodName" ColumnName="PayMethodName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -274,10 +315,10 @@
     <EntitySetMapping Name="Stadia">
       <EntityTypeMapping TypeName="BITSoccerModel.Stadium">
         <MappingFragment StoreEntitySet="Stadium">
-          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Stadium_ID" ColumnName="Stadium_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -353,42 +394,6 @@
         <MappingFragment StoreEntitySet="UserType">
           <ScalarProperty Name="UserType_ID" ColumnName="UserType_ID" />
           <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="ClassUser" TypeName="BITSoccerModel.ClassUser" StoreEntitySet="ClassUser">
-      <EndProperty Name="Class">
-        <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
-      </EndProperty>
-      <EndProperty Name="User">
-        <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="NewsTags" TypeName="BITSoccerModel.NewsTags" StoreEntitySet="NewsTags">
-      <EndProperty Name="News">
-        <ScalarProperty Name="News_ID" ColumnName="News_ID" />
-      </EndProperty>
-      <EndProperty Name="Tags">
-        <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <EntitySetMapping Name="Abouts">
-      <EntityTypeMapping TypeName="BITSoccerModel.About">
-        <MappingFragment StoreEntitySet="About">
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="CoachDescription" ColumnName="CoachDescription" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="AboutID" ColumnName="AboutID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="About_Slide">
-      <EntityTypeMapping TypeName="BITSoccerModel.About_Slide">
-        <MappingFragment StoreEntitySet="About_Slide">
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="AboutID" ColumnName="AboutID" />
-          <ScalarProperty Name="AboutSlideID" ColumnName="AboutSlideID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

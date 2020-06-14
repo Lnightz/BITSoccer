@@ -12,23 +12,18 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Stadium : UploadImage
+    public partial class PayMethod
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Stadium()
+        public PayMethod()
         {
-            this.Classes = new HashSet<Class>();
-            this.Touraments = new HashSet<Tourament>();
+            this.Bills = new HashSet<Bill>();
         }
     
-        public int Stadium_ID { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Image { get; set; }
+        public int PayMethodID { get; set; }
+        public string PayMethodName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Class> Classes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tourament> Touraments { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }

@@ -17,13 +17,13 @@ namespace BITSoccer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tag()
         {
-            this.News = new HashSet<News>();
+            this.NewsTags = new HashSet<NewsTag>();
         }
     
         public int Tag_ID { get; set; }
         public string TagName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<NewsTag> NewsTags { get; set; }
     }
 }

@@ -199,6 +199,9 @@
     <Compile Include="Models\Class.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassUser.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Coach.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -235,10 +238,16 @@
     <Compile Include="Models\News.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewsTag.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\News_Category.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PartOfDay.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PayMethod.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RangeAge.cs">
@@ -506,13 +515,6 @@
     <Content Include="Areas\Admin\Views\LevelCoaches\Create.cshtml" />
     <Content Include="Areas\Admin\Views\LevelCoaches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LevelCoaches\Index.cshtml" />
-    <EntityDeploy Include="Models\BITSoccerDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BITSoccerDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BITSoccerDB.edmx.diagram">
-      <DependentUpon>BITSoccerDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\RangeTimes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\RangeTimes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RangeTimes\Index.cshtml" />
@@ -536,6 +538,13 @@
     <Content Include="Areas\Admin\Views\Classes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Index.cshtml" />
+    <EntityDeploy Include="Models\BITSoccerDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BITSoccerDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BITSoccerDB.edmx.diagram">
+      <DependentUpon>BITSoccerDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -575,6 +584,7 @@
     <Content Include="Views\Student\StudentPay.cshtml" />
     <Content Include="Views\Home\ClassDetails.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\PaySuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

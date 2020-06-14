@@ -25,10 +25,13 @@ namespace BITSoccer.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<About> Abouts { get; set; }
+        public virtual DbSet<About_Slide> About_Slide { get; set; }
         public virtual DbSet<Archive> Archives { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillDetail> BillDetails { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<ClassUser> ClassUsers { get; set; }
         public virtual DbSet<Coach> Coaches { get; set; }
         public virtual DbSet<Coach_Moment> Coach_Moment { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -42,7 +45,9 @@ namespace BITSoccer.Models
         public virtual DbSet<LevelStudent> LevelStudents { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<News_Category> News_Category { get; set; }
+        public virtual DbSet<NewsTag> NewsTags { get; set; }
         public virtual DbSet<PartOfDay> PartOfDays { get; set; }
+        public virtual DbSet<PayMethod> PayMethods { get; set; }
         public virtual DbSet<RangeAge> RangeAges { get; set; }
         public virtual DbSet<RangeTime> RangeTimes { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
@@ -52,7 +57,5 @@ namespace BITSoccer.Models
         public virtual DbSet<Tourament> Touraments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
-        public virtual DbSet<About> Abouts { get; set; }
-        public virtual DbSet<About_Slide> About_Slide { get; set; }
     }
 }

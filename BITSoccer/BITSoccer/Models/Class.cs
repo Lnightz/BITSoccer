@@ -12,15 +12,15 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Class : UploadImage
+    public partial class Class :UploadImage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Class()
         {
             this.BillDetails = new HashSet<BillDetail>();
+            this.ClassUsers = new HashSet<ClassUser>();
             this.Ratings = new HashSet<Rating>();
             this.Comments = new HashSet<Comment>();
-            this.Users = new HashSet<User>();
         }
     
         public int Class_ID { get; set; }
@@ -53,6 +53,8 @@ namespace BITSoccer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClassUser> ClassUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual Coach Coach { get; set; }
         public virtual Gender Gender { get; set; }
@@ -60,10 +62,8 @@ namespace BITSoccer.Models
         public virtual PartOfDay PartOfDay { get; set; }
         public virtual RangeAge RangeAge { get; set; }
         public virtual RangeTime RangeTime { get; set; }
+        public virtual Stadium Stadium { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
-        public virtual Stadium Stadium { get; set; }
     }
 }

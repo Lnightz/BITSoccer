@@ -44,7 +44,7 @@ namespace BITSoccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = AccountBLL.Instance.ChangeProfile(User.Identity.Name,model);
+                User user = AccountBLL.Instance.ChangeProfile(User.Identity.Name, model);
 
                 ViewBag.Message = "PROFILESUCCESS";
 
@@ -65,12 +65,12 @@ namespace BITSoccer.Controllers
                     return View("ProFile", userLogin);
                 }
 
-                User user = AccountBLL.Instance.ChangePassword(User.Identity.Name,model);
+                User user = AccountBLL.Instance.ChangePassword(User.Identity.Name, model);
 
                 if (user == null)
                 {
                     ViewBag.Message = "FAIL";
-                    return View("ProFile" , userLogin);
+                    return View("ProFile", userLogin);
                 }
                 else
                 {
@@ -82,30 +82,13 @@ namespace BITSoccer.Controllers
         }
 
         //Lớp của học viên
-        public ActionResult StudentClass(string username)
+        public ActionResult StudentClass()
         {
-            if (User.Identity.IsAuthenticated)
+
+            if (User.IsInRole("Student"))
             {
-                if (username == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                User user = db.Users.Where(x => x.UserName == username).FirstOrDefault();
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-                if (User.IsInRole("Student"))
-                {
-                    if (User.Identity.Name == user.UserName)
-                    {
-                        return View(user);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
+                ViewBag.StudentClass = db.ClassUsers.Where(x => x.User.UserName == User.Identity.Name).ToList();
+                return View();
             }
             return RedirectToAction("Index", "Home");
         }

@@ -16,14 +16,14 @@ namespace BITSoccer.Controllers
         // GET: ShoppingCart
         public ActionResult Index()
         {
+            ViewBag.UserDetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             return View();
         }
         public ActionResult AddToCart(int? id)
         {
             if (User.IsInRole("Student"))
             {
-                var userdetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-                ViewBag.UserDetails = userdetails;
+                ViewBag.UserDetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
                 if (id == null)
                 {
                     return View("Index");
@@ -39,7 +39,7 @@ namespace BITSoccer.Controllers
                 {
                     List<Cart> listcarts = new List<Cart>
                         {
-                            new Cart(db.Users.Find(userdetails.User_ID),db.Classes.Find(id))
+                            new Cart(db.Classes.Find(id))
                         };
                     Session["ClassCart"] = listcarts;
                 }
@@ -49,7 +49,7 @@ namespace BITSoccer.Controllers
                     int check = IsExstingCheck(id);
                     if (check == -1)
                     {
-                        listcarts.Add(new Cart(db.Users.Find(userdetails.User_ID), db.Classes.Find(id)));
+                        listcarts.Add(new Cart(db.Classes.Find(id)));
                     }
                 }
                 return View("Index");
@@ -75,8 +75,7 @@ namespace BITSoccer.Controllers
 
         public ActionResult DeleteCart(int? id)
         {
-            var userdetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            ViewBag.UserDetails = userdetails;
+            ViewBag.UserDetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
@@ -84,6 +83,53 @@ namespace BITSoccer.Controllers
             int check = IsExstingCheck(id);
             List<Cart> listcarts = (List<Cart>)Session["ClassCart"];
             listcarts.RemoveAt(check);
+            return View("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(FormCollection model)
+        {
+            float discount = (float)Convert.ToDouble(model["Discount"]);
+            float discountvalue = 1 - discount;
+            var userdetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            List<Cart> listcarts = (List<Cart>)Session["ClassCart"];
+
+            Bill bill = new Bill()
+            {
+                User_ID = userdetails.User_ID,
+                Status = true,
+                CreateDate = DateTime.Now,
+                Total = Convert.ToDecimal(model["Total"]),
+                Discount = Convert.ToDouble(discount),
+                TotalPaid = Convert.ToDecimal(Convert.ToDouble(model["Total"]) * discountvalue),
+                PayMethodID = (int)Convert.ToDouble(model["PayMethodID"])
+            };
+            db.Bills.Add(bill);
+            if (db.SaveChanges() > 0)
+            {
+                foreach (Cart item in listcarts)
+                {
+                    BillDetail billDetail = new BillDetail()
+                    {
+                        BillID = bill.Bill_ID,
+                        ClassID = item.Class.Class_ID,
+                    };
+                    db.BillDetails.Add(billDetail);
+                    db.SaveChanges();
+
+                    ClassUser classUser = new ClassUser()
+                    {
+                        ClassID = item.Class.Class_ID,
+                        UserID =userdetails.User_ID,
+                    };
+                    db.ClassUsers.Add(classUser);
+                    db.SaveChanges();
+                }
+
+                Session.Remove("ClassCart");
+                return View("PaySuccess");
+            }
+            ViewBag.Message = "FAIL";
             return View("Index");
         }
     }

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Lớp của tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var studentclass = (List<BITSoccer.Models.ClassUser>)ViewBag.StudentClass;
 }
 
 @section AddToHead{
@@ -41,58 +42,42 @@
                 </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="blog-card">
-                                <div class="meta">
-                                    <div class="photo" style="background-image: url('./img/Lop2.jpg')"></div>
-                                    <ul class="details">
-                                        <li class="author"><a href="#">Cristian Ronaldo</a></li>
-                                        <li class="date">Aug. 24, 2020</li>
-                                        <li class="tags">
-                                            <ul>
-                                                <li><a href="#">Nam</a></li>
-                                                <li><a href="#">9-15t</a></li>
-                                                <li><a href="#">2h</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="description">
-                                    <h1>Kỹ năng tâng bóng</h1>
-                                    <h2>Lớp học nâng cao</h2>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                                    <p class="read-more">
-                                        <a href="#">Read More</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12">
-                            <div class="blog-card">
-                                <div class="meta">
-                                    <div class="photo" style="background-image: url('./img/Lop2.jpg')"></div>
-                                    <ul class="details">
-                                        <li class="author"><a href="#">Cristian Ronaldo</a></li>
-                                        <li class="date">Aug. 24, 2020</li>
-                                        <li class="tags">
-                                            <ul>
-                                                <li><a href="#">Nam</a></li>
-                                                <li><a href="#">9-15t</a></li>
-                                                <li><a href="#">2h</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="description">
-                                    <h1>Kỹ năng tâng bóng</h1>
-                                    <h2>Lớp học nâng cao</h2>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                                    <p class="read-more">
-                                        <a href="#">Read More</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        @{
+                            if (studentclass != null)
+                            {
+                                foreach (var item in studentclass)
+                                {
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="blog-card">
+                                            <div class="meta">
+                                                <div class="photo" style="background-image: url('@item.Class.Image')"></div>
+                                                <ul class="details">
+                                                    <li class="author"><a href="#">@item.Class.Coach.Name</a></li>
+                                                    <li class="date">@item.Class.StartDay</li>
+                                                    <li class="tags">
+                                                        <ul>
+                                                            <li><a href="#">@item.Class.Gender.Gender1</a></li>
+                                                            <li><a href="#">@item.Class.RangeAge.MinAge - @item.Class.RangeAge.MaxAge</a></li>
+                                                            <li><a href="#">@item.Class.RangeTime.StartTime - @item.Class.RangeTime.EndTime </a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="description">
+                                                <h1>@item.Class.Name</h1>
+                                                <h2>@item.Class.LevelStudent.LevelName</h2>
+                                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                                                <p class="read-more">
+                                                    <a href="#">Read More</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+
+
                     </div>
                 </div>
             </div>
