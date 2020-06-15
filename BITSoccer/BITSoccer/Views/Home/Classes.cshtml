@@ -6,6 +6,12 @@
 @model PagedList.IPagedList<BITSoccer.Models.Class>
 @{
     ViewBag.Title = "Khoá học";
+    var lvlstudent = (List<BITSoccer.Models.LevelStudent>)ViewBag.LevelStudent;
+    var rangeAge = (List<BITSoccer.Models.RangeAge>)ViewBag.RangeAges;
+    var rangeTime = (List<BITSoccer.Models.RangeTime>)ViewBag.RangeTimes;
+    var gender = (List<BITSoccer.Models.Gender>)ViewBag.Gender;
+    var partofDay = (List<BITSoccer.Models.PartOfDay>)ViewBag.PartOfDay;
+    var lvlcoach = (List<BITSoccer.Models.LevelCoach>)ViewBag.LevelCoach;
 }
 
 <main>
@@ -38,27 +44,18 @@
                                     <div id="collapseOne" class="accordion-body collapse" aria-labelledby="headingOne">
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Cơ bản
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Trung Cấp
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Chuyên nghiệp
-                                                        </label>
-                                                    </div>
-                                                </li>
+                                                @{
+                                                    foreach (var item in lvlstudent)
+                                                    {
+                                                        <li class="list-group-item">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="radio" value="" onclick="location.href='@Url.Action("Classes","Home",new { page = 1 , levelstudentid = item.LevelStudentID })'">@item.LevelName
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -72,20 +69,18 @@
                                     <div id="collapseTwo" class="accordion-body collapse" aria-labelledby="headingTwo">
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">5-9
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">9-15
-                                                        </label>
-                                                    </div>
-                                                </li>
+                                                @{
+                                                    foreach (var item in rangeAge)
+                                                    {
+                                                        <li class="list-group-item">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" value="">@item.MinAge - @item.MaxAge
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -99,20 +94,18 @@
                                     <div id="collapseThree" class="accordion-body collapse" aria-labelledby="headingThree">
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Nam
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Nữ
-                                                        </label>
-                                                    </div>
-                                                </li>
+                                                @{
+                                                    foreach (var item in gender)
+                                                    {
+                                                        <li class="list-group-item">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" value="">@item.Gender1
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -126,27 +119,18 @@
                                     <div id="collapseFour" class="accordion-body collapse" aria-labelledby="headingFour">
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Quốc tế
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Quốc gia
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Đào tạo chính quy
-                                                        </label>
-                                                    </div>
-                                                </li>
+                                                @{
+                                                    foreach (var item in lvlcoach)
+                                                    {
+                                                        <li class="list-group-item">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" value="">@item.LevelName
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -160,27 +144,18 @@
                                     <div id="collapseFive" class="accordion-body collapse" aria-labelledby="headingFive">
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Sáng
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Trưa
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">Chiều
-                                                        </label>
-                                                    </div>
-                                                </li>
+                                                @{
+                                                    foreach (var item in partofDay)
+                                                    {
+                                                        <li class="list-group-item">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" value="">@item.PartOfDay1
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -194,32 +169,22 @@
                                     <div id="collapseSix" class="accordion-body collapse" aria-labelledby="headingSix">
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">1h
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">1h30
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="">2h
-                                                        </label>
-                                                    </div>
-                                                </li>
+                                                @{
+                                                    foreach (var item in rangeTime)
+                                                    {
+                                                        <li class="list-group-item">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" value="">@item.StartTime - @item.EndTime
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn btn-primary btn-lg" style="float:right; margin-top: 10px;">Tìm</div>
                             </div>
                         </div>
                     </div>
@@ -337,7 +302,7 @@
     <div style="text-align:center">
         @*Page @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount)*@
         <div>
-            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, }))
+            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, levelstudentID = ViewBag.levelstudentid }))
         </div>
     </div>
 </main>

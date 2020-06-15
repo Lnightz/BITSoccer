@@ -21,12 +21,30 @@ namespace BITSoccer.Controllers
         {
             return View();
         }
-        public ActionResult Classes(int? page)
+        public ActionResult Classes(int? page, int? levelstudentid , string sortOrder = "date_desc")
         {
+            ViewBag.LevelStudent = db.LevelStudents.OrderBy(x => x.LevelStudentID).ToList();
+            ViewBag.LevelCoach = db.LevelCoaches.OrderBy(x => x.LevelCoachID).ToList();
+            ViewBag.RangeAges = db.RangeAges.OrderBy(x => x.RangeAgeID).ToList();
+            ViewBag.Gender = db.Genders.OrderBy(x => x.GenderID).ToList();
+            ViewBag.RangeTimes = db.RangeTimes.OrderBy(x => x.StartTime).ToList();
+            ViewBag.PartOfDay = db.PartOfDays.OrderBy(x => x.PartOfDayID).ToList();
             var pageNumber = page ?? 1;
             var pageSize = 3;
-            var classlist = db.Classes.OrderBy(x => x.CreatedDate).ToPagedList(pageNumber, pageSize);
-            return View(classlist);
+            if (levelstudentid != null)
+            {
+                ViewBag.levelstudentid = levelstudentid;
+                var classlist = db.Classes.OrderByDescending(x => x.CreatedDate)
+                                  .Where(x => x.LevelStudentID == levelstudentid)
+                                  .ToPagedList(pageNumber, pageSize);
+                return View(classlist);
+            }
+            else
+            {
+                var classlist = db.Classes.OrderBy(x => x.CreatedDate).ToPagedList(pageNumber, pageSize);
+                return View(classlist);
+            }
+            
         }
         public ActionResult News()
         {
