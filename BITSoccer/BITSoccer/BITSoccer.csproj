@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\Controllers\RangeTimesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StadiumsController.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\ClassesBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Models\PayMethod.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassesSearchModel.cs" />
     <Compile Include="Models\RangeAge.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>

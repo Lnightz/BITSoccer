@@ -4,6 +4,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 @model PagedList.IPagedList<BITSoccer.Models.Class>
+
 @{
     ViewBag.Title = "Khoá học";
     var lvlstudent = (List<BITSoccer.Models.LevelStudent>)ViewBag.LevelStudent;
@@ -12,6 +13,38 @@
     var gender = (List<BITSoccer.Models.Gender>)ViewBag.Gender;
     var partofDay = (List<BITSoccer.Models.PartOfDay>)ViewBag.PartOfDay;
     var lvlcoach = (List<BITSoccer.Models.LevelCoach>)ViewBag.LevelCoach;
+
+    int selectedLvlStd = -1; int selectedLvlCoach = -1; int selectedRTID = -1; int selectedRAID = -1; int selectedGenID = -1; int selectedPODID = -1;
+    if (ViewBag.LvlStdID != null)
+    {
+        selectedLvlStd = (int)ViewBag.LvlStdID;
+    }
+    if (ViewBag.LvlCoachID != null)
+    {
+        selectedLvlCoach = (int)ViewBag.LvlCoachID;
+    }
+    if (ViewBag.RTID != null)
+    {
+        selectedRTID = (int)ViewBag.RTID;
+    }
+    if (ViewBag.GenderID != null)
+    {
+        selectedGenID = (int)ViewBag.GenderID;
+    }
+    if (ViewBag.RAID != null)
+    {
+        selectedRAID = (int)ViewBag.RAID;
+    }
+    if (ViewBag.PODID != null)
+    {
+        selectedPODID = (int)ViewBag.PODID;
+    }
+
+    string isDateDesc = Request.QueryString["SortOrder"] == "DateCreateDesc" ? "active" : "";
+    string isNameAsc = Request.QueryString["SortOrder"] == "ClassName" ? "active" : "";
+    string isDateAsc = Request.QueryString["SortOrder"] == "DateCreate" ? "active" : "";
+    string isPrices = Request.QueryString["SortOrder"] == "Prices" ? "active" : "";
+    string isPrcesDesc = Request.QueryString["SortOrder"] == "PricesDesc" ? "active" : "";
 }
 
 <main>
@@ -21,274 +54,330 @@
         </div>
         <div class="text-shadow"></div>
     </div>
-    <div id="background_main">
-        <div class="container-fluid">
-            <div id="background_content">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-2 col-md-3 col-xs-12 col-sm-3">
-                        <div class="navbar-expand-lg">
-                            <div class="row d-flex justify-content-center">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#accordion" aria-controls="accordion" aria-expanded="false" aria-label="Toggle navigation">
-                                    <h4 class="filter-titile"><i class="fas fa-search" style="padding-right:5px"></i>Tìm kiếm nhanh</h4>
-                                </button>
-                            </div>
-
-                            <h4 class="filter-titile hide"><i class="fas fa-search" style="padding-right:5px"></i>Tìm kiếm nhanh</h4>
-                            <div id="accordion" class="filter-bar collapse navbar-collapse">
-                                <div class="card">
-                                    <div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                        <h4 class="mb-0 card-title">
-                                            Trình độ
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="accordion-body collapse" aria-labelledby="headingOne">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @{
-                                                    foreach (var item in lvlstudent)
-                                                    {
-                                                        <li class="list-group-item">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="radio" value="" onclick="location.href='@Url.Action("Classes","Home",new { page = 1 , levelstudentid = item.LevelStudentID })'">@item.LevelName
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </div>
-                                    </div>
+    @using (Html.BeginForm("Classes", "Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = Request.QueryString["SortOrder"] }, FormMethod.Get))
+    {
+        <div id="background_main">
+            <div class="container-fluid">
+                <div id="background_content">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-2 col-md-3 col-xs-12 col-sm-3">
+                            <div class="navbar-expand-lg">
+                                <div class="row d-flex justify-content-center">
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#accordion" aria-controls="accordion" aria-expanded="false" aria-label="Toggle navigation">
+                                        <h4 class="filter-titile"><i class="fas fa-search" style="padding-right:5px"></i>Tìm kiếm nhanh</h4>
+                                    </button>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <h4 class="mb-0 card-title">
-                                            Độ tuổi
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="accordion-body collapse" aria-labelledby="headingTwo">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @{
-                                                    foreach (var item in rangeAge)
-                                                    {
-                                                        <li class="list-group-item">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" value="">@item.MinAge - @item.MaxAge
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
+                                <!--Filter-->
+                                <h4 class="filter-titile hide"><i class="fas fa-search" style="padding-right:5px"></i>Tìm kiếm nhanh</h4>
+                                <div id="accordion" class="filter-bar collapse navbar-collapse">
+                                    <div class="card">
+                                        <div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            <h4 class="mb-0 card-title">
+                                                Trình độ
+                                            </h4>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <h4 class="mb-0 card-title">
-                                            Giới tính
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="accordion-body collapse" aria-labelledby="headingThree">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @{
-                                                    foreach (var item in gender)
-                                                    {
-                                                        <li class="list-group-item">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" value="">@item.Gender1
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header collapsed" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        <h4 class="mb-0 card-title">
-                                            Huấn luyện viên
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFour" class="accordion-body collapse" aria-labelledby="headingFour">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @{
-                                                    foreach (var item in lvlcoach)
-                                                    {
-                                                        <li class="list-group-item">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" value="">@item.LevelName
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header collapsed" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        <h4 class="mb-0 card-title">
-                                            Buổi học
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFive" class="accordion-body collapse" aria-labelledby="headingFive">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @{
-                                                    foreach (var item in partofDay)
-                                                    {
-                                                        <li class="list-group-item">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" value="">@item.PartOfDay1
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header collapsed collapsed" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                        <h4 class="mb-0 card-title">
-                                            Thời gian
-                                        </h4>
-                                    </div>
-                                    <div id="collapseSix" class="accordion-body collapse" aria-labelledby="headingSix">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @{
-                                                    foreach (var item in rangeTime)
-                                                    {
-                                                        <li class="list-group-item">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" value="">@item.StartTime - @item.EndTime
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Filter-->
-                    <div class="col-xl-9 col-lg-10 col-md-9 col-xs-12 col-sm-9">
-                        <div class="row classes-title-section">
-                            <div class="col-md-6 col-sm-12 d-flex justify-content-start">
-                                <h1 style="color:rgb(119, 190, 67)"><strong>Các khoá học:</strong></h1>
-                            </div>
-                            <div class="col-md-6 col-sm-12 d-flex justify-content-end">
-                                <div class="btn-sort">
-                                    <div class="btn-group ">
-                                        <button class="btn prices-sort" type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            Thứ tự<span><i class="fas fa-chevron-down"></i></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Mới đăng</a>
-                                            <a class="dropdown-item" href="#">Thứ tự chữ cái</a>
-                                            <a class="dropdown-item" href="#">Cũ nhất</a>
-                                        </div>
-                                    </div>
-                                    <div class="btn-group ">
-                                        <button class="btn prices-sort" type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            Giá tiền <span><i class="fas fa-chevron-down"></i></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Tăng dần</a>
-                                            <a class="dropdown-item" href="#">Giảm dần</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Cards -->
-                        <div class="new-class" style="padding-top: 25px">
-                            <div class="container">
-                                <div class="row divcenter">
-                                    @{
-                                        foreach (var item in Model)
-                                        {
-                                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="card" style="width: auto;">
-                                                    <div class="inner">
-                                                        <div class="embed-responsive embed-responsive-4by3">
-                                                            <a href="@Url.Action("ClassDetails","Home", new { id = item.Class_ID})">
-                                                                @{
-                                                                    if (item.Image != null)
-                                                                    {
-                                                                        <img src="@Url.Content(item.Image)" class="card-img-top embed-responsive-item" alt="...">
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <img src="https://via.placeholder.com/600" class="card-img-top embed-responsive-item" alt="...">
-                                                                    }
-                                                                }
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-between">
-                                                            <a href="@Url.Action("ClassDetails","Home", new { id = item.Class_ID})">
-                                                                <h5 class="card-title">@item.Name</h5>
-                                                            </a>
-                                                            <div class="class-number d-flex">
-                                                                <i class="fas fa-user"></i>
-                                                                <h5>@item.Quanity</h5>
-                                                            </div>
-                                                        </div>
-                                                        <p class="card-text">
-                                                            Huấn luyện viên: <span>@item.Coach.Name</span>
-                                                        </p>
+                                        @{
+                                            string show1 = string.Empty;
+                                            if (selectedLvlStd > 0)
+                                            {
+                                                show1 = "show";
+                                            }
+                                            <div id="collapseOne" class="accordion-body collapse @show1" aria-labelledby="headingOne">
+                                                <div class="card-body">
+                                                    <ul class="list-group">
                                                         @{
-                                                            string startday = item.StartDay.HasValue ? item.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
-                                                            string endday = item.EndDay.HasValue ? item.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
-                                                            <p class="card-text">
-                                                                Thời gian: <span>@startday</span> - <span>@endday</span>
-                                                            </p>
+                                                            foreach (var item in lvlstudent)
+                                                            {
+                                                                bool isSelected = item.LevelStudentID == selectedLvlStd ? true : false;
+                                                                <li class="list-group-item">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="radio" checked="@isSelected" onclick="location.href='@Url.Action("Classes","Home",new { lvlstd = item.LevelStudentID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID , sortOrder = Request.QueryString["SortOrder"] })'">@item.LevelName
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            }
                                                         }
-                                                        <div class="star-prices d-flex justify-content-between">
-                                                            <div class="star d-flex">
-                                                                <i class="fas fa-star"></i><span>(4,5)</span>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h4 class="mb-0 card-title">
+                                                Độ tuổi
+                                            </h4>
+                                        </div>
+                                        @{
+                                            string show2 = string.Empty;
+                                            if (selectedRAID > 0)
+                                            {
+                                                show2 = "show";
+                                            }
+                                            <div id="collapseTwo" class="accordion-body collapse @show2" aria-labelledby="headingTwo">
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        @{
+                                                            foreach (var item in rangeAge)
+                                                            {
+                                                                bool isSelected = item.RangeAgeID == selectedRAID ? true : false;
+                                                                <li class="list-group-item">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="radio" checked="@isSelected" onclick="location.href='@Url.Action("Classes","Home",new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = item.RangeAgeID, genderid =ViewBag.GenderID, podid = ViewBag.PODID , sortOrder = Request.QueryString["SortOrder"] })'">@item.MinAge - @item.MaxAge
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <h4 class="mb-0 card-title">
+                                                Giới tính
+                                            </h4>
+                                        </div>
+                                        @{
+                                            string show3 = string.Empty;
+                                            if (selectedGenID > 0)
+                                            {
+                                                show3 = "show";
+                                            }
+                                            <div id="collapseThree" class="accordion-body collapse @show3" aria-labelledby="headingThree">
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        @{
+                                                            foreach (var item in gender)
+                                                            {
+                                                                bool isSelected = item.GenderID == selectedGenID ? true : false;
+                                                                <li class="list-group-item">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="radio" checked="@isSelected" onclick="location.href='@Url.Action("Classes","Home",new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =item.GenderID, podid = ViewBag.PODID , sortOrder = Request.QueryString["SortOrder"] })'">@item.Gender1
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header collapsed" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <h4 class="mb-0 card-title">
+                                                Huấn luyện viên
+                                            </h4>
+                                        </div>
+                                        @{
+                                            string show4 = string.Empty;
+                                            if (selectedLvlCoach > 0)
+                                            {
+                                                show4 = "show";
+                                            }
+                                            <div id="collapseFour" class="accordion-body collapse @show4" aria-labelledby="headingFour">
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        @{
+                                                            foreach (var item in lvlcoach)
+                                                            {
+                                                                bool isSelected = item.LevelCoachID == selectedLvlCoach ? true : false;
+                                                                <li class="list-group-item">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="radio" checked="@isSelected" onclick="location.href='@Url.Action("Classes","Home",new { lvlstd = ViewBag.LvLStdID, lvlcoach = item.LevelCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID , sortOrder = Request.QueryString["SortOrder"] })'">@item.LevelName
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header collapsed" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            <h4 class="mb-0 card-title">
+                                                Buổi học
+                                            </h4>
+                                        </div>
+                                        @{
+                                            string show5 = string.Empty;
+                                            if (selectedPODID > 0)
+                                            {
+                                                show5 = "show";
+                                            }
+                                            <div id="collapseFive" class="accordion-body collapse @show5" aria-labelledby="headingFive">
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        @{
+                                                            foreach (var item in partofDay)
+                                                            {
+                                                                bool isSelected = item.PartOfDayID == selectedPODID ? true : false;
+                                                                <li class="list-group-item">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="radio" checked="@isSelected" onclick="location.href='@Url.Action("Classes","Home",new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = item.PartOfDayID, sortOrder = Request.QueryString["SortOrder"] })'">@item.PartOfDay1
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header collapsed collapsed" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                            <h4 class="mb-0 card-title">
+                                                Thời gian
+                                            </h4>
+                                        </div>
+                                        @{
+                                            string show6 = string.Empty;
+                                            if (selectedRTID > 0)
+                                            {
+                                                show6 = "show";
+                                            }
+                                            <div id="collapseSix" class="accordion-body collapse @show6" aria-labelledby="headingSix">
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        @{
+                                                            foreach (var item in rangeTime)
+                                                            {
+                                                                bool isSelected = item.RangeTimeID == selectedRTID ? true : false;
+                                                                <li class="list-group-item">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="radio" checked="@isSelected" onclick="location.href='@Url.Action("Classes","Home",new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = item.RangeTimeID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID , sortOrder = Request.QueryString["SortOrder"] })'">@item.StartTime - @item.EndTime
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    @*<button type="submit" class="btn btn-primary btn-lg" style="float:right; margin-top: 10px;">Tìm</button>*@
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sort-->
+                        <div class="col-xl-9 col-lg-10 col-md-9 col-xs-12 col-sm-9">
+                            <div class="row classes-title-section">
+                                <div class="col-md-6 col-sm-12 d-flex justify-content-start">
+                                    <h1 style="color:rgb(119, 190, 67)"><strong>Các khoá học:</strong></h1>
+                                </div>
+                                <div class="col-md-6 col-sm-12 d-flex justify-content-end">
+                                    <div class="btn-sort">
+                                        <div class="btn-group ">
+                                            <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                Thứ tự<span><i class="fas fa-chevron-down"></i></span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreateDesc" })">Mới đăng</a>
+                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "ClassName" })">Thứ tự chữ cái</a>
+                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreate" })">Cũ nhất</a>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group ">
+                                            <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                Giá tiền <span><i class="fas fa-chevron-down"></i></span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item @isPrices" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID ,sortOrder = "Prices" })">Tăng dần</a>
+                                                <a class="dropdown-item @isPrcesDesc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID ,sortOrder = "PricesDesc" })">Giảm dần</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Cards -->
+                            <div class="new-class" style="padding-top: 25px">
+                                <div class="container">
+                                    <div class="row divcenter">
+                                        @{
+                                            foreach (var item in Model)
+                                            {
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="card" style="width: auto;">
+                                                        <div class="inner">
+                                                            <div class="embed-responsive embed-responsive-4by3">
+                                                                <a href="@Url.Action("ClassDetails","Home", new { id = item.Class_ID})">
+                                                                    @{
+                                                                        if (item.Image != null)
+                                                                        {
+                                                                            <img src="@Url.Content(item.Image)" class="card-img-top embed-responsive-item" alt="...">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="https://via.placeholder.com/600" class="card-img-top embed-responsive-item" alt="...">
+                                                                        }
+                                                                    }
+                                                                </a>
                                                             </div>
-                                                            <div class="prices position-relative">
-                                                                @{
-                                                                    if (item.PromoPrices != item.Prices)
-                                                                    {
-                                                                        <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                                                        <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="d-flex justify-content-between">
+                                                                <a href="@Url.Action("ClassDetails","Home", new { id = item.Class_ID})">
+                                                                    <h5 class="card-title">@item.Name</h5>
+                                                                </a>
+                                                                <div class="class-number d-flex">
+                                                                    <i class="fas fa-user"></i>
+                                                                    <h5>@item.Quanity</h5>
+                                                                </div>
+                                                            </div>
+                                                            <p class="card-text">
+                                                                Huấn luyện viên: <span>@item.Coach.Name</span>
+                                                            </p>
+                                                            @{
+                                                                string startday = item.StartDay.HasValue ? item.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                                                string endday = item.EndDay.HasValue ? item.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                                                <p class="card-text">
+                                                                    Thời gian: <span>@startday</span> - <span>@endday</span>
+                                                                </p>
+                                                            }
+                                                            <div class="star-prices d-flex justify-content-between">
+                                                                <div class="star d-flex">
+                                                                    <i class="fas fa-star"></i><span>(4,5)</span>
+                                                                </div>
+                                                                <div class="prices position-relative">
+                                                                    @{
+                                                                        if (item.PromoPrices != item.Prices)
+                                                                        {
+                                                                            <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                                                            <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div class="prices-now">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                                                        }
                                                                     }
-                                                                    else
-                                                                    {
-                                                                        <div class="prices-now">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                                                    }
-                                                                }
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            }
                                         }
-                                    }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -296,13 +385,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    }
+
     <!-- Cards -->
     <!--pagination-->
     <div style="text-align:center">
         @*Page @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount)*@
         <div>
-            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, levelstudentID = ViewBag.levelstudentid }))
+            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = Request.QueryString["SortOrder"] }))
         </div>
     </div>
 </main>

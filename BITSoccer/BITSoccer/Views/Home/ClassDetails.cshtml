@@ -18,7 +18,7 @@
                 <!-- Thông tin chung -->
                 <div class="separate-class-detail-line">
                     <div class="container">
-                        <div class="row justify-content-between mt-5">
+                        <div class="row justify-content-between mt-5 mb-3">
                             <div class="col-lg-8 col-md-12">
                                 <h2 class="title-orangered">@Model.Name</h2>
                                 <p>
@@ -45,7 +45,7 @@
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("Login","Account")">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                        <a href="@Url.Action("Login","Account")" class="alert alert-info">Vui lòng đăng nhập để đăng ký lớp học</a>
                                     }
                                 }
 
@@ -322,10 +322,14 @@
                 @{
                     if (!User.Identity.IsAuthenticated)
                     {
-                        <div class="container-fluid">
+                        <div class="container">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <a href="@Url.Action("Login","Account")">Vui lòng đăng nhập có thể bình luận</a>
+                                <div class="col-md-12 mt-4">
+                                    <div class="alert alert-info">
+                                        <div>
+                                            Vui lòng <span><a href="@Url.Action("Login","Account")">Đăng nhập</a></span> hoặc <span><a href="@Url.Action("Register","Account")">Đăng ký</a></span> để bình luận.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

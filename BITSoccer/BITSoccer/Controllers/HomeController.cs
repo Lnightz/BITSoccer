@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Net;
+using BITSoccer.BLL;
+using System.Data.Entity;
 
 namespace BITSoccer.Controllers
 {
@@ -21,7 +23,9 @@ namespace BITSoccer.Controllers
         {
             return View();
         }
-        public ActionResult Classes(int? page, int? levelstudentid , string sortOrder = "date_desc")
+
+        [HttpGet]
+        public ActionResult Classes(int? page, int? lvlstd , int? lvlcoach , int? rtimeid , int?genderid , int?podid, int? rageid  , string sortOrder = "DateCreateDesc")
         {
             ViewBag.LevelStudent = db.LevelStudents.OrderBy(x => x.LevelStudentID).ToList();
             ViewBag.LevelCoach = db.LevelCoaches.OrderBy(x => x.LevelCoachID).ToList();
@@ -29,21 +33,69 @@ namespace BITSoccer.Controllers
             ViewBag.Gender = db.Genders.OrderBy(x => x.GenderID).ToList();
             ViewBag.RangeTimes = db.RangeTimes.OrderBy(x => x.StartTime).ToList();
             ViewBag.PartOfDay = db.PartOfDays.OrderBy(x => x.PartOfDayID).ToList();
+
+            var model = db.Classes.AsQueryable();
+            var result = db.Classes.Include(c => c.LevelStudent).Include(c => c.Coach.LevelCoach).Include(c => c.RangeAge).Include(c => c.RangeTime).Include(c => c.Gender).Include(c => c.PartOfDay);
+
+            ViewBag.LvlStdID = lvlstd;
+            ViewBag.LvlCoachID = lvlcoach;
+            ViewBag.RTID = rtimeid;
+            ViewBag.RAID = rageid;
+            ViewBag.GenderID = genderid;
+            ViewBag.PODID = podid;
+
+            if (lvlstd.HasValue)
+            {
+                model = model.Where(x => x.LevelStudentID == lvlstd);
+            }
+            if (lvlcoach.HasValue)
+            {
+                model = model.Where(x => x.Coach.LevelCoach.LevelCoachID == lvlcoach);
+            }
+            if (rtimeid.HasValue)
+            {
+                model = model.Where(x => x.RangeTimeID == rtimeid);
+            }
+            if (rageid.HasValue)
+            {
+                model = model.Where(x => x.RangeAgeID == rageid);
+            }
+            if (genderid.HasValue)
+            {
+                model = model.Where(x => x.GenderID == genderid);
+            }
+            if (podid.HasValue)
+            {
+                model = model.Where(x => x.PartOfDayID == podid);
+            }
+
+            ViewBag.ClassNameSort = sortOrder == "ClassName";
+            ViewBag.ClassDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
+            ViewBag.ClassCostSort = sortOrder == "Prices" ? "PricesDesc" : "Prices";
+
             var pageNumber = page ?? 1;
             var pageSize = 3;
-            if (levelstudentid != null)
+
+            switch (sortOrder)
             {
-                ViewBag.levelstudentid = levelstudentid;
-                var classlist = db.Classes.OrderByDescending(x => x.CreatedDate)
-                                  .Where(x => x.LevelStudentID == levelstudentid)
-                                  .ToPagedList(pageNumber, pageSize);
-                return View(classlist);
+                case "ClassName":
+                    model = model.OrderBy(x => x.Name);
+                    break;
+                case "DateCreate":
+                    model = model.OrderBy(x => x.CreatedDate);
+                    break;
+                case "DateCreateDesc":
+                    model = model.OrderByDescending(x => x.CreatedDate);
+                    break;
+                case "Prices":
+                    model = model.OrderBy(x => x.PromoPrices);
+                    break;
+                case "PricesDesc":
+                    model = model.OrderByDescending(x => x.PromoPrices);
+                    break;
             }
-            else
-            {
-                var classlist = db.Classes.OrderBy(x => x.CreatedDate).ToPagedList(pageNumber, pageSize);
-                return View(classlist);
-            }
+
+            return View(model.ToPagedList(pageNumber, pageSize));
             
         }
         public ActionResult News()
