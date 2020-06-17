@@ -110,30 +110,5 @@ namespace BITSoccer.Controllers
         {
             return View(db.Coaches.ToList());
         }
-
-
-        public ActionResult ClassDetails(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Class classes = db.Classes.Find(id);
-            if (classes == null)
-            {
-                return HttpNotFound();
-            }
-            return View(classes);
-        }
-
-        //public ActionResult AddToCart()
-        //{
-        //    return View();
-        //}
-        
-
-
-
-   
     }
 }

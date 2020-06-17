@@ -89,7 +89,3 @@ $('.hot-class-wrapper')
 //        }
 //    });
 //});
-
-$(document).ready(function () {
-    $('#tablestudentaccount').DataTable();
-});

@@ -2,24 +2,32 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewBag.Title</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="~/Assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Assets/css/ihover.css">
+    <link rel="stylesheet" href="~/Assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/Assets/css/ihover.css"/>
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="~/Assets/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="~/Assets/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/css/slick-theme.css"/>
 
     <!-- My styles -->
-    <link href="~/Assets/css/style.css" rel="stylesheet">
-    <link href="~/Assets/css/nav.css" rel="stylesheet">
-    <link href="~/Assets/css/cards.css" rel="stylesheet">
-    <link href="~/Assets/css/tour.css" rel="stylesheet">  
+    <link href="~/Assets/css/style.css" rel="stylesheet"/>
+    <link href="~/Assets/css/nav.css" rel="stylesheet"/>
+    <link href="~/Assets/css/cards.css" rel="stylesheet"/>
+    <link href="~/Assets/css/tour.css" rel="stylesheet"/>
+    
+    <!-- Start Rating -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link href="~/Assets/css/star-rating.css" rel="stylesheet" />
+    <link href="~/Assets/css/theme.css" rel="stylesheet" />
+    <script src="~/Assets/js/theme.js"></script>
+    <script src="~/Assets/js/star-rating.js"></script>
 
     @*@Styles.Render("~/Content/css")*@
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/modernizr")*@
 
     @if (IsSectionDefined("AddToHead"))
     {
@@ -46,10 +54,10 @@
                             <a class="nav-link" href="@Url.Action("Index","Home")">Trang chủ <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Classes","Home")" ">Khoá học</a>
+                            <a class="nav-link" href="@Url.Action("Classes","Home")" >Khoá học</a>
                         </li>
                         <li class="nav-item dropdown hover-effect">
-                            <a class="nav-link" href="@Url.Action("News","Home")" " id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="@Url.Action("News","Home")"  id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Tin tức
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -59,10 +67,10 @@
                             </div>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Tournaments","Home")" ">Giải đấu</a>
+                            <a class="nav-link" href="@Url.Action("Tournaments","Home")" >Giải đấu</a>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Coach","Home")" ">Huấn luyện viên</a>
+                            <a class="nav-link" href="@Url.Action("Coach","Home")" >Huấn luyện viên</a>
                         </li>
                         <li class="nav-item hover-effect">
                             <a class="nav-link" href="@Url.Action("About","Home")">Về chúng tôi</a>
@@ -180,8 +188,8 @@
 
 
     <!-- Javascript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    @*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>*@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
@@ -197,7 +205,7 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0"></script>
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>

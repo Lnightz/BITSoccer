@@ -298,8 +298,8 @@ footer{
 }
 
 footer .row{
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -316,7 +316,7 @@ footer h2{
 footer ul{
     list-style-type: none;
     display: block;
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 footer .Social {
@@ -1217,7 +1217,7 @@ text-align: center;
 }
 
 .rating-review .star{
-    margin-top: 10px;
+    padding-right:23px;
 }
 
 .rating-review .rating-count{
@@ -1232,33 +1232,34 @@ text-align: center;
 
 .img-rounded{
     border-radius: 50%;
-    width: 128px;
-    height: 128px;
+    width: 56px !important; 
+    height: 56px !important;
     text-align: center;
 }
 
 .card-comment.comment-box{
     border-radius: 5px;
     background-color: #fff;
-    padding-left: 60px;
-    padding-right: 60px;
     margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding : 30px 60px 30px 60px;
 }
 
+.comment-children {
+    padding: 50px 0 0 40px;
+    margin: 0;
+    /*float: left;*/
+    width: 100%;
+}
 /* Class_detail Styles */
-
-
 /* Tourament Styles */
-#match{
-	background-color: #010615;
-	padding: 20px 20px;
+#match {
+    background-color: #010615;
+    padding: 20px 20px;
     margin: 30px 50px;
-	text-align:center;
-	font-family: Oswald;
-	color:white;
-	font-size:16px;
+    text-align: center;
+    font-family: Oswald;
+    color: white;
+    font-size: 16px;
 }
 .match-score{
 	background-color: lightgreen;

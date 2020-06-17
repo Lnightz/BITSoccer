@@ -291,8 +291,8 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item @isDateDesc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreateDesc" })">Mới đăng</a>
-                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "ClassName" })">Thứ tự chữ cái</a>
                                                 <a class="dropdown-item @isDateAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreate" })">Cũ nhất</a>
+                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "ClassName" })">Thứ tự chữ cái</a>
                                             </div>
                                         </div>
                                         <div class="btn-group ">
@@ -320,7 +320,7 @@
                                                     <div class="card" style="width: auto;">
                                                         <div class="inner">
                                                             <div class="embed-responsive embed-responsive-4by3">
-                                                                <a href="@Url.Action("ClassDetails","Home", new { id = item.Class_ID})">
+                                                                <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Class_ID})">
                                                                     @{
                                                                         if (item.Image != null)
                                                                         {
@@ -336,7 +336,7 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between">
-                                                                <a href="@Url.Action("ClassDetails","Home", new { id = item.Class_ID})">
+                                                                <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Class_ID})">
                                                                     <h5 class="card-title">@item.Name</h5>
                                                                 </a>
                                                                 <div class="class-number d-flex">
