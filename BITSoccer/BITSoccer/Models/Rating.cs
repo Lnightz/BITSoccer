@@ -20,6 +20,10 @@ namespace BITSoccer.Models
         public Nullable<int> NumberStar { get; set; }
     
         public virtual Class Class { get; set; }
+        public virtual Class Class1 { get; set; }
+        public virtual Class Class2 { get; set; }
         public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
+        public virtual User User2 { get; set; }
     }
 }

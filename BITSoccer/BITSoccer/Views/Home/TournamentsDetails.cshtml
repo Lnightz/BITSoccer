@@ -1,0 +1,84 @@
+﻿@model BITSoccer.Models.Tourament
+@{
+    ViewBag.Title = "Chi tiết trận đấu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="titile-bg" style="background-image: url('../../Assets/img/header_bg_6.jpg');">
+        <div class="container">
+            <div class="titile-name">giải đấu</div>
+        </div>
+        <div class="text-shadow"></div>
+    </div>
+    <div id="background_main">
+        <div class="container">
+            <div id="background_content" style="margin: 30px 0px">
+                <!--Tiêu đề-->
+
+                <div class="tournament-detail-tillte"><strong> Match Statictics - Thống kê chi tiết trận đấu</strong></div>
+                <div class="separator_bar"><i class="fas fa-futbol"></i> <i class="fas fa-futbol" style="color:green"></i> <i class="fas fa-futbol"></i> </div>
+
+                <!--Bảng-->
+                <div id="tournament-detail">
+                    @{
+                        if (ViewBag.Message != null)
+                        {
+                            <div class="alert alert-info text-capitalize text-center">
+                                @ViewBag.Message
+                            </div>
+                        }
+                        else
+                        {
+                            <table class="table table-striped table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="team1">@Model.Team_A</div>
+                                            <div class="achive"> @Model.Team_A_Player</div>
+                                        </th>
+                                        <th scope="col">
+                                            <span class="match-score">@Model.Team_A_Score:@Model.Team_B_Score</span>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="team2">@Model.Team_B</div>
+                                            <div class="achive">@Model.Team_B_Player</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.TeamAFormation</td>
+                                        <td style="color:green"><strong>Formation</strong></td>
+                                        <td>@Model.TeamBFormation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Model.Team_A_Score</td>
+                                        <td style="color:green"><strong>Goal</strong></td>
+                                        <td>@Model.Team_B_Score</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Model.TeamAYellowCart</td>
+                                        <td style="color:green"><strong>Yellow Cards</strong></td>
+                                        <td>@Model.TeamBYellowCart</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Model.TeamARedCard</td>
+                                        <td style="color:green"><strong>Red Cards</strong></td>
+                                        <td>@Model.TeamBRedCard</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Model.TeamAFouls_Conceded</td>
+                                        <td style="color:green"><strong>Fouls conceded</strong></td>
+                                        <td>@Model.TeamBFouls_Conceded</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>

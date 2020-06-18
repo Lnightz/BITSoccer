@@ -4,46 +4,55 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3b4052bcf0ea4f49917cfd7fb1d24ecf" Name="Diagram1">
-        <EntityTypeShape EntityType="BITSoccerModel.About" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.About_Slide" Width="1.5" PointX="13" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Archive" Width="1.5" PointX="10.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Bill" Width="1.5" PointX="3" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.BillDetail" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Class" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.ClassUser" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+      <Diagram DiagramId="02ec967ca57e4d8d8570e985807dcfea" Name="Diagram1">
+        <EntityTypeShape EntityType="BITSoccerModel.About" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.About_Slide" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Archive" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Bill" Width="1.5" PointX="3" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.BillDetail" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Class" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.ClassUser" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Coach" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Coach_Moment" Width="1.5" PointX="10.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Comment" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.DiscountCode" Width="1.5" PointX="10.75" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Footer" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Gender" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Header" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Home_Slide" Width="1.5" PointX="12.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.HomePage_Content" Width="1.5" PointX="10.75" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.LevelCoach" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.LevelStudent" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.News" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.News_Category" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.NewsTag" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.PartOfDay" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.PayMethod" Width="1.5" PointX="0.75" PointY="36.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.RangeAge" Width="1.5" PointX="0.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.RangeTime" Width="1.5" PointX="0.75" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Rating" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Coach_Moment" Width="1.5" PointX="7.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Comment" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.DiscountCode" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Footer" Width="1.5" PointX="9.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Gender" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Header" Width="1.5" PointX="10.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Home_Slide" Width="1.5" PointX="10.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.HomePage_Content" Width="1.5" PointX="11.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.LevelCoach" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.LevelStudent" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.News" Width="1.5" PointX="3" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.News_Category" Width="1.5" PointX="0.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.NewsTag" Width="1.5" PointX="6" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.PartOfDay" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.PayMethod" Width="1.5" PointX="0.75" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.RangeAge" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.RangeTime" Width="1.5" PointX="0.75" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Rating" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BITSoccerModel.Stadium" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.sysdiagram" Width="1.5" PointX="12.75" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Tag" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.Tourament" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.User" Width="1.5" PointX="1.5" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BITSoccerModel.UserType" Width="1.5" PointX="1.5" PointY="30.875" IsExpanded="true" />
-        <AssociationConnector Association="BITSoccerModel.FK__About_Sli__About__40058253" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__BillI__05D8E0BE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BITSoccerModel.Tag" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.Tourament" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.User" Width="1.5" PointX="1.5" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BITSoccerModel.UserType" Width="1.5" PointX="1.5" PointY="33.875" IsExpanded="true" />
+        <AssociationConnector Association="BITSoccerModel.FK__About_Sli__About__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__About_Sli__About__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__About_Sli__About__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__BillI__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__BillI__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__BillI__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Bill_PayMethod" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Bill_User" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__Class__07C12930" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__Class__5E8A0973" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__Rating__Class_ID__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__Class__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__Class__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__BillDetai__Class__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__Class__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__Class__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__Class__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__Rating__Class_ID__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__Rating__Class_ID__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__Rating__Class_ID__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_Coach" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_LevelStudent" ManuallyRouted="false" />
@@ -52,17 +61,25 @@
         <AssociationConnector Association="BITSoccerModel.FK_Class_RangeOfTime" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Class_Stadium" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Comment_Class" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__UserI__5D95E53A" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__UserI__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__UserI__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__ClassUser__UserI__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Coach_Level" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Coach_User" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Comment_News" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Comment_User" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_ReplyToCommentID" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_RootCommentID" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__TagsID__6166761E" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__NewsID__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__NewsID__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__NewsID__6C190EBB" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_News_News_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__TagsID__625A9A57" ManuallyRouted="false" />
-        <AssociationConnector Association="BITSoccerModel.FK__Rating__User_ID__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__TagsID__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__TagsID__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__NewsTags__TagsID__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__Rating__User_ID__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__Rating__User_ID__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="BITSoccerModel.FK__Rating__User_ID__74AE54BC" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_Tourament_Stadium" ManuallyRouted="false" />
         <AssociationConnector Association="BITSoccerModel.FK_User_UserType" ManuallyRouted="false" />
       </Diagram>

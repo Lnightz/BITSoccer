@@ -829,6 +829,14 @@ button.prices-sort{
 .filter-titile h4{
     font-size: 26px;
 }
+.class-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size:16px !important;
+}
 
 /* Classes styles */
 
@@ -905,14 +913,12 @@ button.prices-sort{
     font-size: .75rem !important;
 }
 
-/* News Styles */
-
-/* Tourament Styles */
-
-.match{
-    margin: 30px 30px;
-    position: relative;
+.news-active {
+    color: limegreen !important;
+    border-bottom: 2px solid limegreen;
 }
+/* News Styles */
+/* Tourament Styles */
 
 .match .match-date{
     float: left;
@@ -929,6 +935,36 @@ button.prices-sort{
     font-size: 16px;
     line-height: 1.2;
 }
+
+.match {
+    background-color: #010615;
+    padding: 20px 20px;
+    margin: 30px 50px;
+    text-align: center;
+    font-family: Oswald;
+    color: white;
+    font-size: 16px;
+}
+
+.match-score {
+    background-color: lightgreen;
+    border: 1px solid yellow;
+    padding: 4px 15px;
+    color: black;
+    font-size: 18px;
+}
+
+.filter {
+    margin: 30px 0px;
+}
+
+.sort_search {
+    margin: 30px 0px;
+}
+/* .img-responsive{
+	max-width:80px;
+	max-height:80px;
+} */
 
 /* Tourament Styles */
 
@@ -1252,32 +1288,7 @@ text-align: center;
 }
 /* Class_detail Styles */
 /* Tourament Styles */
-#match {
-    background-color: #010615;
-    padding: 20px 20px;
-    margin: 30px 50px;
-    text-align: center;
-    font-family: Oswald;
-    color: white;
-    font-size: 16px;
-}
-.match-score{
-	background-color: lightgreen;
-    border: 1px solid yellow;
-	padding: 4px 15px;
-	color: black;
-	font-size:18px;
-}
-.filter{
-	margin: 30px 0px;
-}
-.sort_search{
-	margin:30px 0px;
-}
-/* .img-responsive{
-	max-width:80px;
-	max-height:80px;
-} */
+
 /* Tourament Styles */
 
 /* Tourament Detail Styles */

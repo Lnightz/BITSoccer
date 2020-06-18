@@ -52,7 +52,6 @@ namespace BITSoccer.Models
         public virtual DbSet<RangeTime> RangeTimes { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Stadium> Stadia { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Tourament> Touraments { get; set; }
         public virtual DbSet<User> Users { get; set; }

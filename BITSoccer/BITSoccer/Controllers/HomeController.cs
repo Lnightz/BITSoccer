@@ -69,9 +69,9 @@ namespace BITSoccer.Controllers
                 model = model.Where(x => x.PartOfDayID == podid);
             }
 
-            ViewBag.ClassNameSort = sortOrder == "ClassName";
-            ViewBag.ClassDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
-            ViewBag.ClassCostSort = sortOrder == "Prices" ? "PricesDesc" : "Prices";
+            //ViewBag.ClassNameSort = sortOrder == "ClassName";
+            //ViewBag.ClassDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
+            //ViewBag.ClassCostSort = sortOrder == "Prices" ? "PricesDesc" : "Prices";
 
             var pageNumber = page ?? 1;
             var pageSize = 3;
@@ -98,14 +98,146 @@ namespace BITSoccer.Controllers
             return View(model.ToPagedList(pageNumber, pageSize));
             
         }
-        public ActionResult News()
+        [HttpGet]
+        public ActionResult News(int? page, int? newscateid, int? tagid , int? currentfilter, string sortOrder = "DateCreateDesc")
         {
+            ViewBag.Category = db.News_Category.OrderBy(x=>x.NewCate_ID).ToList();
+            ViewBag.Tag = db.Tags.OrderBy(x => x.TagName).ToList();
+
+            ViewBag.NewsCateID = newscateid;
+
+            var news = db.News.Where(x=> x.IsActive == true);
+
+            if(newscateid == 0)
+            {
+                newscateid = null;
+            }
+
+            if (newscateid.HasValue)
+            {
+                news = news.Where(x => x.NewCate_ID == newscateid);
+            }
+            var pageNumber = page ?? 1;
+            var pageSize = 3;
+
+            //ViewBag.NewsNameSort = sortOrder == "NewsName";
+            //ViewBag.NewsDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
+
+            switch (sortOrder)
+            {
+                case "NewsName":
+                    news = news.OrderBy(x => x.Name);
+                    break;
+                case "DateCreate":
+                    news = news.OrderBy(x => x.CreatedDate);
+                    break;
+                case "DateCreateDesc":
+                    news = news.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            return View(news.ToPagedList(pageNumber,pageSize));
+        }
+
+        public ActionResult NewsDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            News news = db.News.Find(id);
+
+            ViewBag.NewsDetails = news;
+
+            ViewBag.AnotherNews = db.News.OrderByDescending(x => x.CreatedDate).Take(4).ToList();
+
+            if (news == null)
+            {
+                return HttpNotFound();
+            }
+
             return View();
         }
-        public ActionResult Tournaments()
+
+        [HttpGet]
+        public ActionResult Tournaments(int? page, int? stadiumid, int? currentFilter = 0, string sortOrder = "DateCreateDesc")
         {
-            return View();
+            ViewBag.ListStadium = db.Stadia.OrderBy(x => x.Stadium_ID).ToList();
+
+            var tournaments = db.Touraments.AsQueryable();
+
+            ViewBag.Stadium = stadiumid;
+            ViewBag.CurrentFilter = currentFilter;
+
+            DateTime today = DateTime.Today;
+
+            switch (currentFilter)
+            {
+                case 1:
+                    tournaments = tournaments.Where(x => x.Time == today);
+                    break;
+                case 2:
+                    tournaments = tournaments.Where(x => x.Time > today);
+                    break;
+                case 3:
+                    tournaments = tournaments.Where(x => x.Time < today);
+                    break;
+            }
+
+            if (tournaments.Count() == 0)
+            {
+                ViewBag.Message = "Không có trận đấu nào trong thời gian này";
+                return View();
+            }
+
+            if (stadiumid.HasValue)
+            {
+                tournaments = tournaments.Where(x => x.Stadium_ID == stadiumid);
+            }
+
+
+            //ViewBag.NewsDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
+
+            var pageNumber = page ?? 1;
+            var pageSize = 3;
+
+            switch (sortOrder)
+            {
+                case "DateCreate":
+                    tournaments = tournaments.OrderBy(x => x.CreatedDate);
+                    break;
+                case "DateCreateDesc":
+                    tournaments = tournaments.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            return View(tournaments.ToPagedList(pageNumber,pageSize));
         }
+
+        public ActionResult TournamentsDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tourament tourament = db.Touraments.Find(id);
+
+            ViewBag.Tournament = tourament;
+
+            if (tourament == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (tourament.Time >= DateTime.Today)
+            {
+                ViewBag.Message = "Chưa có thông tin gì của trận đấu";
+                return View();
+            }
+
+            return View(tourament);
+        }
+
         public ActionResult Coach()
         {
             return View(db.Coaches.ToList());

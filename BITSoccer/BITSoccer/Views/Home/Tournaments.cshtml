@@ -1,6 +1,25 @@
-﻿
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<BITSoccer.Models.Tourament>
 @{
     ViewBag.Title = "Giải đấu";
+
+    var liststadium = (List<BITSoccer.Models.Stadium>)ViewBag.ListStadium;
+
+    string isDateDesc = Request.QueryString["SortOrder"] == "DateCreateDesc" ? "active" : "";
+    string isDateAsc = Request.QueryString["SortOrder"] == "DateCreate" ? "active" : "";
+
+    int selectedStadium = -1;
+
+    if (ViewBag.Stadium > 0)
+    {
+        selectedStadium = ViewBag.Stadium;
+    }
+
+    string isAllSelected = ViewBag.CurrentFilter == 0 ? "news-active" : "";
+    string isNowSelected = ViewBag.CurrentFilter == 1 ? "news-active" : "";
+    string isBefSelected = ViewBag.CurrentFilter == 3 ? "news-active" : "";
+    string isAftSelected = ViewBag.CurrentFilter == 2 ? "news-active" : "";
+
 }
 
 <main>
@@ -11,198 +30,139 @@
         </div>
         <div class="text-shadow"></div>
     </div>
-    <div id="background_main">
-        <div class="container">
-            <div id="background_content">
-                <div class="row">
-                    <!-- Filter -->
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <div class="filter" style="margin: 30px 0px;">
-                            <ul class="tag-inline tag-col-2 d-lg-inline-block">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">TẤT CẢ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Đang diễn ra</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Sắp diễn ra</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Đã diễn ra</a>
-                                </li>
-                            </ul>
+    @using (Html.BeginForm("Tournaments", "Home", new { stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] }))
+    {
+        <div id="background_main">
+            <div class="container">
+                <div id="background_content">
+                    <div class="row">
+                        <!-- Filter -->
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <div class="filter" style="margin: 30px 0px;">
+                                <ul class="tag-inline tag-col-2 d-lg-inline-block">
+                                    @{
+
+                                        <li class="nav-item ">
+                                            <a href="@Url.Action("Tournaments","Home", new {stadiumid = ViewBag.Stadium, currentFilter = 0, sortOrder = Request.QueryString["SortOrder"] })" class="nav-link @isAllSelected">TẤT CẢ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Tournaments","Home", new {stadiumid = ViewBag.Stadium, currentFilter = 1, sortOrder = Request.QueryString["SortOrder"] })" class="nav-link  @isNowSelected">Đang diễn ra</a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="@Url.Action("Tournaments","Home", new {stadiumid = ViewBag.Stadium, currentFilter = 2, sortOrder = Request.QueryString["SortOrder"] })" class="nav-link @isAftSelected">Sắp diễn ra</a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="@Url.Action("Tournaments","Home", new {stadiumid = ViewBag.Stadium, currentFilter = 3, sortOrder = Request.QueryString["SortOrder"] })" class="nav-link @isBefSelected">Đã diễn ra</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Sort, Search -->
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <div class="sort_search" style="margin: 30px 10px;">
-                            <form class="form-inline float-right">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Team Name" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                            <div class="row flex-row-reverse col-md-12 col-xs-12">
-                                <div class="btn-sort float-right">
-                                    <div class="btn-group ">
-                                        <button class="btn prices-sort" type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            Sân Vận Động <span><i class="fas fa-chevron-down"></i></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Sân Vận Động A</a>
-                                            <a class="dropdown-item" href="#">Sân Vận Động B</a>
+                        <!-- Sort, Search -->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="sort_search" style="margin: 30px 10px;">
+                                <form class="form-inline float-right">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Team Name" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                                <div class="row flex-row-reverse col-md-12 col-xs-12">
+                                    <div class="btn-sort float-right">
+                                        <div class="btn-group ">
+                                            <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                Sân Vận Động <span><i class="fas fa-chevron-down"></i></span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                @{
+
+                                                    foreach (var item in liststadium)
+                                                    {
+                                                        string isStadiumSelected = item.Stadium_ID == selectedStadium ? "active" : "";
+                                                        <a class="dropdown-item @isStadiumSelected" href="@Url.Action("Tournaments","Home", new {stadiumid = item.Stadium_ID, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] })">@item.Name</a>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="btn-group ">
+                                            <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                Sắp xếp <span><i class="fas fa-chevron-down"></i></span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("Tournaments","Home", new {stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = "DateCreateDesc" })">Mới đăng</a>
+                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("Tournaments","Home", new { stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = "DateCreate" })">Cũ nhất</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Tourament -->
-                <!--Giải đấu 1-->
+                    <!-- Tourament -->
+                    @{
+                        if (Model == null)
+                        {
+                            <div class="match">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-info text-center text-capitalize">@ViewBag.Message</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            DateTime today = DateTime.Today;
+                            foreach (var item in Model)
+                            {
+                                <div class="match">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                                            <span class="team1">@item.Team_A</span>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                                            <span class="match-score" style="margin:0px 0px">0:0</span>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                                            <span class="team2">@item.Team_B</span>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
+                                            <div class="datetime">
+                                                <em>@String.Format("{0:dd/MM/yyyy HH:mm} ", item.Time) (GMT 7+)</em>
+                                                <div class="location">
+                                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
+                                                    <em>@item.Stadium.Name</em>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                            @{
+                                                if (item.Time < today)
+                                                {
+                                                    <a href="@Url.Action("TournamentsDetails","Home",new { id = item.Tour_ID })" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
 
-                <div id="match">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Netro FC</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="match-score" style="margin:0px 0px">0:0</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Trishal FC</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
-                            <div class="datetime">
-                                <em>21 TH5 2020 16:30 (GMT 7+)</em>
-                                <div class="location">
-                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
-                                    <em>SÂN VẬN ĐỘNG A</em>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Giải đấu 2-->
-                <div id="match">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Badda FC</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="match-score" style="margin:0px 0px">3:2</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Romna FC</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
-                            <div class="datetime">
-                                <em>11 TH5 2020 17:30 (GMT 7+)</em>
-                                <div class="location">
-                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
-                                    <em>SÂN VẬN ĐỘNG B</em>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <a href="tourament_detail_Thi.html" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Giải đấu 3-->
-                <div id="match">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Trishal FC</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="match-score" style="margin:0px 0px">2:4</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Cheta FC</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
-                            <div class="datetime">
-                                <em>24 TH4 2020 15:00 (GMT 7+)</em>
-                                <div class="location">
-                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
-                                    <em>SÂN VẬN ĐỘNG A</em>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Giải đấu 4-->
-                <div id="match">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->Joypur FC</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="match-score" style="margin:0px 0px">2:0</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->Mirpur FC</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
-                            <div class="datetime">
-                                <em>23 TH4 2020 16:30 (GMT 7+)</em>
-                                <div class="location">
-                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
-                                    <em>SÂN VẬN ĐỘNG A</em>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Giải đấu 5-->
-                <div id="match">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team1"><!-- <img class="img-responsive" src="img/logoteamA.jpg"> -->BBI FC</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="match-score" style="margin:0px 0px">1:2</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                            <span class="team2"><!-- <img class="img-responsive" src="img/logoteamB.jpg"> -->SEN FC</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-align: center">
-                            <div class="datetime">
-                                <em>02 TH3 2020 16:30 (GMT 7+)</em>
-                                <div class="location">
-                                    <i class="fa fa-map-marker" style="color:lightblue"></i>
-                                    <em>SÂN VẬN ĐỘNG B</em>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <a href="#" style="color:green"><strong>View Statistics &gt;&gt;</strong></a>
-                        </div>
-                    </div>
-                </div>
+                    <!--pagination-->
 
-
-                <!--pagination-->
-                <div style="text-align:center">
-                    <div class="pagination">
-                        <a href="#">&laquo;</a>
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">&raquo;</a>
-                    </div>
                 </div>
             </div>
+        </div>
+    }
+    <div style="text-align:center">
+        <div>
+            @{
+                if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.Action("Tournaments", new { page = page, stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] }))
+                }
+            }
         </div>
     </div>
 </main>

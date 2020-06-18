@@ -19,6 +19,10 @@ namespace BITSoccer.Models
         public Nullable<int> TagsID { get; set; }
     
         public virtual News News { get; set; }
+        public virtual News News1 { get; set; }
+        public virtual News News2 { get; set; }
         public virtual Tag Tag { get; set; }
+        public virtual Tag Tag1 { get; set; }
+        public virtual Tag Tag2 { get; set; }
     }
 }

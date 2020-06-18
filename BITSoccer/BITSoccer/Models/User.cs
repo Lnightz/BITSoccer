@@ -19,9 +19,13 @@ namespace BITSoccer.Models
         {
             this.Bills = new HashSet<Bill>();
             this.ClassUsers = new HashSet<ClassUser>();
+            this.ClassUsers1 = new HashSet<ClassUser>();
+            this.ClassUsers2 = new HashSet<ClassUser>();
             this.Coaches = new HashSet<Coach>();
             this.Comments = new HashSet<Comment>();
             this.Ratings = new HashSet<Rating>();
+            this.Ratings1 = new HashSet<Rating>();
+            this.Ratings2 = new HashSet<Rating>();
         }
     
         public int User_ID { get; set; }
@@ -42,11 +46,19 @@ namespace BITSoccer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClassUser> ClassUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClassUser> ClassUsers1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClassUser> ClassUsers2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coach> Coaches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings2 { get; set; }
         public virtual UserType UserType { get; set; }
     }
 }

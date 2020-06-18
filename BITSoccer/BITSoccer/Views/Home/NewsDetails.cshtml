@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Chi tiết tin tức";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var newsdetails = ViewBag.NewsDetails;
+    var anothernews = (List<BITSoccer.Models.News>)ViewBag.AnotherNews;
+
+}
+
+<main>
+
+    <div class="titile-bg" style="background-image: url('./img/football-stadium.jpg');">
+        <div class="container">
+            <div class="titile-name">@newsdetails.News_Category.Name</div>
+        </div>
+        <div class="text-shadow"></div>
+    </div>
+    <div id="background_main">
+        <div class="container">
+            <div id="background_content">
+                <div class="row my-4" style="margin:10px 10px 0px 10px">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="newdetail-title">
+                                    @newsdetails.Name
+                                </div>
+                                <div class="dateposted-zone" style="margin-bottom: 10px;">
+                                    <i class="far fa-calendar-alt"> <span class="dateposted">@newsdetails.CreatedDate</span> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="newdetail-content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    @newsdetails.Content
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-comment comment-box">
+                            <div class="row">
+                                <div class="col-12"> <img src="https://i.imgur.com/d2dKtI7.png" width="60" class="rounded-circle mt-2"> </div>
+                                <div class="col-12">
+                                    <div class="comment-box ml-2">
+                                        <h4>Bình luận của bạn</h4>
+                                        <div class="comment-area">
+                                            <textarea class="form-control" placeholder="Bạn cảm thấy khóa học thế nào?" rows="4" style="height: 100px;"></textarea>
+                                        </div>
+                                        <div class="comment-btns mt-2">
+                                            <div class="comment-btns mt-2">
+                                                <div class="comment-btns mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="float-left"> <button class="btn btn-success btn-sm">Hủy</button> </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="float-right">
+                                                                <button class="btn btn-success send btn-sm">
+                                                                    Phản hồi <i class="fa fa-long-arrow-right ml-1"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="sidebar-wrapper">
+                            <div class="sidebar-title">
+                                Tin tức khác
+                            </div>
+                            <div class="sidebar-body">
+                                @{
+                                    foreach (var item in anothernews)
+                                    {
+                                        <div class="row list-view d-flex">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="item-img">
+                                                    <a href="@Url.Action("NewsDetails","Home", new { id = item.News_ID })">
+                                                        @{
+                                                            if (item.Image != null)
+                                                            {
+                                                                <img src="@Url.Content(item.Image)" class="card-img-top embed-responsive-item" alt="...">
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="https://via.placeholder.com/1200x800" class="card-img-top embed-responsive-item" alt="...">
+                                                            }
+                                                        }
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padding-0">
+                                                <div class="item-content">
+                                                    <a href="#" class="item-title">
+                                                        @item.Name
+                                                    </a>
+                                                    <div class="dateposted-zone">
+                                                        <i class="far fa-calendar-alt"> <span class="dateposted">@item.CreatedDate</span> </i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="horizon-footer">
+
+</main>

@@ -18,6 +18,8 @@ namespace BITSoccer.Models
         public Bill()
         {
             this.BillDetails = new HashSet<BillDetail>();
+            this.BillDetails1 = new HashSet<BillDetail>();
+            this.BillDetails2 = new HashSet<BillDetail>();
         }
     
         public int Bill_ID { get; set; }
@@ -31,6 +33,10 @@ namespace BITSoccer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillDetail> BillDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillDetail> BillDetails2 { get; set; }
         public virtual PayMethod PayMethod { get; set; }
         public virtual User User { get; set; }
     }

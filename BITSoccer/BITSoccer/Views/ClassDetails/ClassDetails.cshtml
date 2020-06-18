@@ -314,7 +314,7 @@
                                 <div class="col-md-12 mt-4">
                                     <div class="alert alert-info">
                                         <div>
-                                            Vui lòng <span><a href="@Url.Action("Login","Account")">Đăng nhập</a></span> hoặc <span><a href="@Url.Action("Register","Account")">Đăng ký</a></span> để bình luận.
+                                            Vui lòng <span><a href="@Url.Action("Login","Account")">Đăng nhập</a></span> hoặc <span><a href="@Url.Action("Register","Account")">Đăng ký</a></span> để bình luận và đánh giá.
                                         </div>
                                     </div>
                                 </div>
@@ -478,11 +478,11 @@
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-between">
                                                     <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Class_ID})">
-                                                        <h5 class="card-title">@item.Name</h5>
+                                                        <h5 class="card-title class-title">@item.Name</h5>
                                                     </a>
                                                     <div class="class-number d-flex">
                                                         <i class="fas fa-user"></i>
-                                                        <h5>@item.Quanity</h5>
+                                                        <h6>@item.Quanity</h6>
                                                     </div>
                                                 </div>
                                                 <p class="card-text">

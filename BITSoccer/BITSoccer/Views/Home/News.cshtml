@@ -1,6 +1,20 @@
-﻿
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<BITSoccer.Models.News>
 @{
     ViewBag.Title = "Tin Tức";
+
+    var newscate = (List<BITSoccer.Models.News_Category>)ViewBag.Category;
+
+    int selectedCate = -1;
+
+    if (ViewBag.NewsCateID > 0)
+    {
+        selectedCate = ViewBag.NewsCateID;
+    }
+
+    string isDateDesc = Request.QueryString["SortOrder"] == "DateCreateDesc" ? "active" : "";
+    string isNameAsc = Request.QueryString["SortOrder"] == "NewsName" ? "active" : "";
+    string isDateAsc = Request.QueryString["SortOrder"] == "DateCreate" ? "active" : "";
 }
 
 <main>
@@ -10,206 +24,212 @@
         </div>
         <div class="text-shadow"></div>
     </div>
-    <div id="background_main">
-        <div class="container-fluid">
-            <div id="background_content">
-                <div class="row">
-                    <div class="col-xl-8 col-lg-9 col-md-8 col-xs-12 col-sm-8">
-                        <div class="container-fluid">
-                            <div class="row justify-content-between align-items-center m-y-24px">
-                                <div class="col-lg-8 col-md-12">
-                                    <ul class="tag-inline tag-col-2 d-lg-inline-block">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">TẤT CẢ</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">KHÓA HỌC</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">SỰ KIỆN</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">CHIA SẺ</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-md-12 d-flex justify-content-end">
-                                    <div class="container-fluid">
-                                        <div class="row" style="margin:10px 0">
-                                            <div class="form-inline">
-                                                <div class="search-group d-flex mr-2 float-right">
-                                                    <input type="text" placeholder="Search" style="margin-right:0 !important"
-                                                           class="form-control news-search-form-control">
-                                                    <!-- <button class="btn btn-primary" type="button" style="border-radius:0 !important;"><i class="fas fa-search"></i></button> -->
-                                                    <a href="#" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="btn-sort float-right">
-                                        <button class="btn prices-sort" type="button" data-toggle="dropdown" style="margin:10px 0"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            Thứ tự<span><i class="fas fa-chevron-down"></i></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Mới đăng</a>
-                                            <a class="dropdown-item" href="#">Thứ tự chữ cái</a>
-                                            <a class="dropdown-item" href="#">Cũ nhất</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="new-class">
+    @using (Html.BeginForm("News", "Home", new { newscateid = ViewBag.NewsCateID, sortOrder = Request.QueryString["SortOrder"] }, FormMethod.Get))
+    {
+        <div id="background_main">
+            <div class="container-fluid">
+                <div id="background_content">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-9 col-md-8 col-xs-12 col-sm-8">
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                        <div class="card" style="width: auto;">
-                                            <div class="inner">
-                                                <div class="embed-responsive embed-responsive-4by3">
-                                                    <a href="new_detail.html">
-                                                        <img src="~/Assets/img/neymar-brazil.jpg" class="card-img-top embed-responsive-item" alt="...">
-                                                    </a>
+                                <div class="row justify-content-between align-items-center m-y-24px">
+                                    <div class="col-lg-8 col-md-12">
+                                        <ul class="tag-inline tag-col-2 d-lg-inline-block">
+                                            <li class="nav-item">
+                                                @{
+                                                    string isSelected = selectedCate == -1 ? "news-active" : "";
+                                                }
+                                                <a href="@Url.Action("News","Home", new { newscateid = 0 , sortOrder = Request.QueryString["SortOrder"] })" class="nav-link text-uppercase @isSelected">TẤT CẢ</a>
+                                            </li>
+                                            @{
+                                                foreach (var item in newscate)
+                                                {
+                                                    isSelected = item.NewCate_ID == selectedCate ? "news-active" : "";
+                                                    <li class="nav-item">
+                                                        <a href="@Url.Action("News","Home", new { newscateid = item.NewCate_ID, sortOrder = Request.QueryString["SortOrder"] })" class="nav-link @isSelected">@item.Name</a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 d-flex justify-content-end">
+                                        <div class="container-fluid">
+                                            <div class="row" style="margin:10px 0">
+                                                <div class="form-inline">
+                                                    <div class="search-group d-flex mr-2 float-right">
+                                                        <input type="text" placeholder="Search" style="margin-right:0 !important"
+                                                               class="form-control news-search-form-control">
+                                                        <!-- <button class="btn btn-primary" type="button" style="border-radius:0 !important;"><i class="fas fa-search"></i></button> -->
+                                                        <a href="#" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></a>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between">
-                                                    <a href="new_detail.html" class="card-title news-title">
-                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                                    </a>
-                                                </div>
-                                                <div class="card-subtitle category d-flex justify-content-between">
-                                                    <h6>
-                                                        Chia sẻ
-                                                    </h6>
-                                                    <h6>
-                                                        20/05/2020
-                                                    </h6>
-                                                </div>
-                                                <p class="card-text news-description">
-                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                                                    remaining essentially unchanged.
-                                                </p>
+                                        </div>
+                                        <div class="btn-sort float-right">
+                                            <button class="btn prices-sort" type="button" data-toggle="dropdown" style="margin:10px 0"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                Thứ tự<span><i class="fas fa-chevron-down"></i></span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("News","Home", new { newscateid = ViewBag.NewsCateID, sortOrder = "DateCreateDesc"  })">Mới đăng</a>
+                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("News","Home", new { newscateid = ViewBag.NewsCateID, sortOrder = "DateCreate"  })">Cũ nhất</a>
+                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("News","Home", new { newscateid = ViewBag.NewsCateID, sortOrder = "NewsName"  })">Thứ tự chữ cái</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-3 col-md-4 col-xs-12 col-sm-4">
-                        <div class="sidebar-wrapper">
-                            <div class="sidebar-title">
-                                Follow us on Facebook
                             </div>
                             <div class="new-class">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
-                                            <div class="card" style="width: auto;">
-                                                <div class="inner">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <a href="https://www.facebook.com/bitsoccer111/">
-                                                            <img src="~/Assets/img/football-stadium.jpg" class="card-img-top embed-responsive-item" alt="...">
-                                                        </a>
+                                        @{
+                                            foreach (var item in Model)
+                                            {
+                                                <div class="col-xl-4 col-lg-6 col-md-12">
+                                                    <div class="card" style="width: auto;">
+                                                        <div class="inner">
+                                                            <div class="embed-responsive embed-responsive-4by3">
+                                                                <a href="@Url.Action("NewsDetails","Home", new { id = item.News_ID })">
+                                                                    @{
+                                                                        if (item.Image != null)
+                                                                        {
+                                                                            <img src="@Url.Content(item.Image)" class="card-img-top embed-responsive-item" alt="...">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="https://via.placeholder.com/1200x800" class="card-img-top embed-responsive-item" alt="...">
+                                                                        }
+                                                                    }
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="d-flex justify-content-between">
+                                                                <a href="@Url.Action("NewsDetails","Home", new { id = item.News_ID })" class="card-title news-title">
+                                                                    @item.Name
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-subtitle category d-flex justify-content-between">
+                                                                <h6>
+                                                                    @item.News_Category.Name
+                                                                </h6>
+                                                                <h6>
+                                                                    @item.CreatedDate
+                                                                </h6>
+                                                            </div>
+                                                            <p class="card-text news-description">
+                                                                @item.ShortDescription
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-3 col-md-4 col-xs-12 col-sm-4">
+                            <div class="sidebar-wrapper">
+                                <div class="sidebar-title">
+                                    Follow us on Facebook
+                                </div>
+                                <div class="new-class">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-6 col-md-12">
+                                                <div class="card" style="width: auto;">
+                                                    <div class="inner">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <a href="https://www.facebook.com/bitsoccer111/">
+                                                                <img src="~/Assets/img/football-stadium.jpg" class="card-img-top embed-responsive-item" alt="...">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
-                                            <div class="card" style="width: auto;">
-                                                <div class="inner">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <a href="https://www.facebook.com/bitsoccer111/">
-                                                            <img src="~/Assets/img/2020-05-08_102444.png" class="card-img-top embed-responsive-item" alt="...">
-                                                        </a>
+                                            <div class="col-xl-4 col-lg-6 col-md-12">
+                                                <div class="card" style="width: auto;">
+                                                    <div class="inner">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <a href="https://www.facebook.com/bitsoccer111/">
+                                                                <img src="~/Assets/img/2020-05-08_102444.png" class="card-img-top embed-responsive-item" alt="...">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
-                                            <div class="card" style="width: auto;">
-                                                <div class="inner">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <a href="https://www.facebook.com/bitsoccer111/">
-                                                            <img src="~/Assets/img/TEAM_A.jpg" class="card-img-top embed-responsive-item" alt="...">
-                                                        </a>
+                                            <div class="col-xl-4 col-lg-6 col-md-12">
+                                                <div class="card" style="width: auto;">
+                                                    <div class="inner">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <a href="https://www.facebook.com/bitsoccer111/">
+                                                                <img src="~/Assets/img/TEAM_A.jpg" class="card-img-top embed-responsive-item" alt="...">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
-                                            <div class="card" style="width: auto;">
-                                                <div class="inner">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <a href="https://www.facebook.com/bitsoccer111/">
-                                                            <img src="~/Assets/img/TEAM_B.jpg" class="card-img-top embed-responsive-item" alt="...">
-                                                        </a>
+                                            <div class="col-xl-4 col-lg-6 col-md-12">
+                                                <div class="card" style="width: auto;">
+                                                    <div class="inner">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <a href="https://www.facebook.com/bitsoccer111/">
+                                                                <img src="~/Assets/img/TEAM_B.jpg" class="card-img-top embed-responsive-item" alt="...">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
-                                            <div class="card" style="width: auto;">
-                                                <div class="inner">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <a href="https://www.facebook.com/bitsoccer111/">
-                                                            <img src="~/Assets/img/ronaldo-cr7.jpg" class="card-img-top embed-responsive-item" alt="...">
-                                                        </a>
+                                            <div class="col-xl-4 col-lg-6 col-md-12">
+                                                <div class="card" style="width: auto;">
+                                                    <div class="inner">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <a href="https://www.facebook.com/bitsoccer111/">
+                                                                <img src="~/Assets/img/ronaldo-cr7.jpg" class="card-img-top embed-responsive-item" alt="...">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
-                                            <div class="card" style="width: auto;">
-                                                <div class="inner">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <a href="https://www.facebook.com/bitsoccer111/">
-                                                            <img src="~/Assets/img/28d1ccc826be2ae209d8f354dbb9122e.png" class="card-img-top embed-responsive-item" alt="...">
-                                                        </a>
+                                            <div class="col-xl-4 col-lg-6 col-md-12">
+                                                <div class="card" style="width: auto;">
+                                                    <div class="inner">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <a href="https://www.facebook.com/bitsoccer111/">
+                                                                <img src="~/Assets/img/28d1ccc826be2ae209d8f354dbb9122e.png" class="card-img-top embed-responsive-item" alt="...">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="sidebar-title">
-                                Popular tag
-                            </div>
-                            <a href="coach_Lieu.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag huanluanvien">huanluyenvien </a>
-                            <a href="index.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag bongda">bongda</a>
-                            <a href="classes_Thi.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag treem">treem</a>
-                            <a href="tourament_Thi" id="tagbtn" class="button" type="submit" title="Show articles matching tag giaidauganday">giaidauganday</a>
-                            <a href="new_detail.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag skills">skills</a>
-                            <a href="index.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag suckhoe">suckhoe</a>
+                                <div class="sidebar-title">
+                                    Popular tag
+                                </div>
+                                <a href="coach_Lieu.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag huanluanvien">huanluyenvien </a>
+                                <a href="index.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag bongda">bongda</a>
+                                <a href="classes_Thi.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag treem">treem</a>
+                                <a href="tourament_Thi" id="tagbtn" class="button" type="submit" title="Show articles matching tag giaidauganday">giaidauganday</a>
+                                <a href="new_detail.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag skills">skills</a>
+                                <a href="index.html" id="tagbtn" class="button" type="submit" title="Show articles matching tag suckhoe">suckhoe</a>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-    </div>
+    }
 
-    <div style="text-align:center">
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+    <div class="text-center">
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("News", new { page = page, newscateid = ViewBag.NewsCateID, sortOrder = Request.QueryString["SortOrder"] }))
         </div>
     </div>
 </main>

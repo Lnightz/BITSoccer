@@ -160,6 +160,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassDetailsController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Models\Class.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassesSearchModel.cs" />
     <Compile Include="Models\ClassUser.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -252,7 +254,6 @@
     <Compile Include="Models\PayMethod.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClassesSearchModel.cs" />
     <Compile Include="Models\RangeAge.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -263,9 +264,6 @@
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stadium.cs">
-      <DependentUpon>BITSoccerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tag.cs">
@@ -592,6 +590,9 @@
     <Content Include="Views\ClassDetails\ClassDetails.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\PaySuccess.cshtml" />
+    <Content Include="Views\Home\NewsDetails.cshtml" />
+    <Content Include="Views\Home\TournamentsDetails.cshtml" />
+    <Content Include="Views\Comment\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
