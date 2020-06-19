@@ -157,6 +157,7 @@
     <Compile Include="Areas\Admin\Controllers\StadiumsController.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\ClassesBLL.cs" />
+    <Compile Include="BLL\CommentBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassDetailsController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\DiscountCode.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -264,6 +266,9 @@
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stadium.cs">
+      <DependentUpon>BITSoccerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tag.cs">
@@ -459,6 +464,7 @@
     <Content Include="Assets\js\slick.min.js" />
     <Content Include="Assets\js\star-rating.js" />
     <Content Include="Assets\js\theme.js" />
+    <Content Include="Assets\Text\TextFile1.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -593,6 +599,8 @@
     <Content Include="Views\Home\NewsDetails.cshtml" />
     <Content Include="Views\Home\TournamentsDetails.cshtml" />
     <Content Include="Views\Comment\Comment.cshtml" />
+    <Content Include="Views\Comment\Reply.cshtml" />
+    <Content Include="Views\Comment\ChildReply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

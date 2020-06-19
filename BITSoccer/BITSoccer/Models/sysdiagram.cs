@@ -12,13 +12,12 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NewsTag
+    public partial class sysdiagram
     {
-        public int NewsTagsID { get; set; }
-        public Nullable<int> NewsID { get; set; }
-        public Nullable<int> TagsID { get; set; }
-    
-        public virtual News News { get; set; }
-        public virtual Tag Tag { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

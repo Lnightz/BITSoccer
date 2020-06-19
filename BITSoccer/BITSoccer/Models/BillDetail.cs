@@ -19,10 +19,6 @@ namespace BITSoccer.Models
         public Nullable<int> ClassID { get; set; }
     
         public virtual Bill Bill { get; set; }
-        public virtual Bill Bill1 { get; set; }
-        public virtual Bill Bill2 { get; set; }
         public virtual Class Class { get; set; }
-        public virtual Class Class1 { get; set; }
-        public virtual Class Class2 { get; set; }
     }
 }

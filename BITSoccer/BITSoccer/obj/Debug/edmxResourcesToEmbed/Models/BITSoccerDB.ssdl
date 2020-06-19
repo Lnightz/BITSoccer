@@ -295,6 +295,16 @@
     <Property Name="Address" Type="nvarchar" MaxLength="255" />
     <Property Name="Image" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="Tags">
     <Key>
       <PropertyRef Name="Tag_ID" />
@@ -355,7 +365,7 @@
     <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
   </EntityType>
-  <Association Name="FK__About_Sli__About__4BAC3F29">
+  <Association Name="FK__About_Sli__About__05D8E0BE">
     <End Role="About" Type="Self.About" Multiplicity="0..1" />
     <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
     <ReferentialConstraint>
@@ -367,31 +377,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__About_Sli__About__4CA06362">
-    <End Role="About" Type="Self.About" Multiplicity="0..1" />
-    <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="About">
-        <PropertyRef Name="AboutID" />
-      </Principal>
-      <Dependent Role="About_Slide">
-        <PropertyRef Name="AboutID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__About_Sli__About__4D94879B">
-    <End Role="About" Type="Self.About" Multiplicity="0..1" />
-    <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="About">
-        <PropertyRef Name="AboutID" />
-      </Principal>
-      <Dependent Role="About_Slide">
-        <PropertyRef Name="AboutID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__BillDetai__BillI__5070F446">
+  <Association Name="FK__BillDetai__BillI__0B91BA14">
     <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -403,31 +389,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__BillI__5165187F">
-    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bill">
-        <PropertyRef Name="Bill_ID" />
-      </Principal>
-      <Dependent Role="BillDetail">
-        <PropertyRef Name="BillID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__BillDetai__BillI__52593CB8">
-    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bill">
-        <PropertyRef Name="Bill_ID" />
-      </Principal>
-      <Dependent Role="BillDetail">
-        <PropertyRef Name="BillID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__BillDetai__Class__534D60F1">
+  <Association Name="FK__BillDetai__Class__0F624AF8">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -439,31 +401,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__Class__5441852A">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="BillDetail">
-        <PropertyRef Name="ClassID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__BillDetai__Class__5535A963">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="BillDetail">
-        <PropertyRef Name="ClassID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ClassUser__Class__5CD6CB2B">
+  <Association Name="FK__ClassUser__Class__18EBB532">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
     <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
     <ReferentialConstraint>
@@ -475,31 +413,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ClassUser__Class__5DCAEF64">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="ClassUsers">
-        <PropertyRef Name="ClassID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ClassUser__Class__5EBF139D">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="ClassUsers">
-        <PropertyRef Name="ClassID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ClassUser__UserI__5FB337D6">
+  <Association Name="FK__ClassUser__UserI__19DFD96B">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
     <ReferentialConstraint>
@@ -511,31 +425,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ClassUser__UserI__60A75C0F">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="ClassUsers">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ClassUser__UserI__619B8048">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="ClassUsers">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__NewsTags__NewsID__6A30C649">
+  <Association Name="FK__NewsTags__NewsID__2645B050">
     <End Role="News" Type="Self.News" Multiplicity="0..1" />
     <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
     <ReferentialConstraint>
@@ -547,31 +437,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NewsTags__NewsID__6B24EA82">
-    <End Role="News" Type="Self.News" Multiplicity="0..1" />
-    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="News">
-        <PropertyRef Name="News_ID" />
-      </Principal>
-      <Dependent Role="NewsTags">
-        <PropertyRef Name="NewsID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__NewsTags__NewsID__6C190EBB">
-    <End Role="News" Type="Self.News" Multiplicity="0..1" />
-    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="News">
-        <PropertyRef Name="News_ID" />
-      </Principal>
-      <Dependent Role="NewsTags">
-        <PropertyRef Name="NewsID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__NewsTags__TagsID__6D0D32F4">
+  <Association Name="FK__NewsTags__TagsID__2739D489">
     <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
     <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
     <ReferentialConstraint>
@@ -583,31 +449,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NewsTags__TagsID__6E01572D">
-    <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
-    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tags">
-        <PropertyRef Name="Tag_ID" />
-      </Principal>
-      <Dependent Role="NewsTags">
-        <PropertyRef Name="TagsID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__NewsTags__TagsID__6EF57B66">
-    <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
-    <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tags">
-        <PropertyRef Name="Tag_ID" />
-      </Principal>
-      <Dependent Role="NewsTags">
-        <PropertyRef Name="TagsID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Rating__Class_ID__6FE99F9F">
+  <Association Name="FK__Rating__Class_ID__2A164134">
     <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
     <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -619,55 +461,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__Class_ID__70DDC3D8">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="Class_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Rating__Class_ID__71D1E811">
-    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
-    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Class_ID" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="Class_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Rating__User_ID__72C60C4A">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Rating__User_ID__73BA3083">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Rating__User_ID__74AE54BC">
+  <Association Name="FK__Rating__User_ID__2EDAF651">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -939,115 +733,44 @@
     <EntitySet Name="RangeTime" EntityType="Self.RangeTime" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stadium" EntityType="Self.Stadium" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__About_Sli__About__4BAC3F29" Association="Self.FK__About_Sli__About__4BAC3F29">
+    <AssociationSet Name="FK__About_Sli__About__05D8E0BE" Association="Self.FK__About_Sli__About__05D8E0BE">
       <End Role="About" EntitySet="About" />
       <End Role="About_Slide" EntitySet="About_Slide" />
     </AssociationSet>
-    <AssociationSet Name="FK__About_Sli__About__4CA06362" Association="Self.FK__About_Sli__About__4CA06362">
-      <End Role="About" EntitySet="About" />
-      <End Role="About_Slide" EntitySet="About_Slide" />
-    </AssociationSet>
-    <AssociationSet Name="FK__About_Sli__About__4D94879B" Association="Self.FK__About_Sli__About__4D94879B">
-      <End Role="About" EntitySet="About" />
-      <End Role="About_Slide" EntitySet="About_Slide" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__BillI__5070F446" Association="Self.FK__BillDetai__BillI__5070F446">
+    <AssociationSet Name="FK__BillDetai__BillI__0B91BA14" Association="Self.FK__BillDetai__BillI__0B91BA14">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__BillI__5165187F" Association="Self.FK__BillDetai__BillI__5165187F">
-      <End Role="Bill" EntitySet="Bill" />
-      <End Role="BillDetail" EntitySet="BillDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__BillI__52593CB8" Association="Self.FK__BillDetai__BillI__52593CB8">
-      <End Role="Bill" EntitySet="Bill" />
-      <End Role="BillDetail" EntitySet="BillDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__Class__534D60F1" Association="Self.FK__BillDetai__Class__534D60F1">
+    <AssociationSet Name="FK__BillDetai__Class__0F624AF8" Association="Self.FK__BillDetai__Class__0F624AF8">
       <End Role="Class" EntitySet="Class" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__Class__5441852A" Association="Self.FK__BillDetai__Class__5441852A">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="BillDetail" EntitySet="BillDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__Class__5535A963" Association="Self.FK__BillDetai__Class__5535A963">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="BillDetail" EntitySet="BillDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ClassUser__Class__5CD6CB2B" Association="Self.FK__ClassUser__Class__5CD6CB2B">
+    <AssociationSet Name="FK__ClassUser__Class__18EBB532" Association="Self.FK__ClassUser__Class__18EBB532">
       <End Role="Class" EntitySet="Class" />
       <End Role="ClassUsers" EntitySet="ClassUsers" />
     </AssociationSet>
-    <AssociationSet Name="FK__ClassUser__Class__5DCAEF64" Association="Self.FK__ClassUser__Class__5DCAEF64">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="ClassUsers" EntitySet="ClassUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ClassUser__Class__5EBF139D" Association="Self.FK__ClassUser__Class__5EBF139D">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="ClassUsers" EntitySet="ClassUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ClassUser__UserI__5FB337D6" Association="Self.FK__ClassUser__UserI__5FB337D6">
+    <AssociationSet Name="FK__ClassUser__UserI__19DFD96B" Association="Self.FK__ClassUser__UserI__19DFD96B">
       <End Role="User" EntitySet="User" />
       <End Role="ClassUsers" EntitySet="ClassUsers" />
     </AssociationSet>
-    <AssociationSet Name="FK__ClassUser__UserI__60A75C0F" Association="Self.FK__ClassUser__UserI__60A75C0F">
-      <End Role="User" EntitySet="User" />
-      <End Role="ClassUsers" EntitySet="ClassUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ClassUser__UserI__619B8048" Association="Self.FK__ClassUser__UserI__619B8048">
-      <End Role="User" EntitySet="User" />
-      <End Role="ClassUsers" EntitySet="ClassUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NewsTags__NewsID__6A30C649" Association="Self.FK__NewsTags__NewsID__6A30C649">
+    <AssociationSet Name="FK__NewsTags__NewsID__2645B050" Association="Self.FK__NewsTags__NewsID__2645B050">
       <End Role="News" EntitySet="News" />
       <End Role="NewsTags" EntitySet="NewsTags" />
     </AssociationSet>
-    <AssociationSet Name="FK__NewsTags__NewsID__6B24EA82" Association="Self.FK__NewsTags__NewsID__6B24EA82">
-      <End Role="News" EntitySet="News" />
-      <End Role="NewsTags" EntitySet="NewsTags" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NewsTags__NewsID__6C190EBB" Association="Self.FK__NewsTags__NewsID__6C190EBB">
-      <End Role="News" EntitySet="News" />
-      <End Role="NewsTags" EntitySet="NewsTags" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NewsTags__TagsID__6D0D32F4" Association="Self.FK__NewsTags__TagsID__6D0D32F4">
+    <AssociationSet Name="FK__NewsTags__TagsID__2739D489" Association="Self.FK__NewsTags__TagsID__2739D489">
       <End Role="Tags" EntitySet="Tags" />
       <End Role="NewsTags" EntitySet="NewsTags" />
     </AssociationSet>
-    <AssociationSet Name="FK__NewsTags__TagsID__6E01572D" Association="Self.FK__NewsTags__TagsID__6E01572D">
-      <End Role="Tags" EntitySet="Tags" />
-      <End Role="NewsTags" EntitySet="NewsTags" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NewsTags__TagsID__6EF57B66" Association="Self.FK__NewsTags__TagsID__6EF57B66">
-      <End Role="Tags" EntitySet="Tags" />
-      <End Role="NewsTags" EntitySet="NewsTags" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Rating__Class_ID__6FE99F9F" Association="Self.FK__Rating__Class_ID__6FE99F9F">
+    <AssociationSet Name="FK__Rating__Class_ID__2A164134" Association="Self.FK__Rating__Class_ID__2A164134">
       <End Role="Class" EntitySet="Class" />
       <End Role="Rating" EntitySet="Rating" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__Class_ID__70DDC3D8" Association="Self.FK__Rating__Class_ID__70DDC3D8">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="Rating" EntitySet="Rating" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Rating__Class_ID__71D1E811" Association="Self.FK__Rating__Class_ID__71D1E811">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="Rating" EntitySet="Rating" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Rating__User_ID__72C60C4A" Association="Self.FK__Rating__User_ID__72C60C4A">
-      <End Role="User" EntitySet="User" />
-      <End Role="Rating" EntitySet="Rating" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Rating__User_ID__73BA3083" Association="Self.FK__Rating__User_ID__73BA3083">
-      <End Role="User" EntitySet="User" />
-      <End Role="Rating" EntitySet="Rating" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Rating__User_ID__74AE54BC" Association="Self.FK__Rating__User_ID__74AE54BC">
+    <AssociationSet Name="FK__Rating__User_ID__2EDAF651" Association="Self.FK__Rating__User_ID__2EDAF651">
       <End Role="User" EntitySet="User" />
       <End Role="Rating" EntitySet="Rating" />
     </AssociationSet>

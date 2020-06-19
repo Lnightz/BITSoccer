@@ -1,4 +1,5 @@
 ﻿using BITSoccer.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BITSoccer.Controllers
     {
         BITSoccerEntities db = new BITSoccerEntities();
         // GET: ClassDetails
-        public ActionResult ClassDetails(int? id)
+        public ActionResult ClassDetails(int? page ,int? id)
         {
             if (id == null)
             {
@@ -29,6 +30,20 @@ namespace BITSoccer.Controllers
             ViewBag.ReferenceClass = db.Classes.Where(x => x.LevelStudentID == classdetails.LevelStudentID).OrderBy(x => x.CreatedDate).Take(5).ToList();
 
             var countRating = db.Ratings.Where(x => x.Class_ID == id).Count();
+
+            ViewBag.UserDetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
+            var parentCommentFrommClass = db.Comments.Where(x => x.RootCommentID == null && x.Class_ID == id).OrderByDescending(x => x.PostDate).ToList();
+
+            var pageNumber = page ?? 1;
+
+            ViewBag.PageNumber = pageNumber;
+
+            var pageSize = 2;
+
+            ViewBag.PageSize = pageSize;
+
+            //ViewBag.CmtFromClassToPageList = parentCommentFrommClass.ToPagedList(pageNumber, pageSize);
 
             ViewBag.CountRating = countRating;
 
@@ -60,14 +75,16 @@ namespace BITSoccer.Controllers
 
             var userratingdetails = db.Ratings.Where(x => x.User.UserName == User.Identity.Name && x.Class_ID ==  id).FirstOrDefault();
 
+            ViewBag.Classes = classes;
+
             if(userratingdetails != null)
             {
                 ViewBag.Error = "RATED";
 
-                return View(classes);
+                return View(parentCommentFrommClass.ToPagedList(pageNumber,pageSize));
             }
 
-            return View(classes);
+            return View(parentCommentFrommClass.ToPagedList(pageNumber, pageSize));
         }
 
         [Authorize]

@@ -18,8 +18,6 @@ namespace BITSoccer.Models
         public Tag()
         {
             this.NewsTags = new HashSet<NewsTag>();
-            this.NewsTags1 = new HashSet<NewsTag>();
-            this.NewsTags2 = new HashSet<NewsTag>();
         }
     
         public int Tag_ID { get; set; }
@@ -27,9 +25,5 @@ namespace BITSoccer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewsTag> NewsTags { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NewsTag> NewsTags1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NewsTag> NewsTags2 { get; set; }
     }
 }

@@ -19,7 +19,5 @@ namespace BITSoccer.Models
         public string Image { get; set; }
     
         public virtual About About { get; set; }
-        public virtual About About1 { get; set; }
-        public virtual About About2 { get; set; }
     }
 }

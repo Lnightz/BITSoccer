@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap');
 
 .html, body{
     font-size: 14px;
@@ -1142,8 +1143,22 @@ button.prices-sort{
 /* New_Detail Styles */
 
 /* Class_detail Styles */
+.font-jose-sans {
+    font-family: 'Josefin Sans', sans-serif;
+}
 
-.title-orangered{
+.font-source-san {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.class-details-title {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-transform : capitalize;
+}
+.class-details-icon i {
+    color: rgb(119, 190, 67);
+}
+.title-orangered {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
 }
@@ -1192,13 +1207,9 @@ button.prices-sort{
     left: 10px;
 }
 
-#venue p{
-    color: white;
+.venue p{
+    color: black;
     font-weight: 400;
-}
-
-#venue .carousel-caption{
-    text-shadow: 5px 5px 15px white ;
 }
 
 

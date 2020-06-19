@@ -18,14 +18,8 @@ namespace BITSoccer.Models
         public Class()
         {
             this.BillDetails = new HashSet<BillDetail>();
-            this.BillDetails1 = new HashSet<BillDetail>();
-            this.BillDetails2 = new HashSet<BillDetail>();
             this.ClassUsers = new HashSet<ClassUser>();
-            this.ClassUsers1 = new HashSet<ClassUser>();
-            this.ClassUsers2 = new HashSet<ClassUser>();
             this.Ratings = new HashSet<Rating>();
-            this.Ratings1 = new HashSet<Rating>();
-            this.Ratings2 = new HashSet<Rating>();
             this.Comments = new HashSet<Comment>();
         }
     
@@ -59,21 +53,9 @@ namespace BITSoccer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDetail> BillDetails1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDetail> BillDetails2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClassUser> ClassUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassUser> ClassUsers1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassUser> ClassUsers2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings2 { get; set; }
         public virtual Coach Coach { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual LevelStudent LevelStudent { get; set; }

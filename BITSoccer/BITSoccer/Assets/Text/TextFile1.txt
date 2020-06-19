@@ -1,0 +1,36 @@
+﻿<div class="container">
+                    <div class="card card-comment">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="~/Assets/img/83047536_1559061280917786_3640823053601996800_o.jpg" class="img img-rounded img-fluid" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div>
+                                        <h5 class="float-left" href="#"><strong>Lê Anh Quốc</strong></h5>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <p class="text-secondary">08/05/2020</p>
+                                    <p>Lớp học đã mang rất nhiều tiếng cười và niềm vui. cám ơn lớp rất nhiều.</p>
+
+                                    <a class="float-right btn btn-outline-primary ml-2" onclick="onButtonClick()"> <i class="fa fa-reply"></i> Reply</a>
+                                    <textarea class="form-control hidetextboxreply" placeholder="Bạn cảm thấy khóa học thế nào?" rows="4" id="textReplyInput"></textarea>
+                                </div>
+                                <div class="row comment-children">
+                                    <div class="col-md-1">
+                                        <img src="~/Assets/img/83047536_1559061280917786_3640823053601996800_o.jpg" class="img img-rounded img-fluid" />
+                                    </div>
+                                    <div class="col-md-11">
+                                        <div>
+                                            <h5 class="float-left" href="#"><strong>Lê Anh Quốc</strong></h5>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <p class="text-secondary">08/05/2020</p>
+                                        <p>Lớp học đã mang rất nhiều tiếng cười và niềm vui. cám ơn lớp rất nhiều. </p>
+                                        <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

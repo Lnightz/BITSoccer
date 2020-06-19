@@ -18,8 +18,6 @@ namespace BITSoccer.Models
         public About()
         {
             this.About_Slide = new HashSet<About_Slide>();
-            this.About_Slide1 = new HashSet<About_Slide>();
-            this.About_Slide2 = new HashSet<About_Slide>();
         }
     
         public int AboutID { get; set; }
@@ -30,9 +28,5 @@ namespace BITSoccer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<About_Slide> About_Slide { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<About_Slide> About_Slide1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<About_Slide> About_Slide2 { get; set; }
     }
 }

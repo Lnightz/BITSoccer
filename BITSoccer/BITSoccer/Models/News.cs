@@ -12,15 +12,13 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class News : UploadImage
+    public partial class News
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public News()
         {
             this.Comments = new HashSet<Comment>();
             this.NewsTags = new HashSet<NewsTag>();
-            this.NewsTags1 = new HashSet<NewsTag>();
-            this.NewsTags2 = new HashSet<NewsTag>();
         }
     
         public int News_ID { get; set; }
@@ -41,10 +39,6 @@ namespace BITSoccer.Models
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewsTag> NewsTags { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NewsTag> NewsTags1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NewsTag> NewsTags2 { get; set; }
         public virtual News_Category News_Category { get; set; }
     }
 }
