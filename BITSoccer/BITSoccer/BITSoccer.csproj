@@ -592,7 +592,6 @@
     <Content Include="Views\Student\ProFile.cshtml" />
     <Content Include="Views\Student\StudentClass.cshtml" />
     <Content Include="Views\Student\AddClass.cshtml" />
-    <Content Include="Views\Student\StudentPay.cshtml" />
     <Content Include="Views\ClassDetails\ClassDetails.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\PaySuccess.cshtml" />
@@ -601,6 +600,7 @@
     <Content Include="Views\Comment\Comment.cshtml" />
     <Content Include="Views\Comment\Reply.cshtml" />
     <Content Include="Views\Comment\ChildReply.cshtml" />
+    <Content Include="Views\Account\RegisterSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

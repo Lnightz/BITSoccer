@@ -25,28 +25,31 @@ namespace BITSoccer.Controllers
                 return HttpNotFound();
             }
 
-            var classdetails = db.Classes.Where(x => x.Class_ID == id).SingleOrDefault();
+            //Gán danh sách lớp liên quan vào ViewBag
+            ViewBag.ReferenceClass = db.Classes.Where(x => x.LevelStudentID == classes.LevelStudentID).OrderBy(x => x.CreatedDate).Take(5).ToList();
 
-            ViewBag.ReferenceClass = db.Classes.Where(x => x.LevelStudentID == classdetails.LevelStudentID).OrderBy(x => x.CreatedDate).Take(5).ToList();
-
+            //Đếm số lần vote mà id lớp này có đc
             var countRating = db.Ratings.Where(x => x.Class_ID == id).Count();
 
+            //gán thông tin User vào ViewBag
             ViewBag.UserDetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
 
+            //Tìm những cmt cha
             var parentCommentFrommClass = db.Comments.Where(x => x.RootCommentID == null && x.Class_ID == id).OrderByDescending(x => x.PostDate).ToList();
-
+            //trang hiện tại
             var pageNumber = page ?? 1;
-
+            //Gán trang hiện tại vào ViewBag
             ViewBag.PageNumber = pageNumber;
-
+            //số item có trong trang
             var pageSize = 2;
-
+            //gán item có trong trang vào ViewBag
             ViewBag.PageSize = pageSize;
 
             //ViewBag.CmtFromClassToPageList = parentCommentFrommClass.ToPagedList(pageNumber, pageSize);
-
+            //Gán Count Rating vào VIewBag
             ViewBag.CountRating = countRating;
 
+            //Đếm chỉ số rating
             var best = db.Ratings.Where(x => x.Class_ID == id && x.NumberStar > 4).Count();
             var good = db.Ratings.Where(x => x.Class_ID == id && x.NumberStar > 3 && x.NumberStar <=4 ).Count();
             var normal = db.Ratings.Where(x => x.Class_ID == id && x.NumberStar > 2 && x.NumberStar <= 3).Count();
@@ -54,7 +57,8 @@ namespace BITSoccer.Controllers
             var verybad = db.Ratings.Where(x => x.Class_ID == id && x.NumberStar <= 1).Count();
             var sum = db.Ratings.Where(x => x.Class_ID == id).ToList().Sum(x => x.NumberStar);
 
-            if (countRating > 0)
+            //Tính toán %
+            if (countRating > 0)// nếu lượt vote > 0 
             {
                 ViewBag.Best = (best / countRating) * 100;
                 ViewBag.Good = (good / countRating) * 100;
@@ -72,9 +76,12 @@ namespace BITSoccer.Controllers
                 ViewBag.VeryBad = 0;
                 ViewBag.TotalStar = 0;
             }
-
+            //Tìm thông tin User đã rating để trap không cho rat nữa
             var userratingdetails = db.Ratings.Where(x => x.User.UserName == User.Identity.Name && x.Class_ID ==  id).FirstOrDefault();
 
+            //Tìm xem user đã đăng ký lớp học chua để trap không cho đk nữa
+            ViewBag.UsersHaveClass = db.ClassUsers.FirstOrDefault(x => x.User.UserName == User.Identity.Name);
+            
             ViewBag.Classes = classes;
 
             if(userratingdetails != null)

@@ -1,5 +1,6 @@
 ﻿@{
     var repCmtFromClass = (List<BITSoccer.Models.Comment>)ViewBag.RepCmt;
+    var repCmtFromNews = (List<BITSoccer.Models.Comment>)ViewBag.RepCmtToNews;
 }
 
 
@@ -9,7 +10,7 @@
         foreach (var item in repCmtFromClass)
         {
             <div class="row comment-children">
-                <div class="col-md-1">
+                <div class="col-md-1 px-0 text-right">
                     @{
                         if (item.User.Avatar != null)
                         {
@@ -59,6 +60,65 @@
                 </div>
                 @{
                     Html.RenderAction("ChildReply", "Comment", new { classID = item.Class_ID, cmtID = item.Comment_ID, rootCmtID = item.RootCommentID });
+                }
+            </div>
+        }
+    }
+    else
+    {
+        foreach (var item in repCmtFromNews )
+        {
+            <div class="row comment-children">
+                <div class="col-md-1 px-0 text-right">
+                    @{
+                        if (item.User.Avatar != null)
+                        {
+                            <img src="@Url.Content(item.User.Avatar)" class="img img-rounded img-fluid" />
+                        }
+                        else
+                        {
+                            <img src="~/Assets/img/no-photo.jpg" class="img img-rounded img-fluid" />
+                        }
+                    }
+                </div>
+                <div class="col-md-11">
+                    <div>
+                        <h5 class="float-left"><strong>@item.User.CustomerName</strong></h5>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p class="text-secondary">@item.PostDate</p>
+                    <p>@item.Content </p>
+
+                    <script>
+                        function @string.Concat(item.User.UserName, item.Comment_ID, item.User_ID, item.New_ID) () {
+                            document.getElementById("@string.Concat(item.Comment_ID,item.User_ID,item.New_ID)").className = "showtextboxreply";
+                        }
+                    </script>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="float-right btn btn-outline-primary ml-2 mb-2" onclick="@string.Concat(item.User.UserName,item.Comment_ID,item.User_ID,item.New_ID) ()"> <i class="fa fa-reply"></i> Reply</a>
+                        }
+                    }
+                    <div class="hidetextboxreply" id="@string.Concat(item.Comment_ID,item.User_ID,item.New_ID)">
+                        @using (Html.BeginForm("PostCmtToNews", "Comment", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+                            <textarea class="form-control textcmtbox" rows="4" id="" name="Content"></textarea>
+                            <input type="hidden" value="@item.New_ID" name="NewsID" />
+                            <input type="hidden" value="@item.User_ID" name="UserID" />
+                            <input type="hidden" value="@item.RootCommentID" name="RootCmtID" />
+                            <input type="hidden" value="@item.Comment_ID" name="RepToCmtID" />
+                            <div class="float-right">
+                                <button class="btn btn-success send btn-sm" type="submit">
+                                    Phản hồi <i class="fa fa-long-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                @{
+                    Html.RenderAction("ChildReply", "Comment", new { newsID = item.New_ID, cmtID = item.Comment_ID, rootCmtID = item.RootCommentID });
                 }
             </div>
         }

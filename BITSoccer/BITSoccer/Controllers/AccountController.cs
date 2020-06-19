@@ -90,7 +90,7 @@ namespace BITSoccer.Controllers
 
                     Authencicate(user);
 
-                    return RedirectToAction("Index", "Home");
+                    return View("RegisterSuccess");
 
                 }
             }

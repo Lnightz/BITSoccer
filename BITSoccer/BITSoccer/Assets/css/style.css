@@ -1277,10 +1277,10 @@ text-align: center;
     transform: none !important; 
 }
 
-.img-rounded{
+.img-rounded {
     border-radius: 50%;
-    width: 56px !important; 
-    height: 56px !important;
+    width: auto !important;
+    height: auto !important;
     text-align: center;
 }
 
@@ -1343,3 +1343,22 @@ text-align: center;
     text-shadow: 1px 1px 1px rgba(0,0,0,.2);
 
 }
+
+/*General Styles*/
+
+.showtextboxreply {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.textcmtbox {
+    height: 100px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.hidetextboxreply {
+    display: none;
+}
+
+/*General Styles*/

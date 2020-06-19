@@ -35,7 +35,8 @@ namespace BITSoccer.Controllers
             ViewBag.PartOfDay = db.PartOfDays.OrderBy(x => x.PartOfDayID).ToList();
 
             var model = db.Classes.AsQueryable();
-            var result = db.Classes.Include(c => c.LevelStudent).Include(c => c.Coach.LevelCoach).Include(c => c.RangeAge).Include(c => c.RangeTime).Include(c => c.Gender).Include(c => c.PartOfDay);
+
+            model = model.Where(x => x.IsActive == true);
 
             ViewBag.LvlStdID = lvlstd;
             ViewBag.LvlCoachID = lvlcoach;
@@ -139,7 +140,7 @@ namespace BITSoccer.Controllers
             return View(news.ToPagedList(pageNumber,pageSize));
         }
 
-        public ActionResult NewsDetails(int? id)
+        public ActionResult NewsDetails(int? id, int? page)
         {
             if (id == null)
             {
@@ -149,6 +150,18 @@ namespace BITSoccer.Controllers
 
             ViewBag.NewsDetails = news;
 
+            ViewBag.UserDetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
+            var parentCommentFromNews = db.Comments.Where(x => x.RootCommentID == null && x.New_ID == id).OrderByDescending(x => x.PostDate).ToList();
+
+            var pageNumber = page ?? 1;
+
+            ViewBag.PageNumber = pageNumber;
+
+            var pageSize = 2;
+
+            ViewBag.PageSize = pageSize;
+
             ViewBag.AnotherNews = db.News.OrderByDescending(x => x.CreatedDate).Take(4).ToList();
 
             if (news == null)
@@ -156,7 +169,7 @@ namespace BITSoccer.Controllers
                 return HttpNotFound();
             }
 
-            return View();
+            return View(parentCommentFromNews.ToPagedList(pageNumber,pageSize));
         }
 
         [HttpGet]

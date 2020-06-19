@@ -1,5 +1,6 @@
 ﻿using BITSoccer.BLL;
 using BITSoccer.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,9 +22,9 @@ namespace BITSoccer.Controllers
 
         public ActionResult ProFile()
         {
-            string username = User.Identity.Name;
+            ViewBag.CountTotalClass = db.ClassUsers.Count(x => x.User.UserName == User.Identity.Name);
 
-            userLogin = db.Users.Where(x => x.UserName == username).FirstOrDefault();
+            userLogin = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
 
             if (userLogin == null)
             {
@@ -82,12 +83,32 @@ namespace BITSoccer.Controllers
         }
 
         //Lớp của học viên
-        public ActionResult StudentClass()
+        public ActionResult StudentClass(int? page, int CurrentFilter = 0)
         {
 
             if (User.IsInRole("Student"))
             {
-                ViewBag.StudentClass = db.ClassUsers.Where(x => x.User.UserName == User.Identity.Name).ToList();
+                var haveclass = db.ClassUsers.Where(x => x.User.UserName == User.Identity.Name).ToList();
+                var pageNumber = page ?? 1;
+                var pageSize = 1;
+                var today = DateTime.UtcNow;
+                switch (CurrentFilter)
+                {
+                    case 1:
+                        haveclass = haveclass.Where(x => x.Class.StartDay <= today && x.Class.EndDay >= today).OrderBy(x => x.Class.StartDay).ToList();
+                        break;
+                    case 2:
+                        haveclass = haveclass.Where(x=> x.Class.StartDay > today).OrderBy(x => x.Class.StartDay).ToList();
+                        break;
+                    case 3:
+                        haveclass = haveclass.Where(x=>x.Class.EndDay < today).OrderBy(x => x.Class.StartDay).ToList();
+                        break;
+                }
+
+                ViewBag.CurrentFilter = CurrentFilter;
+
+                ViewBag.StudentClass = haveclass.ToPagedList(pageNumber, pageSize);
+
                 return View();
             }
             return RedirectToAction("Index", "Home");

@@ -57,10 +57,10 @@
                             <a class="nav-link" href="@Url.Action("Index","Home")">Trang chủ <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Classes","Home")" ">Khoá học</a>
+                            <a class="nav-link" href="@Url.Action("Classes","Home")" >Khoá học</a>
                         </li>
                         <li class="nav-item dropdown hover-effect">
-                            <a class="nav-link" href="@Url.Action("News","Home")" " id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="@Url.Action("News","Home")"  id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Tin tức
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -70,10 +70,10 @@
                             </div>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Tournaments","Home")" ">Giải đấu</a>
+                            <a class="nav-link" href="@Url.Action("Tournaments","Home")" >Giải đấu</a>
                         </li>
                         <li class="nav-item hover-effect">
-                            <a class="nav-link" href="@Url.Action("Coach","Home")" ">Huấn luyện viên</a>
+                            <a class="nav-link" href="@Url.Action("Coach","Home")" >Huấn luyện viên</a>
                         </li>
                         <li class="nav-item hover-effect">
                             <a class="nav-link" href="@Url.Action("About","Home")">Về chúng tôi</a>
@@ -233,7 +233,7 @@
                                         else
                                         {
                                             <tr>
-                                                <td colspan="7" class="text-info text-center" >Bạn chưa thêm lớp học nào</td>
+                                                <td colspan="7" class="text-info text-center">Bạn chưa thêm lớp học nào</td>
                                             </tr>
                                         }
                                     }
@@ -320,10 +320,31 @@
                                     <input type="radio" name="PayMethodID" id="momo-pay" class="radio-btn-pay" value="3">
                                     <label for="momo-pay">VÍ MOMO</label>
                                 </div>
-                                <input type="hidden" value="@total" name="Total"/>
+                                <input type="hidden" value="@total" name="Total" />
                             </div>
                             <div class="col-lg-12">
-                                <button type="submit" class="btn btn-primary btn-lg StudentPayBtn">Thanh Toán</button>
+                                <button type="button" class="btn btn-primary btn-lg StudentPayBtn" data-toggle="modal" data-target="#exampleModal111">
+                                    Thanh Toán
+                                </button>
+                            </div>
+                            <div class="modal fade" id="exampleModal111" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có muốn thanh toán hoá đơn trị giá <span class="text-info">@totalshow</span> không ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" >Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     }

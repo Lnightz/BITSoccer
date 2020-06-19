@@ -33,22 +33,7 @@
 
         });
     </script>
-    <style>
-        .showtextboxreply {
-            display: block;
-            margin-bottom: 10px;
-        }
 
-        .textcmtbox {
-            height: 100px;
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
-
-        .hidetextboxreply {
-            display: none;
-        }
-    </style>
 }
 <main>
 
@@ -72,15 +57,29 @@
                                     với đội ngủ HLV là giảng viên Trường ĐH TDTT TpHCM thường xuyên mở lớp học bóng đá.
                                 </p>
                                 @{
-                                    if (User.Identity.IsAuthenticated)
+                                    if (DateTime.UtcNow.AddDays(-3) > ViewBag.Classes.StartDay)
                                     {
-                                        <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = ViewBag.Classes.Class_ID })">
-                                            <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">
-                                        </a>
+                                        <div class="alert alert-warning text-capitalize">khoá học này đã hết hạn đăng ký rồi</div>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("Login", "Account")" class="alert alert-info">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                        if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (ViewBag.UsersHaveClass != null)
+                                            {
+                                                <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = ViewBag.Classes.Class_ID })">
+                                                    <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <div class="alert alert-info text-capitalize">bạn đã đăng ký khoá học này rồi</div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Login", "Account")" class="alert alert-info">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                        }
                                     }
                                 }
 
@@ -330,6 +329,17 @@
                     }
                 }
 
+                <div class="container mt-5 ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sc_heading clone_title">
+                                <h2 class="title">Bình luận</h2>
+                                <div class="clone">Bình luận</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 @{
                     Html.RenderAction("Comment", "Comment", new { classID = ViewBag.Classes.Class_ID, page = ViewBag.PageNumber, pageSize = ViewBag.PageSize });
 
@@ -337,14 +347,14 @@
 
                 <div class="text-center">
                     <div>
-                        @Html.PagedListPager(Model, page => Url.Action("ClassDetails", new { page = page , pageSize = ViewBag.PageSize, classID = ViewBag.Classes.Class_ID }))
+                        @Html.PagedListPager(Model, page => Url.Action("ClassDetails", new { page = page, pageSize = ViewBag.PageSize, classID = ViewBag.Classes.Class_ID }))
 
 
                         @*/// Chỗ này làm cái a truyền pageIndex - pageNumber vào
-                /// pageIndex - bao nhiêu item 1 page
-                /// pageNumber - trng hiện tại
-                /// xài Skip và Take để get list
-                /// ClassDtails quản lý pageNumber và pageIndex*@
+                            /// pageIndex - bao nhiêu item 1 page
+                            /// pageNumber - trng hiện tại
+                            /// xài Skip và Take để get list
+                            /// ClassDtails quản lý pageNumber và pageIndex*@
 
                     </div>
                 </div>
@@ -393,7 +403,7 @@
                                     <div class="col-12">
                                         <div class="comment-box ml-2">
                                             <h4>Bình luận của bạn</h4>
-                                            @using (Html.BeginForm("PostCmt", "Comment", FormMethod.Post))
+                                            @using (Html.BeginForm("PostOriCmt", "Comment", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken();
                                                 <div class="comment-area">

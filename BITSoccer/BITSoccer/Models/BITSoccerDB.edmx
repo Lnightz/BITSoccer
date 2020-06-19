@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BITSoccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BITSoccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="AboutID" />
@@ -370,7 +370,7 @@
           <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__About_Sli__About__05D8E0BE">
+        <Association Name="FK__About_Sli__About__4CA06362">
           <End Role="About" Type="Self.About" Multiplicity="0..1" />
           <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
           <ReferentialConstraint>
@@ -382,7 +382,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__BillI__0B91BA14">
+        <Association Name="FK__BillDetai__BillI__4F7CD00D">
           <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -394,7 +394,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__Class__0F624AF8">
+        <Association Name="FK__BillDetai__Class__5070F446">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -406,7 +406,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClassUser__Class__18EBB532">
+        <Association Name="FK__ClassUser__Class__5812160E">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -418,7 +418,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClassUser__UserI__19DFD96B">
+        <Association Name="FK__ClassUser__UserI__59063A47">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -430,7 +430,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsTags__NewsID__2645B050">
+        <Association Name="FK__NewsTags__NewsID__619B8048">
           <End Role="News" Type="Self.News" Multiplicity="0..1" />
           <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
           <ReferentialConstraint>
@@ -442,7 +442,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsTags__TagsID__2739D489">
+        <Association Name="FK__NewsTags__TagsID__628FA481">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
           <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
           <ReferentialConstraint>
@@ -454,7 +454,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__Class_ID__2A164134">
+        <Association Name="FK__Rating__Class_ID__6383C8BA">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -466,7 +466,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__User_ID__2EDAF651">
+        <Association Name="FK__Rating__User_ID__6477ECF3">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -743,39 +743,39 @@
           <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__About_Sli__About__05D8E0BE" Association="Self.FK__About_Sli__About__05D8E0BE">
+          <AssociationSet Name="FK__About_Sli__About__4CA06362" Association="Self.FK__About_Sli__About__4CA06362">
             <End Role="About" EntitySet="About" />
             <End Role="About_Slide" EntitySet="About_Slide" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__BillI__0B91BA14" Association="Self.FK__BillDetai__BillI__0B91BA14">
+          <AssociationSet Name="FK__BillDetai__BillI__4F7CD00D" Association="Self.FK__BillDetai__BillI__4F7CD00D">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__Class__0F624AF8" Association="Self.FK__BillDetai__Class__0F624AF8">
+          <AssociationSet Name="FK__BillDetai__Class__5070F446" Association="Self.FK__BillDetai__Class__5070F446">
             <End Role="Class" EntitySet="Class" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClassUser__Class__18EBB532" Association="Self.FK__ClassUser__Class__18EBB532">
+          <AssociationSet Name="FK__ClassUser__Class__5812160E" Association="Self.FK__ClassUser__Class__5812160E">
             <End Role="Class" EntitySet="Class" />
             <End Role="ClassUsers" EntitySet="ClassUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClassUser__UserI__19DFD96B" Association="Self.FK__ClassUser__UserI__19DFD96B">
+          <AssociationSet Name="FK__ClassUser__UserI__59063A47" Association="Self.FK__ClassUser__UserI__59063A47">
             <End Role="User" EntitySet="User" />
             <End Role="ClassUsers" EntitySet="ClassUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsTags__NewsID__2645B050" Association="Self.FK__NewsTags__NewsID__2645B050">
+          <AssociationSet Name="FK__NewsTags__NewsID__619B8048" Association="Self.FK__NewsTags__NewsID__619B8048">
             <End Role="News" EntitySet="News" />
             <End Role="NewsTags" EntitySet="NewsTags" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsTags__TagsID__2739D489" Association="Self.FK__NewsTags__TagsID__2739D489">
+          <AssociationSet Name="FK__NewsTags__TagsID__628FA481" Association="Self.FK__NewsTags__TagsID__628FA481">
             <End Role="Tags" EntitySet="Tags" />
             <End Role="NewsTags" EntitySet="NewsTags" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__Class_ID__2A164134" Association="Self.FK__Rating__Class_ID__2A164134">
+          <AssociationSet Name="FK__Rating__Class_ID__6383C8BA" Association="Self.FK__Rating__Class_ID__6383C8BA">
             <End Role="Class" EntitySet="Class" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__User_ID__2EDAF651" Association="Self.FK__Rating__User_ID__2EDAF651">
+          <AssociationSet Name="FK__Rating__User_ID__6477ECF3" Association="Self.FK__Rating__User_ID__6477ECF3">
             <End Role="User" EntitySet="User" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
@@ -856,8 +856,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BITSoccerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

@@ -1,8 +1,9 @@
-﻿
+﻿@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Lớp của tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var studentclass = (List<BITSoccer.Models.ClassUser>)ViewBag.StudentClass;
+    var studentclass = (IPagedList<BITSoccer.Models.ClassUser>)ViewBag.StudentClass;
 }
 
 @section AddToHead{
@@ -29,13 +30,13 @@
                         </div>
                         <div class="col-lg-8 col-md-12 d-flex justify-content-end">
                             <div class="class-filter">
-                                <a class="btn">Sắp diễn ra</a>
+                                <a class="btn" href="@Url.Action("StudentClass", new { CurrentFilter = 1 })" >Đang diễn ra</a>
                             </div>
                             <div class="class-filter">
-                                <a class="btn">Sắp diễn ra</a>
+                                <a class="btn" href="@Url.Action("StudentClass", new { CurrentFilter = 2 })">Sắp diễn ra</a>
                             </div>
                             <div class="class-filter">
-                                <a class="btn">Sắp diễn ra</a>
+                                <a class="btn" href="@Url.Action("StudentClass", new { CurrentFilter = 3 })">Đã diễn ra</a>
                             </div>
                         </div>
                     </div>
@@ -68,7 +69,7 @@
                                                 <h2>@item.Class.LevelStudent.LevelName</h2>
                                                 <p> @item.Class.ShortDescription</p>
                                                 <p class="read-more">
-                                                    <a href="@Url.Action("ClassDetails","Home",new {id = item.Class.Class_ID})">Read More</a>
+                                                    <a href="@Url.Action("ClassDetails","ClassDetails",new {id = item.Class.Class_ID})">Read More</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -101,11 +102,7 @@
 
     <div style="text-align:center">
         <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#">&raquo;</a>
+            @Html.PagedListPager(studentclass , page => Url.Action("StudentClass", new { page = page , CurrentFilter = ViewBag.CurrentFilter}))
         </div>
     </div>
 </main>

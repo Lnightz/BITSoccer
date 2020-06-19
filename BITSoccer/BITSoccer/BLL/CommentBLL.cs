@@ -63,5 +63,49 @@ namespace BITSoccer.BLL
             }
             return null;
         }
+
+        public Comment AddOriCmtToNews(CommentModel model)
+        {
+            Comment cmt = null;
+
+            using (var db = new BITSoccerEntities())
+            {
+                cmt = new Comment()
+                {
+                    User_ID = model.UserID,
+                    New_ID = model.NewsID,
+                    Content = model.Content,
+                    PostDate = DateTime.UtcNow,
+                };
+                db.Comments.Add(cmt);
+                if (db.SaveChanges() > 0)
+                {
+                    return cmt;
+                }
+            }
+            return null;
+        }
+
+        public Comment AddOriCmtToClass(CommentModel model)
+        {
+            Comment cmt = null;
+
+            using (var db = new BITSoccerEntities())
+            {
+                cmt = new Comment()
+                {
+                    User_ID = model.UserID,
+                    Class_ID = model.ClassID,
+                    Content = model.Content,
+                    PostDate = DateTime.UtcNow,
+                };
+                db.Comments.Add(cmt);
+                if (db.SaveChanges() > 0)
+                {
+                    return cmt;
+                }
+            }
+            return null;
+        }
     }
 }
