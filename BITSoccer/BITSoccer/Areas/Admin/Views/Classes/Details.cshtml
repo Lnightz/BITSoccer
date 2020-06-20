@@ -11,44 +11,19 @@
 
     <dl class="dl-horizontal">
         <dt>
-            Tên lớp học
+            Tên lớp học : @Html.DisplayFor(model => model.Name)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <dt>
+            Số lượng học viên :  @Html.DisplayFor(model => model.Quanity)
+        </dt>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MetaTitle)
+            Giá gốc :  @Convert.ToDouble(Model.Prices).ToString("c0", new CultureInfo("vi-VN"))
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MetaTitle)
-        </dd>
 
         <dt>
-            Số lượng học viên
+            Giá hiện tại: @Convert.ToDouble(Model.PromoPrices).ToString("c0", new CultureInfo("vi-VN"))
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quanity)
-        </dd>
-
-        <dt>
-            Giá gốc
-        </dt>
-
-        <dd>
-            @Convert.ToDouble(Model.Prices).ToString("c0", new CultureInfo("vi-VN"))
-        </dd>
-
-        <dt>
-            Giác khuyến mãi
-        </dt>
-
-        <dd>
-            @Convert.ToDouble(Model.PromoPrices).ToString("c0", new CultureInfo("vi-VN"))
-        </dd>
         @{
             if (Model.Image != null)
             {
@@ -73,148 +48,89 @@
         }
 
         <dt>
-            Lịch học
+            Lịch học :  @Html.DisplayFor(model => model.StartDay) - @Html.DisplayFor(model => model.EndDay)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDay) - @Html.DisplayFor(model => model.EndDay)
-        </dd>
 
         <dt>
-            Giới hạn thấp nhất
+            Giới hạn thấp nhất :  @Html.DisplayFor(model => model.MinQuanity)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MinQuanity)
-        </dd>
 
         <dt>
-            Mô tả
+            Mô tả :   @Html.Raw(Model.Description)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
 
         <dt>
-            Thông tin Huấn luyện viên
+            Thông tin Huấn luyện viên :  @Html.DisplayFor(model => model.Coach.Name)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Coach.Name)
-        </dd>
 
         <dt>
-            Dành cho giới tính
+            Dành cho giới tính : @Html.DisplayFor(model => model.Gender.Gender1)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender.Gender1)
-        </dd>
 
         <dt>
-            Trình độ lớp học
+            Trình độ lớp học  :  @Html.DisplayFor(model => model.LevelStudent.LevelName)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LevelStudent.LevelName)
-        </dd>
 
         <dt>
-            Buổi học
+            Buổi học :  @Html.DisplayFor(model => model.PartOfDay.PartOfDay1)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PartOfDay.PartOfDay1)
-        </dd>
 
         <dt>
-            Giới hạn độ tuổi
+            Giới hạn độ tuổi :  @Html.DisplayFor(model => model.RangeAge.MinAge) - @Html.DisplayFor(model => model.RangeAge.MaxAge)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RangeAge.MinAge) - @Html.DisplayFor(model => model.RangeAge.MaxAge)
-        </dd>
 
         <dt>
-            Khung thời gian
+            Khung thời gian :   @Html.DisplayFor(model => model.RangeTime.StartTime) - @Html.DisplayFor(model => model.RangeTime.EndTime)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RangeTime.StartTime) - @Html.DisplayFor(model => model.RangeTime.EndTime)
-        </dd>
 
         <dt>
-            Cơ sở
+            Cơ sở :  @Html.DisplayFor(model => model.Stadium.Name)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Stadium.Name)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
+            @Html.DisplayNameFor(model => model.ShortDescription) : @Html.DisplayFor(model => model.ShortDescription)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GeneralDescription)
+            @Html.DisplayNameFor(model => model.GeneralDescription) : @Html.DisplayFor(model => model.GeneralDescription)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.GeneralDescription)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
+            @Html.DisplayNameFor(model => model.CreatedDate) : @Html.DisplayFor(model => model.CreatedDate)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            @Html.DisplayNameFor(model => model.CreatedBy) :  @Html.DisplayFor(model => model.CreatedBy)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ModifyDate)
+            @Html.DisplayNameFor(model => model.ModifyDate) :  @Html.DisplayFor(model => model.ModifyDate)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifyDate)
-        </dd>
+
 
         <dt>
-            @Html.DisplayNameFor(model => model.ModifyBy)
+            @Html.DisplayNameFor(model => model.ModifyBy) :  @Html.DisplayFor(model => model.ModifyBy)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifyBy)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
+            @Html.DisplayNameFor(model => model.IsActive) :  @Html.DisplayFor(model => model.IsActive)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ViewCount)
+            @Html.DisplayNameFor(model => model.ViewCount) :   @Html.DisplayFor(model => model.ViewCount)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ViewCount)
-        </dd>
 
     </dl>
 

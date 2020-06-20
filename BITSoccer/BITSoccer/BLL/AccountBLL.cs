@@ -60,7 +60,7 @@ namespace BITSoccer.BLL
 
                 user.CustomerName = model.CustomerName;
                 user.Gender = model.Gender;
-                user.BirthDay = model.BirthDay;
+                user.BirthDay = Convert.ToDateTime(model.BirthDay);
                 user.Email = model.Email;
                 user.PhoneNumber = model.PhoneNumber;
                 user.Address = model.Address;

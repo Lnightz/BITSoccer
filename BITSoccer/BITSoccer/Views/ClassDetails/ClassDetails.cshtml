@@ -53,13 +53,12 @@
                             <div class="col-lg-8 col-md-12">
                                 <h2 class="title-orangered">@ViewBag.Classes.Name</h2>
                                 <p>
-                                    <strong>Kỹ năng rê bóng:</strong> của Trung tâm dạy bóng đá Nam Việt,
-                                    với đội ngủ HLV là giảng viên Trường ĐH TDTT TpHCM thường xuyên mở lớp học bóng đá.
+                                    @ViewBag.Classes.ShortDescription
                                 </p>
                                 @{
                                     if (DateTime.UtcNow.AddDays(-3) > ViewBag.Classes.StartDay)
                                     {
-                                        <div class="alert alert-warning text-capitalize">khoá học này đã hết hạn đăng ký rồi</div>
+                                        <div class="alert alert-warning text-capitalize text-center">khoá học này đã hết hạn đăng ký rồi</div>
                                     }
                                     else
                                     {
@@ -73,12 +72,12 @@
                                             }
                                             else
                                             {
-                                                <div class="alert alert-info text-capitalize">bạn đã đăng ký khoá học này rồi</div>
+                                                <div class="alert alert-info text-capitalize text-center">bạn đã đăng ký khoá học này rồi</div>
                                             }
                                         }
                                         else
                                         {
-                                            <a href="@Url.Action("Login", "Account")" class="alert alert-info">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                            <a href="@Url.Action("Login", "Account")" class="alert alert-info text-center">Vui lòng đăng nhập để đăng ký lớp học</a>
                                         }
                                     }
                                 }
@@ -113,13 +112,10 @@
                                     <div class="row animate-in-down">
                                         <div class="py-4 px-5 col-md-9">
                                             <h2>
-                                                <font color="black" class="class-details-title">Kỹ thuật rê bóng</font>
+                                                <font color="black" class="class-details-title">@ViewBag.Classes.Name</font>
                                             </h2>
                                             <p class="px-5 pt-3">
-                                                Rê bóng là một trong các kỹ thuật đá bóng cơ bản nhất của bóng đá.
-                                                Nó giúp một cầu thủ khéo léo đánh bại từ hậu vệ này đến hậu vệ kia để ghi bàn.
-                                                Dù nó không còn quá quan trọng trong bóng đá hiện đại đặt nặng lối chơi đồng đội,
-                                                thế nhưng những kỹ thuật này luôn là một vũ khí lợi hại của các cầu thủ
+                                                @ViewBag.Classes.GeneralDescription
                                             </p>
                                         </div>
                                         <div class="p-4 col-md-3" align="center">
@@ -183,7 +179,7 @@
                         <div class="col-lg-12">
                             <div class="rating-review container-fluid">
                                 <div class="row">
-                                    @ViewBag.Classes.Description
+                                    @Html.Raw(ViewBag.Classes.Description)
                                 </div>
                             </div>
                         </div>

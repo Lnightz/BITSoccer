@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Class : UploadImage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -46,6 +47,7 @@ namespace BITSoccer.Models
         public Nullable<int> GenderID { get; set; }
         public Nullable<int> RangeTimeID { get; set; }
         public Nullable<int> StadiumID { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         public string GeneralDescription { get; set; }
         public string ShortDescription { get; set; }

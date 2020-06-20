@@ -49,7 +49,9 @@ namespace BITSoccer.Controllers
 
                 ViewBag.Message = "PROFILESUCCESS";
 
-                return View("ProFile", userLogin);
+                var userafter = db.Users.FirstOrDefault(x => x.User_ID == user.User_ID);
+
+                return View("ProFile", userafter);
             }
             return View("ProFile", userLogin);
         }
