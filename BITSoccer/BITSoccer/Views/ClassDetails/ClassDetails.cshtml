@@ -64,7 +64,7 @@
                                     {
                                         if (User.Identity.IsAuthenticated)
                                         {
-                                            if (ViewBag.UsersHaveClass != null)
+                                            if (ViewBag.UsersHaveClass == null)
                                             {
                                                 <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = ViewBag.Classes.Class_ID })">
                                                     <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">

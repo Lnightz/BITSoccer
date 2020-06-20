@@ -27,6 +27,7 @@ namespace BITSoccer.Controllers
 
             if(userdetails != null)
             {
+
                 Authencicate(userdetails);
 
                 return RedirectToAction("Index", "Home");
@@ -86,6 +87,7 @@ namespace BITSoccer.Controllers
                 else
 
                 {
+
                     User user = AccountBLL.Instance.CreateAccount(model);
 
                     Authencicate(user);

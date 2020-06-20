@@ -152,6 +152,7 @@
     <Compile Include="Areas\Admin\Controllers\LevelCoachesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LevelStudentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PartOfDaysController.cs" />
     <Compile Include="Areas\Admin\Controllers\RangeAgesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RangeTimesController.cs" />
@@ -721,10 +722,12 @@
     <Content Include="AdminAssets\plugins\summernote\summernote.js.map" />
     <Content Include="AdminAssets\plugins\summernote\summernote.min.js.map" />
     <Content Include="Areas\Admin\Views\NewsCategory\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsCategory\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsCategory\Details.cshtml" />
     <Content Include="Areas\Admin\Views\NewsCategory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NewsCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
