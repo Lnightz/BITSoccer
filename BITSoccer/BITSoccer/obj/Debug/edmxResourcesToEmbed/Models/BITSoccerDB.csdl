@@ -61,7 +61,6 @@
     </Key>
     <Property Name="Class_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Quanity" Type="Int32" />
     <Property Name="Prices" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="PromoPrices" Type="Decimal" Precision="18" Scale="0" />
@@ -246,7 +245,6 @@
     </Key>
     <Property Name="News_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ModifyDate" Type="DateTime" Precision="3" />
@@ -267,7 +265,6 @@
     </Key>
     <Property Name="NewCate_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="ModifyDate" Type="DateTime" Precision="3" />

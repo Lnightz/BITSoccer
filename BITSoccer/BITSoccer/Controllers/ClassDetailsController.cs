@@ -26,7 +26,7 @@ namespace BITSoccer.Controllers
             }
 
             //Gán danh sách lớp liên quan vào ViewBag
-            ViewBag.ReferenceClass = db.Classes.Where(x => x.LevelStudentID == classes.LevelStudentID).OrderBy(x => x.CreatedDate).Take(5).ToList();
+            ViewBag.ReferenceClass = db.Classes.Where(x => x.LevelStudentID == classes.LevelStudentID && x.Class_ID != id).OrderBy(x => x.CreatedDate).Take(5).ToList();
 
             //Đếm số lần vote mà id lớp này có đc
             var countRating = db.Ratings.Where(x => x.Class_ID == id).Count();
@@ -60,11 +60,11 @@ namespace BITSoccer.Controllers
             //Tính toán %
             if (countRating > 0)// nếu lượt vote > 0 
             {
-                ViewBag.Best = (best / countRating) * 100;
-                ViewBag.Good = (good / countRating) * 100;
-                ViewBag.Normal = (normal / countRating) * 100;
-                ViewBag.Bad = (bad / countRating) * 100;
-                ViewBag.VeryBad = (verybad / countRating) * 100;
+                ViewBag.Best = ((double)best / countRating) * 100;
+                ViewBag.Good = ((double)good / countRating) * 100;
+                ViewBag.Normal = ((double)normal / countRating) * 100;
+                ViewBag.Bad = ((double)bad / countRating) * 100;
+                ViewBag.VeryBad = ((double)verybad / countRating) * 100;
                 ViewBag.TotalStar = sum / ViewBag.CountRating;
             }
             else

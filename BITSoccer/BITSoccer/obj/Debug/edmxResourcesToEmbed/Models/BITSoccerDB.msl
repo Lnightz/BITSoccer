@@ -59,7 +59,6 @@
         <MappingFragment StoreEntitySet="Class">
           <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
           <ScalarProperty Name="Quanity" ColumnName="Quanity" />
           <ScalarProperty Name="Prices" ColumnName="Prices" />
           <ScalarProperty Name="PromoPrices" ColumnName="PromoPrices" />
@@ -231,7 +230,6 @@
         <MappingFragment StoreEntitySet="News">
           <ScalarProperty Name="News_ID" ColumnName="News_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
@@ -250,7 +248,6 @@
         <MappingFragment StoreEntitySet="News_Category">
           <ScalarProperty Name="NewCate_ID" ColumnName="NewCate_ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />

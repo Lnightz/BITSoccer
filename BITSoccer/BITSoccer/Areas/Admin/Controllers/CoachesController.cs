@@ -50,7 +50,7 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Passport,Image,Facebook,Insta,Twitter,Level,Description,User_ID,PictureUpload")] Coach coach)
+        public ActionResult Create([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,IsActive,Gender,Age,Phone,Email,Passport,Image,Facebook,Insta,Twitter,Level,Description,User_ID,PictureUpload")] Coach coach)
         {
             if (coach.PictureUpload != null)
             {
@@ -59,7 +59,10 @@ namespace BITSoccer.Areas.Admin.Controllers
                 string pathinDB = "/Content/Images/" + Path.GetFileName(coach.PictureUpload.FileName);
                 coach.Image = pathinDB;
             }
-
+            else
+            {
+                coach.Image = "/Assets/img/no-photo.jpg";
+            }
             if (ModelState.IsValid)
             {
                 db.Coaches.Add(coach);
@@ -94,7 +97,7 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Coach_ID,Name,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Image,Passport,Facebook,Insta,Twitter,Level,Description,User_ID,PictureUpload")] Coach coach)
+        public ActionResult Edit([Bind(Include = "Coach_ID,Name,ModifyDate,ModifyBy,IsActive,Gender,Age,Phone,Email,Image,Passport,Facebook,Insta,Twitter,Level,Description,User_ID,PictureUpload")] Coach coach)
         {
 
             if (coach.PictureUpload != null)

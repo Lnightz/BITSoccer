@@ -189,7 +189,7 @@
                 <label>Chi tiết lớp học</label>
             </div>
             <div class="col-md-10">
-                <textarea name="Description" id="compose-textarea" class="form-control" style="height: 300px"></textarea>
+                <textarea name="Description" id="compose-textarea" class="form-control" style="height: 500px"></textarea>
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -199,7 +199,7 @@
                 <label>Mô tả chung</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.GeneralDescription, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea name="GeneralDescription" class="form-control" style="height: 150px"></textarea>
                 @Html.ValidationMessageFor(model => model.GeneralDescription, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -209,19 +209,20 @@
                 <label>Giới thiệu ngắn</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea name="ShortDescription" class="form-control" style="height: 150px"></textarea>
                 @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10 d-flex justify-content-end">
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">Quay lại</a>
+                        <input type="submit" value="Create" class="btn btn-primary ml-3" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

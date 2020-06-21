@@ -24,7 +24,7 @@
         </div>
         <div class="text-shadow"></div>
     </div>
-    @using (Html.BeginForm("News", "Home", new { newscateid = ViewBag.NewsCateID, sortOrder = Request.QueryString["SortOrder"] }, FormMethod.Get))
+    @using (Html.BeginForm("News", "Home", new { searchnewsname = ViewBag.NewsName, newscateid = ViewBag.NewsCateID, sortOrder = Request.QueryString["SortOrder"] }, FormMethod.Get))
     {
         <div id="background_main">
             <div class="container-fluid">
@@ -57,13 +57,11 @@
                                             <div class="row" style="margin:10px 0">
                                                 <div class="form-inline">
                                                     <div class="search-group d-flex mr-2 float-right">
-                                                        <input type="text" placeholder="Search" style="margin-right:0 !important"
-                                                               class="form-control news-search-form-control">
-                                                        <!-- <button class="btn btn-primary" type="button" style="border-radius:0 !important;"><i class="fas fa-search"></i></button> -->
-                                                        <a href="#" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></a>
+                                                        <input type="text" placeholder="Tên tin tức" style="margin-right:0 !important"
+                                                               class="form-control news-search-form-control" name="searchnewsname">
+                                                        <button type="submit" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></button>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="btn-sort float-right">
@@ -72,9 +70,9 @@
                                                 Thứ tự<span><i class="fas fa-chevron-down"></i></span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("News","Home", new { newscateid = ViewBag.NewsCateID, sortOrder = "DateCreateDesc"  })">Mới đăng</a>
-                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("News","Home", new { newscateid = ViewBag.NewsCateID, sortOrder = "DateCreate"  })">Cũ nhất</a>
-                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("News","Home", new { newscateid = ViewBag.NewsCateID, sortOrder = "NewsName"  })">Thứ tự chữ cái</a>
+                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("News","Home", new { searchnewsname = ViewBag.NewsName,newscateid = ViewBag.NewsCateID, sortOrder = "DateCreateDesc"  })">Mới đăng</a>
+                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("News","Home", new {searchnewsname = ViewBag.NewsName, newscateid = ViewBag.NewsCateID, sortOrder = "DateCreate"  })">Cũ nhất</a>
+                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("News","Home", new { searchnewsname = ViewBag.NewsName,newscateid = ViewBag.NewsCateID, sortOrder = "NewsName"  })">Thứ tự chữ cái</a>
                                             </div>
                                         </div>
                                     </div>
@@ -229,7 +227,7 @@
 
     <div class="text-center">
         <div>
-            @Html.PagedListPager(Model, page => Url.Action("News", new { page = page, newscateid = ViewBag.NewsCateID, sortOrder = Request.QueryString["SortOrder"] }))
+            @Html.PagedListPager(Model, page => Url.Action("News", new { page = page, searchnewsname = ViewBag.NewsName, newscateid = ViewBag.NewsCateID, sortOrder = Request.QueryString["SortOrder"] }))
         </div>
     </div>
 </main>

@@ -22,7 +22,6 @@ namespace BITSoccer.Models
     
         public int NewCate_ID { get; set; }
         public string Name { get; set; }
-        public string MetaTitle { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }

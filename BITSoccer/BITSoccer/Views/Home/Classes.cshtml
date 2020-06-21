@@ -54,14 +54,23 @@
         </div>
         <div class="text-shadow"></div>
     </div>
-    @using (Html.BeginForm("Classes", "Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = Request.QueryString["SortOrder"] }, FormMethod.Get))
+    @using (Html.BeginForm("Classes", "Home", new { searchclassname = ViewBag.ClassName , lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = Request.QueryString["SortOrder"] }, FormMethod.Get))
     {
         <div id="background_main">
             <div class="container-fluid">
                 <div id="background_content">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-2 col-md-3 col-xs-12 col-sm-3">
-                            <div class="navbar-expand-lg">
+                        <div class="col-xl-3 col-lg-2 col-md-3 col-xs-12 col-sm-12">
+                            <div class="row d-flex justify-content-center mt-3 ml-2">
+                                <div class="form-inline">
+                                    <div class="search-group d-flex mr-2 float-right">
+                                        <input type="text" placeholder="Tên lớp" style="margin-right:0 !important"
+                                               class="form-control news-search-form-control" name="searchclassname">
+                                        <button type="submit" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-expand-lg mx-3">
                                 <div class="row d-flex justify-content-center">
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#accordion" aria-controls="accordion" aria-expanded="false" aria-label="Toggle navigation">
                                         <h4 class="filter-titile"><i class="fas fa-search" style="padding-right:5px"></i>Tìm kiếm nhanh</h4>
@@ -290,9 +299,9 @@
                                                 Thứ tự<span><i class="fas fa-chevron-down"></i></span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreateDesc" })">Mới đăng</a>
-                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreate" })">Cũ nhất</a>
-                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "ClassName" })">Thứ tự chữ cái</a>
+                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("Classes","Home", new { searchclassname = ViewBag.ClassName,lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreateDesc" })">Mới đăng</a>
+                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("Classes","Home", new { searchclassname = ViewBag.ClassName,lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "DateCreate" })">Cũ nhất</a>
+                                                <a class="dropdown-item @isNameAsc" href="@Url.Action("Classes","Home", new { searchclassname = ViewBag.ClassName,lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = "ClassName" })">Thứ tự chữ cái</a>
                                             </div>
                                         </div>
                                         <div class="btn-group ">
@@ -301,8 +310,8 @@
                                                 Giá tiền <span><i class="fas fa-chevron-down"></i></span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item @isPrices" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID ,sortOrder = "Prices" })">Tăng dần</a>
-                                                <a class="dropdown-item @isPrcesDesc" href="@Url.Action("Classes","Home", new { lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID ,sortOrder = "PricesDesc" })">Giảm dần</a>
+                                                <a class="dropdown-item @isPrices" href="@Url.Action("Classes","Home", new {searchclassname = ViewBag.ClassName, lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID ,sortOrder = "Prices" })">Tăng dần</a>
+                                                <a class="dropdown-item @isPrcesDesc" href="@Url.Action("Classes","Home", new {searchclassname = ViewBag.ClassName, lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid =ViewBag.GenderID, podid = ViewBag.PODID ,sortOrder = "PricesDesc" })">Giảm dần</a>
                                             </div>
                                         </div>
 
@@ -401,7 +410,7 @@
     <div style="text-align:center">
         @*Page @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount)*@
         <div>
-            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = Request.QueryString["SortOrder"] }))
+            @Html.PagedListPager(Model, page => Url.Action("Classes", new { page = page, searchclassname = ViewBag.ClassName, lvlstd = ViewBag.LvLStdID, lvlcoach = ViewBag.LvlCoachID, rtimeid = ViewBag.RTID, rageid = ViewBag.RAID, genderid = ViewBag.GenderID, podid = ViewBag.PODID, sortOrder = Request.QueryString["SortOrder"] }))
         </div>
     </div>
 </main>

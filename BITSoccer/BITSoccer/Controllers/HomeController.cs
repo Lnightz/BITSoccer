@@ -28,8 +28,9 @@ namespace BITSoccer.Controllers
 
 
         [HttpGet]
-        public ActionResult Classes(int? page, int? lvlstd , int? lvlcoach , int? rtimeid , int?genderid , int?podid, int? rageid  , string sortOrder = "DateCreateDesc")
+        public ActionResult Classes(int? page, string searchclassname, int? lvlstd , int? lvlcoach , int? rtimeid , int?genderid , int?podid, int? rageid  , string sortOrder = "DateCreateDesc")
         {
+
             ViewBag.LevelStudent = db.LevelStudents.OrderBy(x => x.LevelStudentID).ToList();
             ViewBag.LevelCoach = db.LevelCoaches.OrderBy(x => x.LevelCoachID).ToList();
             ViewBag.RangeAges = db.RangeAges.OrderBy(x => x.RangeAgeID).ToList();
@@ -47,6 +48,7 @@ namespace BITSoccer.Controllers
             ViewBag.RAID = rageid;
             ViewBag.GenderID = genderid;
             ViewBag.PODID = podid;
+            ViewBag.ClassName = searchclassname;
 
             if (lvlstd.HasValue)
             {
@@ -76,9 +78,9 @@ namespace BITSoccer.Controllers
             //ViewBag.ClassNameSort = sortOrder == "ClassName";
             //ViewBag.ClassDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
             //ViewBag.ClassCostSort = sortOrder == "Prices" ? "PricesDesc" : "Prices";
-
             var pageNumber = page ?? 1;
             var pageSize = 3;
+
 
             switch (sortOrder)
             {
@@ -99,16 +101,23 @@ namespace BITSoccer.Controllers
                     break;
             }
 
+            if (!String.IsNullOrEmpty(searchclassname))
+            {
+                model = model.Where(x => x.Name.Contains(searchclassname));
+            }
+
+
             return View(model.ToPagedList(pageNumber, pageSize));
             
         }
         [HttpGet]
-        public ActionResult News(int? page, int? newscateid, int? tagid , int? currentfilter, string sortOrder = "DateCreateDesc")
+        public ActionResult News(int? page, string searchnewsname , int? newscateid, int? tagid , int? currentfilter, string sortOrder = "DateCreateDesc")
         {
             ViewBag.Category = db.News_Category.OrderBy(x=>x.NewCate_ID).ToList();
             ViewBag.Tag = db.Tags.OrderBy(x => x.TagName).ToList();
 
             ViewBag.NewsCateID = newscateid;
+            ViewBag.NewsName = searchnewsname;
 
             var news = db.News.Where(x=> x.IsActive == true);
 
@@ -138,6 +147,11 @@ namespace BITSoccer.Controllers
                 case "DateCreateDesc":
                     news = news.OrderByDescending(x => x.CreatedDate);
                     break;
+            }
+
+            if (!String.IsNullOrEmpty(searchnewsname))
+            {
+                news = news.Where(x => x.Name.Contains(searchnewsname));
             }
 
             return View(news.ToPagedList(pageNumber,pageSize));
@@ -176,7 +190,7 @@ namespace BITSoccer.Controllers
         }
 
         [HttpGet]
-        public ActionResult Tournaments(int? page, int? stadiumid, int? currentFilter = 0, string sortOrder = "DateCreateDesc")
+        public ActionResult Tournaments(int? page, string teamname, int? stadiumid, int currentFilter = 0, string sortOrder = "DateCreateDesc")
         {
             ViewBag.ListStadium = db.Stadia.OrderBy(x => x.Stadium_ID).ToList();
 
@@ -184,11 +198,19 @@ namespace BITSoccer.Controllers
 
             ViewBag.Stadium = stadiumid;
             ViewBag.CurrentFilter = currentFilter;
+            ViewBag.Team = teamname;
+
+            if (!String.IsNullOrEmpty(teamname))
+            {
+                tournaments = tournaments.Where(x => x.Team_A.Contains(teamname) || x.Team_B.Contains(teamname));
+            }
 
             DateTime today = DateTime.Today;
 
             switch (currentFilter)
             {
+                case 0:
+                    break;
                 case 1:
                     tournaments = tournaments.Where(x => x.Time == today);
                     break;

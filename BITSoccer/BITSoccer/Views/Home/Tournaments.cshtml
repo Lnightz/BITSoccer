@@ -30,7 +30,7 @@
         </div>
         <div class="text-shadow"></div>
     </div>
-    @using (Html.BeginForm("Tournaments", "Home", new { stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] }))
+    @using (Html.BeginForm("Tournaments", "Home", new { teamname = ViewBag.Team, stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] },FormMethod.Get))
     {
         <div id="background_main">
             <div class="container">
@@ -60,41 +60,43 @@
                         </div>
                         <!-- Sort, Search -->
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <div class="sort_search" style="margin: 30px 10px;">
-                                <form class="form-inline float-right">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Team Name" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                </form>
-                                <div class="row flex-row-reverse col-md-12 col-xs-12">
-                                    <div class="btn-sort float-right">
-                                        <div class="btn-group ">
-                                            <button class="btn prices-sort" type="button" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                Sân Vận Động <span><i class="fas fa-chevron-down"></i></span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                @{
+                            <div class="row d-flex justify-content-end" style="margin: 30px 10px;">
+                                <div class="form-inline">
+                                    <div class="search-group d-flex mr-2">
+                                        <input type="text" placeholder="Tên đội" style="margin-right:0 !important"
+                                               class="form-control news-search-form-control" name="teamname" />
+                                        <button type="submit" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
 
-                                                    foreach (var item in liststadium)
-                                                    {
-                                                        string isStadiumSelected = item.Stadium_ID == selectedStadium ? "active" : "";
-                                                        <a class="dropdown-item @isStadiumSelected" href="@Url.Action("Tournaments","Home", new {stadiumid = item.Stadium_ID, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] })">@item.Name</a>
-                                                    }
+                                <div class="btn-sort">
+                                    <div class="btn-group ">
+                                        <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Sân Vận Động <span><i class="fas fa-chevron-down"></i></span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            @{
+                                                foreach (var item in liststadium)
+                                                {
+                                                    string isStadiumSelected = item.Stadium_ID == selectedStadium ? "active" : "";
+                                                    <a class="dropdown-item @isStadiumSelected" href="@Url.Action("Tournaments","Home", new {stadiumid = item.Stadium_ID, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] })">@item.Name</a>
                                                 }
-                                            </div>
+                                            }
                                         </div>
-                                        <div class="btn-group ">
-                                            <button class="btn prices-sort" type="button" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                Sắp xếp <span><i class="fas fa-chevron-down"></i></span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item @isDateDesc" href="@Url.Action("Tournaments","Home", new {stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = "DateCreateDesc" })">Mới đăng</a>
-                                                <a class="dropdown-item @isDateAsc" href="@Url.Action("Tournaments","Home", new { stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = "DateCreate" })">Cũ nhất</a>
-                                            </div>
+                                    </div>
+                                    <div class="btn-group ">
+                                        <button class="btn prices-sort" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Sắp xếp <span><i class="fas fa-chevron-down"></i></span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item @isDateDesc" href="@Url.Action("Tournaments","Home", new {teamname = ViewBag.Team,stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = "DateCreateDesc" })">Mới đăng</a>
+                                            <a class="dropdown-item @isDateAsc" href="@Url.Action("Tournaments","Home", new { teamname = ViewBag.Team,stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = "DateCreate" })">Cũ nhất</a>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -160,7 +162,7 @@
             @{
                 if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.Action("Tournaments", new { page = page, stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] }))
+                    @Html.PagedListPager(Model, page => Url.Action("Tournaments", new { page = page, teamname = ViewBag.Team, stadiumid = ViewBag.Stadium, currentFilter = ViewBag.CurrentFilter, sortOrder = Request.QueryString["SortOrder"] }))
                 }
             }
         </div>

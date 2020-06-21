@@ -3,10 +3,10 @@
     ViewBag.Title = "Đăng ký thành công";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    //if (!User.Identity.IsAuthenticated)
-    //{
-    //    Response.Redirect("~/Home/Index");
-    //}
+    if (!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~/Home/Index");
+    }
 
 }
 
@@ -19,13 +19,15 @@
     </div>
     <div id="background_main">
         <div class="container">
-            <div class="row py-4">
-                <div class="col-lg-12">
-                    <h3 class="text-info alert alert-success">
-                        Bạn đã đăng ký tài khoản thành công
-                    </h3>
-                    <div>
-                        <p class="alert alert-info">Bấm vào <a href="@Url.Action("Index","Home")">ĐÂY</a> để quay về trang chủ</p>
+            <div id="background_content" style="padding: 20px 0px">
+                <div class="row py-4">
+                    <div class="col-lg-12">
+                        <h3 class="text-success text-center">
+                            Bạn đã đăng ký tài khoản thành công
+                        </h3>
+                        <div class="mx-5">
+                            <p class="alert alert-info align-items-center text-center mt-4 mx-5">Nhấn vào <a href="@Url.Action("Index","Home")">ĐÂY</a> để quay về trang chủ</p>
+                        </div>
                     </div>
                 </div>
             </div>

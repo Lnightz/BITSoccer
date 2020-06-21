@@ -31,10 +31,11 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewCate_ID,Name,CreatedDate,CreatedBy,IsActive,DisplayOrder")] News_Category news_Category)
+        public ActionResult Create([Bind(Include = "NewCate_ID,Name,CreatedBy,IsActive")] News_Category news_Category)
         {
             if (ModelState.IsValid)
             {
+                news_Category.CreatedDate = DateTime.Today;
                 db.News_Category.Add(news_Category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,10 +64,11 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NewCate_ID,Name,CreatedBy,ModifyDate,ModifyBy,IsActive,DisplayOrder")] News_Category news_Category)
+        public ActionResult Edit([Bind(Include = "NewCate_ID,Name,CreatedBy,ModifyBy,IsActive")] News_Category news_Category)
         {
             if (ModelState.IsValid)
             {
+                news_Category.ModifyDate = DateTime.Today;
                 db.Entry(news_Category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

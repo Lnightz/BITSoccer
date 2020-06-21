@@ -25,7 +25,7 @@ namespace BITSoccer.Controllers
         {
             var userdetails = db.Users.Where(x => x.UserName == user.UserName && x.Password == user.Password).FirstOrDefault();
 
-            if(userdetails != null)
+            if (userdetails != null)
             {
 
                 Authencicate(userdetails);
@@ -41,7 +41,7 @@ namespace BITSoccer.Controllers
             }
         }
 
-        public void Authencicate (User user)
+        public void Authencicate(User user)
         {
             ///Setup lưu cookies người dùng
             FormsAuthentication.SetAuthCookie(user.UserName, false);
@@ -77,34 +77,41 @@ namespace BITSoccer.Controllers
                     return View();
                 }
 
-                var userdetails = db.Users.Where(x => x.UserName == model.UserName && x.Email == model.Email).FirstOrDefault();
+                var isExistUserName = db.Users.FirstOrDefault(x => x.UserName == model.UserName);
 
-                if (userdetails != null)
+                var isExistEmail = db.Users.FirstOrDefault(x => x.Email == model.Email);
+
+                if (isExistUserName != null)
                 {
-                    ViewBag.Message = "Tài khoản đã tồn tại";
+                    ViewBag.Message = "Tên tài khoản đã tồn tại";
                     return View();
                 }
-                else
-
+                if (isExistEmail != null)
                 {
-
-                    User user = AccountBLL.Instance.CreateAccount(model);
-
-                    Authencicate(user);
-
-                    return View("RegisterSuccess");
-
+                    ViewBag.Message = "Email này đã tồn tại";
+                    return View();
                 }
+
+
+                User user = AccountBLL.Instance.CreateAccount(model);
+
+                Authencicate(user);
+
+                return RedirectToAction("RegisterSuccess");
             }
             return View();
         }
 
         public ActionResult Logout()
         {
-
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult RegisterSuccess()
+        {
+            return View();
         }
     }
 }

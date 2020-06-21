@@ -110,7 +110,7 @@
                             <div class="py-3 venue">
                                 <div class="rating-review container-fluid">
                                     <div class="row animate-in-down">
-                                        <div class="py-4 px-5 col-md-9">
+                                        <div class="py-4 px-5 col-md-8">
                                             <h2>
                                                 <font color="black" class="class-details-title">@ViewBag.Classes.Name</font>
                                             </h2>
@@ -118,44 +118,58 @@
                                                 @ViewBag.Classes.GeneralDescription
                                             </p>
                                         </div>
-                                        <div class="p-4 col-md-3" align="center">
+                                        <div class="p-4 col-md-4" align="center">
                                             <h4 align="middle">
                                                 <font color="black" class="class-details-title">Chi tiết khóa học</font>
                                             </h4>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">
-                                                    <div class="lectures-feature class-details-icon text-left">
-                                                        <i class="fa fa-files-o"></i>
-                                                        <span class="label">Buổi học:</span>
-                                                        <span class="value col-lg-3">8 buổi</span>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="duration-feature class-details-icon text-left">
-                                                        <i class="fa fa-clock-o"></i>
-                                                        <span class="label">Thời gian học:</span>
-                                                        <span class="value col-lg-3">2 tiếng</span>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
                                                     <div class="skill-feature class-details-icon text-left">
                                                         <i class="fa fa-level-up"></i>
                                                         <span class="label">Trình độ lớp:</span>
-                                                        <span class="value col-lg-3">Căn bản</span>
+                                                        <span class="value col-lg-3">@ViewBag.Classes.LevelStudent.LevelName</span>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <div class="students-feature class-details-icon text-left">
                                                         <i class="fa fa-users"></i>
                                                         <span class="label">Giới tính:</span>
-                                                        <span class="value col-lg-3">Nam và nữ</span>
+                                                        <span class="value col-lg-3">@ViewBag.Classes.Gender.Gender1</span>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <div class="assessments-feature class-details-icon text-left">
                                                         <i class="fa fa-check-square-o"></i>
                                                         <span class="label">Độ tuổi:</span>
-                                                        <span class="value col-lg-3">Trên 6 tuổi</span>
+                                                        <span class="value col-lg-3">@ViewBag.Classes.RangeAge.MinAge - @ViewBag.Classes.RangeAge.MaxAge</span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="lectures-feature class-details-icon text-left">
+                                                        <i class="fa fa-files-o"></i>
+                                                        <span class="label">Buổi học:</span>
+                                                        <span class="value col-lg-3 text-right">@ViewBag.Classes.PartOfDay.PartOfDay1</span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="duration-feature class-details-icon text-left">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        <span class="label">Thời gian học:</span>
+                                                        <span class="value col-lg-3">@ViewBag.Classes.RangeTime.StartTime - @ViewBag.Classes.RangeTime.EndTime </span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="assessments-feature class-details-icon text-left">
+                                                        <i class="fas fa-calendar-plus"></i>
+                                                        <span class="label">Bắt đầu:</span>
+                                                        <span class="value col-lg-3">@String.Format("{0:dd/MM/yyyy}",ViewBag.Classes.StartDay)</span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="assessments-feature class-details-icon text-left">
+                                                        <i class="fas fa-calendar-times"></i>
+                                                        <span class="label">Kết thúc:</span>
+                                                        <span class="value col-lg-3">@String.Format("{0:dd/MM/yyyy}", ViewBag.Classes.EndDay)</span>
                                                     </div>
                                                 </li>
                                             </ul>

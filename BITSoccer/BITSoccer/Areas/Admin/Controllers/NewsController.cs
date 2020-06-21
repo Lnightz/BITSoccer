@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,8 +49,20 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "News_ID,Name,MetaTitle,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,NewCate_ID,Content,Image,ViewsCount,ShortDescription")] News news)
+        public ActionResult Create([Bind(Include = "News_ID,Name,CreatedDate,CreatedBy,IsActive,NewCate_ID,Content,Image,ShortDescription,PictureUpload")] News news)
         {
+            if (news.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(news.PictureUpload.FileName));
+                news.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(news.PictureUpload.FileName);
+                news.Image = pathinDB;
+            }
+            else
+            {
+                news.Image = "/Assets/img/no-photo.jpg";
+            }
+
             if (ModelState.IsValid)
             {
                 db.News.Add(news);
@@ -82,8 +95,15 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "News_ID,Name,MetaTitle,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,NewCate_ID,Content,Image,ViewsCount,ShortDescription")] News news)
+        public ActionResult Edit([Bind(Include = "News_ID,Name,,ModifyDate,ModifyBy,IsActive,NewCate_ID,Content,Image,ShortDescription,PictureUpload")] News news)
         {
+            if (news.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(news.PictureUpload.FileName));
+                news.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(news.PictureUpload.FileName);
+                news.Image = pathinDB;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(news).State = EntityState.Modified;
@@ -91,21 +111,6 @@ namespace BITSoccer.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.NewCate_ID = new SelectList(db.News_Category, "NewCate_ID", "Name", news.NewCate_ID);
-            return View(news);
-        }
-
-        // GET: Admin/News/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            News news = db.News.Find(id);
-            if (news == null)
-            {
-                return HttpNotFound();
-            }
             return View(news);
         }
 

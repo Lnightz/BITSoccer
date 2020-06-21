@@ -59,7 +59,6 @@
           </Key>
           <Property Name="Class_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="MetaTitle" Type="nvarchar" MaxLength="255" />
           <Property Name="Quanity" Type="int" />
           <Property Name="Prices" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PromoPrices" Type="decimal" Precision="18" Scale="0" />
@@ -218,7 +217,6 @@
           </Key>
           <Property Name="News_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="MetaTitle" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="ModifyDate" Type="datetime" />
@@ -236,7 +234,6 @@
           </Key>
           <Property Name="NewCate_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="MetaTitle" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="ModifyDate" Type="datetime" />
@@ -370,7 +367,7 @@
           <Property Name="UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserTypeName" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__About_Sli__About__05D8E0BE">
+        <Association Name="FK__About_Sli__About__4CA06362">
           <End Role="About" Type="Self.About" Multiplicity="0..1" />
           <End Role="About_Slide" Type="Self.About_Slide" Multiplicity="*" />
           <ReferentialConstraint>
@@ -382,7 +379,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__BillI__0B91BA14">
+        <Association Name="FK__BillDetai__BillI__4F7CD00D">
           <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -394,7 +391,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__Class__0F624AF8">
+        <Association Name="FK__BillDetai__Class__5070F446">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -406,7 +403,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClassUser__Class__18EBB532">
+        <Association Name="FK__ClassUser__Class__5812160E">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -418,7 +415,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClassUser__UserI__19DFD96B">
+        <Association Name="FK__ClassUser__UserI__59063A47">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="ClassUsers" Type="Self.ClassUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -430,7 +427,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsTags__NewsID__2645B050">
+        <Association Name="FK__NewsTags__NewsID__619B8048">
           <End Role="News" Type="Self.News" Multiplicity="0..1" />
           <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
           <ReferentialConstraint>
@@ -442,7 +439,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsTags__TagsID__2739D489">
+        <Association Name="FK__NewsTags__TagsID__628FA481">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
           <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
           <ReferentialConstraint>
@@ -454,7 +451,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__Class_ID__2A164134">
+        <Association Name="FK__Rating__Class_ID__6383C8BA">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -466,7 +463,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__User_ID__2EDAF651">
+        <Association Name="FK__Rating__User_ID__6477ECF3">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -743,39 +740,39 @@
           <EntitySet Name="Tourament" EntityType="Self.Tourament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__About_Sli__About__05D8E0BE" Association="Self.FK__About_Sli__About__05D8E0BE">
+          <AssociationSet Name="FK__About_Sli__About__4CA06362" Association="Self.FK__About_Sli__About__4CA06362">
             <End Role="About" EntitySet="About" />
             <End Role="About_Slide" EntitySet="About_Slide" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__BillI__0B91BA14" Association="Self.FK__BillDetai__BillI__0B91BA14">
+          <AssociationSet Name="FK__BillDetai__BillI__4F7CD00D" Association="Self.FK__BillDetai__BillI__4F7CD00D">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__Class__0F624AF8" Association="Self.FK__BillDetai__Class__0F624AF8">
+          <AssociationSet Name="FK__BillDetai__Class__5070F446" Association="Self.FK__BillDetai__Class__5070F446">
             <End Role="Class" EntitySet="Class" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClassUser__Class__18EBB532" Association="Self.FK__ClassUser__Class__18EBB532">
+          <AssociationSet Name="FK__ClassUser__Class__5812160E" Association="Self.FK__ClassUser__Class__5812160E">
             <End Role="Class" EntitySet="Class" />
             <End Role="ClassUsers" EntitySet="ClassUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClassUser__UserI__19DFD96B" Association="Self.FK__ClassUser__UserI__19DFD96B">
+          <AssociationSet Name="FK__ClassUser__UserI__59063A47" Association="Self.FK__ClassUser__UserI__59063A47">
             <End Role="User" EntitySet="User" />
             <End Role="ClassUsers" EntitySet="ClassUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsTags__NewsID__2645B050" Association="Self.FK__NewsTags__NewsID__2645B050">
+          <AssociationSet Name="FK__NewsTags__NewsID__619B8048" Association="Self.FK__NewsTags__NewsID__619B8048">
             <End Role="News" EntitySet="News" />
             <End Role="NewsTags" EntitySet="NewsTags" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsTags__TagsID__2739D489" Association="Self.FK__NewsTags__TagsID__2739D489">
+          <AssociationSet Name="FK__NewsTags__TagsID__628FA481" Association="Self.FK__NewsTags__TagsID__628FA481">
             <End Role="Tags" EntitySet="Tags" />
             <End Role="NewsTags" EntitySet="NewsTags" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__Class_ID__2A164134" Association="Self.FK__Rating__Class_ID__2A164134">
+          <AssociationSet Name="FK__Rating__Class_ID__6383C8BA" Association="Self.FK__Rating__Class_ID__6383C8BA">
             <End Role="Class" EntitySet="Class" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__User_ID__2EDAF651" Association="Self.FK__Rating__User_ID__2EDAF651">
+          <AssociationSet Name="FK__Rating__User_ID__6477ECF3" Association="Self.FK__Rating__User_ID__6477ECF3">
             <End Role="User" EntitySet="User" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
@@ -921,7 +918,6 @@
           </Key>
           <Property Name="Class_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Quanity" Type="Int32" />
           <Property Name="Prices" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PromoPrices" Type="Decimal" Precision="18" Scale="0" />
@@ -1106,7 +1102,6 @@
           </Key>
           <Property Name="News_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
@@ -1127,7 +1122,6 @@
           </Key>
           <Property Name="NewCate_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
@@ -1831,7 +1825,6 @@
               <MappingFragment StoreEntitySet="Class">
                 <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
                 <ScalarProperty Name="Quanity" ColumnName="Quanity" />
                 <ScalarProperty Name="Prices" ColumnName="Prices" />
                 <ScalarProperty Name="PromoPrices" ColumnName="PromoPrices" />
@@ -2003,7 +1996,6 @@
               <MappingFragment StoreEntitySet="News">
                 <ScalarProperty Name="News_ID" ColumnName="News_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
@@ -2022,7 +2014,6 @@
               <MappingFragment StoreEntitySet="News_Category">
                 <ScalarProperty Name="NewCate_ID" ColumnName="NewCate_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />

@@ -25,6 +25,7 @@ namespace BITSoccer.BLL
                 {
                     User_ID = 0,
                     UserType_ID = 2,
+                    Avatar = "/Assets/img/no-photo.jpg",
                     UserName = model.UserName,
                     Password = model.Password,
                     PhoneNumber = model.PhoneNumber,
@@ -91,6 +92,28 @@ namespace BITSoccer.BLL
                 }
 
                 user.Password = model.NewPassword;
+
+                if (db.SaveChanges() > 0)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        public User ChangeAvatar(string userName, User image)
+        {
+            User user = null;
+            using ( var db = new BITSoccerEntities())
+            {
+                user = db.Users.FirstOrDefault(x => x.UserName == userName);
+
+                if (user == null)
+                {
+                    return null;
+                }
+
+                user.Avatar = image.Avatar;
 
                 if (db.SaveChanges() > 0)
                 {

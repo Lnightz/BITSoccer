@@ -11,8 +11,9 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class News
+    using System.Web.Mvc;
+
+    public partial class News : UploadImage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public News()
@@ -23,13 +24,13 @@ namespace BITSoccer.Models
     
         public int News_ID { get; set; }
         public string Name { get; set; }
-        public string MetaTitle { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public string ModifyBy { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public int NewCate_ID { get; set; }
+        [AllowHtml]
         public string Content { get; set; }
         public string Image { get; set; }
         public Nullable<int> ViewsCount { get; set; }

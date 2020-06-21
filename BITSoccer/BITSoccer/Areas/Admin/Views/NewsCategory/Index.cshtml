@@ -1,76 +1,75 @@
 ﻿@model IEnumerable<BITSoccer.Models.News_Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Loại tin tức";
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MetaTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifyDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifyBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DisplayOrder)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MetaTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifyDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifyBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DisplayOrder)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NewCate_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NewCate_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NewCate_ID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+        <a href="@Url.Action("Create","NewsCategory")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm @ViewBag.Title</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Loại tin tức</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td class="text-center">
+                            @*<a href="@Url.Action("Details","LevelCoaches", new { id = item.LevelCoachID })" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye"></i> Xem
+                                </a>*@
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("Edit","NewsCategory", new { id = item.NewCate_ID  })">
+                                <i class="fas fa-pencil-alt"></i> Sửa
+                            </a>
+                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#exampleModalCenter",item.NewCate_ID)">
+                                <i class="fas fa-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="@string.Concat("exampleModalCenter",item.NewCate_ID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xóa trình độ @item.Name ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    @using (Html.BeginForm("Delete", "NewsCategory", new { id = item.NewCate_ID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fas fa-trash"></i> Xóa
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Loại tin tức</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

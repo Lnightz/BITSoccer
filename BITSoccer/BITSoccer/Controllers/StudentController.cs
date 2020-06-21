@@ -4,6 +4,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -114,6 +115,29 @@ namespace BITSoccer.Controllers
                 return View();
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeAvatar(User model)
+        {
+            if (model.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(model.PictureUpload.FileName));
+                model.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(model.PictureUpload.FileName);
+                model.Avatar= pathinDB;
+            }
+            else
+            {
+                model.Avatar = "/Assets/img/no-photo.jpg";
+            }
+
+            User user = AccountBLL.Instance.ChangeAvatar(User.Identity.Name, model);
+
+            var userafter = db.Users.FirstOrDefault(x => x.User_ID == user.User_ID);
+
+            return View("ProFile", userafter);
         }
     }
 }

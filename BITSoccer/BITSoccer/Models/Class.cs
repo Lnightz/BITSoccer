@@ -26,7 +26,6 @@ namespace BITSoccer.Models
     
         public int Class_ID { get; set; }
         public string Name { get; set; }
-        public string MetaTitle { get; set; }
         public Nullable<int> Quanity { get; set; }
         public Nullable<decimal> Prices { get; set; }
         public Nullable<decimal> PromoPrices { get; set; }
