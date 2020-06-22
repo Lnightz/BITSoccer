@@ -171,6 +171,15 @@ namespace BITSoccer.BLL
 
                 if (db.SaveChanges ()> 0)
                 {
+                    User user = db.Users.FirstOrDefault(x => x.User_ID == coach.User_ID);
+
+                    user.PhoneNumber = model.Phone;
+                    user.Email = model.Email;
+                    user.CustomerName = model.Name;
+                    user.Gender = model.Gender;
+
+                    db.SaveChanges();
+
                     return coach;
                 }
             }

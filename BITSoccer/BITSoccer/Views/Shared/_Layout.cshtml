@@ -121,8 +121,8 @@
                                             @User.Identity.Name
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item hover-effect" href="@Url.Action()">Thông tin cá nhân</a>
-                                            <a class="dropdown-item hover-effect" href="userclasses.html">Lớp của tôi</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("Index","Coach")">Thông tin cá nhân</a>
+                                            <a class="dropdown-item hover-effect" href="@Url.Action("CoachClass","Coach")">Lớp của tôi</a>
                                             <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account")">Đăng xuất</a>
                                         </div>
                                     </li>
@@ -149,43 +149,9 @@
     @RenderBody()
 
 
-    <footer>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
-                    <h2>
-                        BIT Soccer
-                    </h2>
-                    <ul class="Infor">
-                        <li>
-                            <span><i class="fa fa-map-marker"></i></span>
-                            Văn phòng đại diện: 1 Lê Duẩn, Quận 1, Tp. Hồ Chí Minh
-                        </li>
-                        <li>
-                            <span><i class="fa fa-mobile"></i></span>
-                            034 567 899
-                        </li>
-                    </ul>
-                    <ul class="Social">
-                        <li><a href=""></a><i class="fab fa-facebook fa-3x" style="color: blue;"></i></li>
-                        <li><a href=""></a><i class="fab fa-instagram fa-3x" style="color: rgb(213, 25, 86);"></i></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                    <div class="footer-fb-content">
-                        <div class="fb-page" data-href="https://www.facebook.com/bitsoccerlaso1" data-tabs=""
-                             data-width="" data-height="" data-small-header="false" data-adapt-container-width="true"
-                             data-hide-cover="false" data-show-facepile="true">
-                            <blockquote cite="https://www.facebook.com/bitsoccerlaso1" class="fb-xfbml-parse-ignore">
-                                <a href="https://www.facebook.com/bitsoccerlaso1">BIT Soccer</a>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    @{ 
+        Html.RenderAction("Footer", "Partial");
+    }
 
     <!-- Javascript -->
     @*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

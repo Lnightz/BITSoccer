@@ -1,9 +1,129 @@
 ﻿
 @{
+    /**/
+
     ViewBag.Title = "EditAbout";
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 
-    var About = (BITSoccer.Models.About)ViewBag.About;
-    var AboutSlide = (List<BITSoccer.Models.About_Slide>)ViewBag.AboutSlide;
+    var about = (BITSoccer.Models.About)ViewBag.About;
+    var aboutSlide = (List<BITSoccer.Models.About_Slide>)ViewBag.AboutSlide;
+}
+@using (Html.BeginForm("EditAbout", "General", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Thông tin Về chúng tôi</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-10">
+                            <label for="Description">Mô tả doanh nghiệp</label>
+                            <textarea name="Description" style="height:150px" id="Description" class="form-control">@about.Description</textarea>
+                        </div>
+                        <div class="col-md-10">
+                            <label for="CoachDescription">Mô tả đội ngủ huấn luyên viên</label>
+                            <textarea name="CoachDescription" style="height:150px" id="CoachDescription" class="form-control">@about.CoachDescription</textarea>
+                        </div>
+                        @{
+                            if (about.Image != null)
+                            {
+                                <div class="col-md-10">
+                                    <label for="Image">Hình ảnh</label>
+                                    <br />
+                                    <img src="@about.Image" class="img-fluid" />
+                                    <input type="hidden" name="" id="" value="@about.Image" />
+                                </div>
+                            }
+                        }
+                        <div class="col-md-10">
+                            <label for="PictureUpload">Đăng hình ảnh đội ngũ huấn luyện viên</label>
+                            <input type="file" name="PictureUpload" id="PictureUpload" value="@about.PictureUpload" class="form-control" />
+                        </div>
+                        <input type="hidden" value="@about.AboutID" name="AboutID"/>
+
+                        <div class="col-md-10 d-flex justify-content-end my-4">
+                            <input type="submit" value="Save" class="btn btn-primary ml-3" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Danh sách Slide About</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in aboutSlide)
+                            {
+                                <tr>
+                                    <td><img src="@item.Image" class="img-fluid" /></td>
+                                    <td class="text-center">
+                                        @*<a class="btn btn-warning btn-sm" href="@Url.Action("EditArchive","General", new { id = item.Archive_ID })">
+                        <i class="fas fa-pencil-alt"></i> Sửa
+                    </a>*@
+                                        <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.AboutSlideID)">
+                                            <i class="fas fa-pencil-alt"></i> Sửa
+                                        </a>
+                                    </td>
+                                </tr>
+                                using (Html.BeginForm("EditAboutSlide", "General", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    <div class="modal fade" id="@string.Concat("ModalCenter",item.AboutSlideID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label for="PictureUpload1">Upload hình</label>
+                                                    <input name="PictureUpload" value="@item.PictureUpload" id="PictureUpload1" class="form-control" type="file"/>
+                                                    <input name="AboutSlideID" type="hidden" value="@item.AboutSlideID" /> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                    <button class="btn btn-danger btn-sm" type="submit">
+                                                        <i class="fas fa-pencil-alt"></i> Sửa
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+</div>

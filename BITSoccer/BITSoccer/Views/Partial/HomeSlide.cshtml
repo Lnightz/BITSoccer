@@ -1,0 +1,12 @@
+﻿@model IEnumerable<BITSoccer.Models.Home_Slide>
+
+@{
+    foreach (var item in Model)
+    {
+        <div>
+            <a href="@Html.Raw(item.Link)">
+                <img src="@item.Image" alt="@item.HomeSlide_ID" class="img-fluid">
+            </a>
+        </div>
+    }
+}

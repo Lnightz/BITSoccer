@@ -1,0 +1,11 @@
+﻿@model IEnumerable<BITSoccer.Models.About_Slide>
+
+@{
+    foreach (var item in Model)
+    {
+        <div>
+            <img src="@item.Image" alt="HLV_1" class="img-fluid" style="height:400px">
+        </div>
+    }
+}
+

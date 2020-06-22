@@ -1,0 +1,21 @@
+﻿@model BITSoccer.Models.Tourament
+
+<div id="tourament">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <img src="~/Assets/img//TEAM-1.png" class="tourament-team-img">
+                <h4 class="tourament-team team-name">@Model.Team_A</h4>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <h3 class="tourament-time">Thời gian: @String.Format("{0:dd/MM/yyyy}",Model.Time)</h3>
+                <h1 class="tourament-team-vs">vs</h1>
+                <h3 class="tourament-team-stadium">@Model.Stadium.Name</h3>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <img src="~/Assets/img//TEAM-2.png" class="tourament-team-img">
+                <h4 class="tourament-team team-name">@Model.Team_B</h4>
+            </div>
+        </div>
+    </div>
+</div>

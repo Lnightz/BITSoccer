@@ -12,7 +12,7 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class About_Slide
+    public partial class About_Slide : UploadImage
     {
         public int AboutSlideID { get; set; }
         public Nullable<int> AboutID { get; set; }

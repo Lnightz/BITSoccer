@@ -32,7 +32,7 @@
                     <td>@item.IsActive</td>
                     <td>@item.DisplayOrder</td>
                     <td class="text-center">
-                        <a class="btn btn-warning btn-sm" href="@Url.Action("EditArchive","General", new { id = item.HomeSlide_ID })">
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("EditHomeSlide","General", new { id = item.HomeSlide_ID })">
                             <i class="fas fa-pencil-alt"></i> Sửa
                         </a>
                         @*<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.Archive_ID)">

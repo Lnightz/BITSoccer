@@ -263,10 +263,28 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("EditAbout","General", new { area = "Admin" })" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Simple Link
+                                    About Us
+                                    @*<span class="right badge badge-danger">New</span>*@
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Touraments", new { area = "Admin" })" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Giải đấu
+                                    @*<span class="right badge badge-danger">New</span>*@
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","DiscountCodes", new { area = "Admin" })" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Mã giảm giá
                                     @*<span class="right badge badge-danger">New</span>*@
                                 </p>
                             </a>

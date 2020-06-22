@@ -12,7 +12,7 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class About
+    public partial class About : UploadImage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public About()

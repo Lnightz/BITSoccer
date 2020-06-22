@@ -16,7 +16,7 @@ namespace BITSoccer.Controllers
         BITSoccerEntities db = new BITSoccerEntities();
         public ActionResult Index()
         {
-            return View();
+            return View(db.HomePage_Content.First());
         }
 
 

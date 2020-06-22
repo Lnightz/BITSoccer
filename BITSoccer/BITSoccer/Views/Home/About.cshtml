@@ -12,38 +12,9 @@
         <!--Script giới thiệu -->
         <div class="container">
             <div id="background_content" style="padding:30px 30px">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h2>GIỚI THIỆU</h2>
-                        <p>
-                            <strong>Trung Tâm Đào Tạo Bóng Đá BIT</strong> là trung tâm chuyên huấn luyện về kỹ năng đá bóng cho học sinh Tiểu học đến Trung học Phổ thông.
-                            Với mục đích tạo sân chơi, mang lại cho các bạn học sinh yêu bóng đá những giây phút thoải mái khám phá và chinh phục môn thể thao hấp dẫn nhất hành tinh. Với phương châm THỂ THAO – SỨC KHỎE – NIỀM ĐAM MÊ,
-                            các bạn học sinh sẽ có những giây phút hào hứng, sôi động và thật sự làm chủ được những đường bóng bằng đôi chân nhanh nhẹn, kỹ thuật khéo léo, cùng với sức khỏe dẻo dai.
-                            Hãy biến mùa hè này của bạn thành mùa hè tuyệt vời nhất – mùa hè bùng cháy niềm đam mê bóng đá với chương trình mùa hè sôi động cùng bóng đá tại <strong>Trung Tâm Đào Tạo Bóng Đá BIT</strong>
-                        </p>
-                        <p>Thành lập ngày...</p>
-                    </div>
-                </div>
-                <!--Đội ngũ HLV  -->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h2>ĐỘI NGŨ HUẤN LUYỆN VIÊN</h2>
-                    </div>
-
-                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                        <h4>Đội ngũ Huấn Luyện Viên của Trung Tâm Huấn Luyện Bóng Đá BIT</h4>
-                        <p>
-                            Là Các cựu cầu thủ của các CLB Cảng Sài Gòn, Giáo viên trường Thể dục thể thao TWII và các cầu thủ đang thi đấu cho CLB TP.HCM.
-                            Họ là những người đã trải qua nhiều trận đấu và rút ra nhiều kinh nghiệm trong thi đấu, với vai trò tham gia huấn luyện nhiều năm trong ngành đào tạo bóng đá.
-                        </p>
-                        <a class="btn btn-default" href="coach_Lieu.html">Xem chi tiết</a>
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                        <a href="">
-                            <img src="~/Assets/img/DN_HLV1.jpg" alt="Hình" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
+               @{ 
+                   Html.RenderAction("About", "Partial");
+               }
                 <!--Góc ảnh-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -53,24 +24,9 @@
                     <div class="container-fluid p-0">
                         <div class="site-slider">
                             <div class="slider-one">
-                                <div>
-                                    <img src="~/Assets/img/HLV_HV1.jpg" alt="HLV_1" class="img-fluid" style="height:400px">
-                                </div>
-                                <div>
-                                    <img src="~/Assets/img/HLV_HV2.jpg" alt="HLV_2" class="img-fluid" style="height:400px">
-                                </div>
-                                <div>
-                                    <img src="~/Assets/img/HLV_HV3.jpg" alt="HLV_3" class="img-fluid" style="height:400px">
-                                </div>
-                                <div>
-                                    <img src="~/Assets/img/HLV_HV4.jpg" alt="HLV_4" class="img-fluid" style="height:400px">
-                                </div>
-                                <div>
-                                    <img src="~/Assets/img/HLV_HV5.jpg" alt="HLV_5" class="img-fluid" style="height:400px">
-                                </div>
-                                <div>
-                                    <img src="~/Assets/img/HLV_HV6.jpg" alt="HLV_6" class="img-fluid" style="height:400px">
-                                </div>
+                                @{ 
+                                    Html.RenderAction("AboutSlide", "Partial");
+                                }
                             </div>
 
                             <div class="slider-btn">

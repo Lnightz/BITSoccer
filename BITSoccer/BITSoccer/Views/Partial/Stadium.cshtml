@@ -1,0 +1,17 @@
+﻿@model IEnumerable<BITSoccer.Models.Stadium>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="col-lg-6 col-md-12">
+            <div class="ih-item square effect3 bottom_to_top stadium">
+                <a href="#">
+                    <div class="img"><img src="@item.Image" alt="img"></div>
+                    <div class="info">
+                        <h3>@item.Name</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+}

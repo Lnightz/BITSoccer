@@ -347,21 +347,66 @@ namespace BITSoccer.Areas.Admin.Controllers
 
             return View("Error");
         }
-
-        public ActionResult EditAbout(int? id)
+        public ActionResult EditAbout()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var aboutSlides = db.About_Slide.Where(x => x.AboutID == id).ToList();
-            var about = db.Abouts.FirstOrDefault(x => x.AboutID == id);
+            var aboutSlides = db.About_Slide.Where(x => x.AboutID == 1).ToList();
+            var about = db.Abouts.FirstOrDefault(x => x.AboutID == 1);
 
             ViewBag.AboutSlide = aboutSlides;
             ViewBag.About = about;
-
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAbout(About model)
+        {
+            if (model.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(model.PictureUpload.FileName));
+                model.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(model.PictureUpload.FileName);
+                model.Image = pathinDB;
+            }
+            if (ModelState.IsValid)
+            {
+                About about = null;
+
+                about = db.Abouts.Where(x => x.AboutID == model.AboutID).FirstOrDefault();
+
+                about.Description = model.Description;
+                about.CoachDescription = model.CoachDescription;
+                about.Image = model.Image;
+
+                db.SaveChanges();
+
+                return RedirectToAction("EditAbout");
+            }
+            return RedirectToAction("EditAbout");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAboutSlide(About_Slide model)
+        {
+            if (model.PictureUpload != null)
+            {
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images"), Path.GetFileName(model.PictureUpload.FileName));
+                model.PictureUpload.SaveAs(fileName);
+                string pathinDB = "/Content/Images/" + Path.GetFileName(model.PictureUpload.FileName);
+                model.Image = pathinDB;
+            }
+            if (ModelState.IsValid)
+            {
+                About_Slide about = null;
+
+                about = db.About_Slide.FirstOrDefault(x => x.AboutSlideID == model.AboutSlideID);
+
+                about.Image = model.Image;
+
+                db.SaveChanges();
+
+                return RedirectToAction("EditAbout");
+            }
+            return RedirectToAction("EditAbout");
         }
     }
 }

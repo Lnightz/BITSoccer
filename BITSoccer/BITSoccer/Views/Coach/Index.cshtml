@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var coach = (BITSoccer.Models.Coach)ViewBag.Coach;
+
+}
+
+<main>
+
+    <div class="titile-bg">
+        <div class="container">
+            <div class="titile-name">thông tin cá nhân</div>
+        </div>
+        <div class="text-shadow"></div>
+    </div>
+    <div id="background_main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary card-outline mb-3">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <a data-toggle="modal" data-target="#uploadpicture">
+                                    <img src="@coach.Image" alt="" class="profile-user-img img-fluid img-circle">
+                                </a>
+                            </div>
+                            @using (Html.BeginForm("ChangeAvatar", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken();
+                                <div class="modal fade" id="uploadpicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Hình ảnh</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h4>Chọn hình ảnh để upload</h4>
+                                                <input name="PictureUpload" type="file" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <h3 class="profile-user-name text-center">@coach.User.UserName</h3>
+                            <p class="text-muted text-center">Huấn luyện viên</p>
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b>Lớp đã giảng dạy</b>
+                                    <p class="float-right" style="margin: 0;">@ViewBag.CountClass</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    @{
+                        if (ViewBag.Message == "FAIL")
+                        {
+                            <div class="alert alert-danger text-center mt-3">Thay đổi mật khẩu thất bại</div>
+                        }
+                        else if (ViewBag.Message == "SUCCESS")
+                        {
+                            <div class="alert alert-success text-center mt-3">Thay đổi mật khẩu thành công</div>
+                        }
+                        else if (ViewBag.Message == "ReFAIL")
+                        {
+                            <div class="alert alert-danger text-center mt-3">Nhập lại mật khẩu mới sai</div>
+                        }
+                        else if (ViewBag.Message == "PROFILESUCCESS")
+                        {
+                            <div class="alert alert-success text-center mt-3">Thay đổi thông tin cá nhân thành công</div>
+                        }
+                    }
+                    <div class="card card-primary">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a href="#inform" class="nav-link active" data-toggle="tab">Thông tin cá nhân</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#resetpass" class="nav-link" data-toggle="tab">Thay đổi mật khẩu</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="inform">
+                                    @using (Html.BeginForm("ChangeCoachProfile", "Coach", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputName" placeholder="Name" name="Name" value="@coach.Name">
+                                                    @Html.ValidationMessageFor(model => coach.Name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Giới tính</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group">
+                                                        <select class="custom-select" id="inputGroupSelect04" name="Gender">
+                                                            <option value="@coach.Gender" selected hidden>@coach.Gender</option>
+                                                            <option value="Nữ">Nữ</option>
+                                                            <option value="Nam">Nam</option>
+                                                            <option value="Khác">Khác</option>
+                                                        </select>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => coach.Gender, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Age" class="col-sm-2 col-form-label">Tuổi</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Age" placeholder="Age" name="Age" value="@coach.Age">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="email" placeholder="Email" name="Email" value="@coach.Email">
+                                                    @Html.ValidationMessageFor(model => coach.Email, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="phonenumber" class="col-sm-2 col-form-label">Số điện thoại</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" name="PhoneNumber" value="@coach.Phone">
+                                                    @Html.ValidationMessageFor(model => coach.Phone, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Passport" class="col-sm-2 col-form-label">CMND</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Passport" placeholder="Passport" name="Passport" value="@coach.Passport">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Facebook" class="col-sm-2 col-form-label">Facebook</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Facebook" placeholder="Facebook" name="Facebook" value="@coach.Facebook">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Insta" class="col-sm-2 col-form-label">Insta</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Insta" placeholder="Insta" name="Insta" value="@coach.Insta">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Twitter" class="col-sm-2 col-form-label">Twitter</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Twitter" placeholder="Twitter" name="Twitter" value="@coach.Twitter">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="@coach.Coach_ID" name="Coach_ID" />
+
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button class="btn btn-primary" type="submit">Thay đổi</button>
+                                            </div>
+                                        </form>
+                                    }
+                                </div>
+                                <div class="tab-pane" id="resetpass">
+                                    @using (Html.BeginForm("ChangePassword", "Student", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group row">
+                                            <label for="oldPass" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="oldPass" placeholder="Password" name="OldPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newPass" class="col-sm-2 col-form-label">Mật khẩu mới</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="newPass" placeholder="New Password" name="NewPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="confirmPass" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="confirmPass" placeholder="Confirm Password" name="ConFirmNewPassword">
+                                            </div>
+                                        </div>
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button class="btn btn-danger" type="submit">Thay đổi</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -23,7 +23,7 @@ namespace BITSoccer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
-            var userdetails = db.Users.Where(x => x.UserName == user.UserName && x.Password == user.Password).FirstOrDefault();
+            var userdetails = db.Users.Where(x => x.UserName == user.UserName && x.Password == user.Password && x.IsActive == true).FirstOrDefault();
 
             if (userdetails != null)
             {

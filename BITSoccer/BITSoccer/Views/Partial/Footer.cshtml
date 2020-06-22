@@ -1,0 +1,39 @@
+﻿@model BITSoccer.Models.Footer
+
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                <h2>
+                   @Model.Name
+                </h2>
+                <ul class="Infor">
+                    <li>
+                        <span><i class="fa fa-map-marker"></i></span>
+                        @Model.Address
+                    </li>
+                    <li>
+                        <span><i class="fa fa-mobile"></i></span>
+                        @Model.Phone
+                    </li>
+                </ul>
+                <ul class="Social">
+                    <li><a href="@Html.Raw(Model.Facebook)"></a><i class="fab fa-facebook fa-3x" style="color: blue;"></i></li>
+                    <li><a href="@Html.Raw(Model.Insta)"></a><i class="fab fa-instagram fa-3x" style="color: rgb(213, 25, 86);"></i></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                <div class="footer-fb-content">
+                    <div class="fb-page" data-href="https://www.facebook.com/bitsoccerlaso1" data-tabs=""
+                         data-width="" data-height="" data-small-header="false" data-adapt-container-width="true"
+                         data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/bitsoccerlaso1" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/bitsoccerlaso1">BIT Soccer</a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
