@@ -1,0 +1,112 @@
+﻿@model BITSoccer.Models.HomePage_Content
+@{
+    ViewBag.Title = "Chỉnh sửa";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("EditHomePageContent", "General", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Nội dung huấn luyện viên</h5>
+                        </div>
+                        <div class="card-body">
+                            <textarea name="Coach_Content" class="form-control" style="height:150px">@Model.Coach_Content</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Nội dung các khóa học </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <textarea name="HotClass_Content" class="form-control" style="height:150px">@Model.HotClass_Content</textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0"> Nội dung sân vận động </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <textarea name="Stadium_Content" class="form-control" style="height:150px">@Model.Stadium_Content</textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Nội dung giải đấu chuyên nghiệp</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <textarea name="Tour_Content" class="form-control" style="height:150px">@Model.Tour_Content</textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Nội dung thành tựu</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <textarea name="Archive_Content" class="form-control" style="height:150px">@Model.Archive_Content</textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Câu châm ngộn thứ nhất</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <textarea name="Quote1_Content" class="form-control" style="height:150px">@Model.Quote1_Content</textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Câu châm ngộn thứ hai</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <textarea name="Quote2_Content" class="form-control" style="height:150px">@Model.Quote2_Content</textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="Home_Content_ID" value="@Model.Home_Content_ID"/>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row text-right m-5">
+                <div class="col-lg-10">
+                    <a href="@Url.Action("HomePageContent")" class="btn btn-secondary">Quay lại</a>
+                    <input type="submit" value="Save" class="btn btn-primary ml-3" />
+                </div>
+            </div>
+        </div>
+    </main>
+
+}
+
+

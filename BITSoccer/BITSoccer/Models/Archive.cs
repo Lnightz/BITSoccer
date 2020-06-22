@@ -12,7 +12,7 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Archive
+    public partial class Archive : UploadImage
     {
         public int Archive_ID { get; set; }
         public string Name { get; set; }

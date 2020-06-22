@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BITSoccer.Models.DiscountCode>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountCode1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountCode1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DiscountCodeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DiscountCodeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DiscountCodeID })
+        </td>
+    </tr>
+}
+
+</table>

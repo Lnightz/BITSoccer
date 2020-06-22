@@ -1,0 +1,166 @@
+﻿@model IEnumerable<BITSoccer.Models.Tourament>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetaTitlte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreaedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifyBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_A)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_B)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_A_Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_B_Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_A_Player)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_B_Player)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamARedCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamAYellowCart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamAFouls_Conceded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamBRedCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamBYellowCart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamBFouls_Conceded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamAFormation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamBFormation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stadium.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetaTitlte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreaedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifyBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_A)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_B)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_A_Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_B_Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_A_Player)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_B_Player)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamARedCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamAYellowCart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamAFouls_Conceded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamBRedCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamBYellowCart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamBFouls_Conceded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamAFormation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamBFormation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stadium.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Tour_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Tour_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Tour_ID })
+        </td>
+    </tr>
+}
+
+</table>

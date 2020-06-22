@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BITSoccer.Models.Home_Slide>
+@{
+    ViewBag.Title = "Slide Trang chủ";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+        <a href="@Url.Action("CreateHomeSlide","General")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm @ViewBag.Title</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Mô tả ngắn</th>
+                    <th>Đường dẫn</th>
+                    <th>IsActive</th>
+                    <th>Thứ tự hiển thị</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td><img src="@item.Image" style="width:200px" /></td>
+                    <td>@item.Description</td>
+                    <td>@item.Link</td>
+                    <td>@item.IsActive</td>
+                    <td>@item.DisplayOrder</td>
+                    <td class="text-center">
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("EditArchive","General", new { id = item.HomeSlide_ID })">
+                            <i class="fas fa-pencil-alt"></i> Sửa
+                        </a>
+                        @*<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.Archive_ID)">
+                <i class="fas fa-trash"></i> Xóa
+            </a>*@
+                    </td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Mô tả ngắn</th>
+                    <th>Đường dẫn</th>
+                    <th>IsActive</th>
+                    <th>Thứ tự hiển thị</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

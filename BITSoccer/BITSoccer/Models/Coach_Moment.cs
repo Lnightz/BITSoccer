@@ -12,7 +12,7 @@ namespace BITSoccer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Coach_Moment
+    public partial class Coach_Moment : UploadImage
     {
         public int Coach_Moment_ID { get; set; }
         public string Image { get; set; }

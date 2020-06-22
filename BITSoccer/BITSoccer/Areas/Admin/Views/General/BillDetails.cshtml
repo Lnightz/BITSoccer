@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BITSoccer.Models.BillDetail>
+@{
+    ViewBag.Title = "Chi tiết hóa đơn";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên lớp</th>
+                    <th>Giá gốc</th>
+                    <th>Giá hiện tại</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Class.Name</td>
+                        <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}",  item.Class.Prices)</td>
+                        <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}",  item.Class.PromoPrices)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên lớp</th>
+                    <th>Giá gốc</th>
+                    <th>Giá hiện tại</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="col-md-10 d-flex justify-content-end my-4">
+        <a href="@Url.Action("Bill")" class="btn btn-secondary">Quay lại</a>
+    </div>
+    <!-- /.card-body -->
+</div>

@@ -90,10 +90,17 @@ namespace BITSoccer.Controllers
         public ActionResult CheckOut(FormCollection model)
         {
             float discount = (float)Convert.ToDouble(model["Discount"]);
-            float discountvalue = 1 - discount;
+            
             var userdetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             List<Cart> listcarts = (List<Cart>)Session["ClassCart"];
 
+            var checkdiscount = db.DiscountCodes.Where(x => x.DiscountCode1 == model["Discount"].ToString()).FirstOrDefault();
+
+            if(checkdiscount != null)
+            {
+                discount = (float)Convert.ToDouble(checkdiscount.Discount);
+            }
+            float discountvalue = 1 - discount;
             Bill bill = new Bill()
             {
                 User_ID = userdetails.User_ID,
@@ -131,6 +138,19 @@ namespace BITSoccer.Controllers
             }
             ViewBag.Message = "FAIL";
             return View("Index");
+        }
+        public ActionResult CheckDiscountCode(DiscountCode model)
+        {
+            var check = db.DiscountCodes.FirstOrDefault(x => x.DiscountCode1 == model.DiscountCode1);
+
+            if (check == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            check.Discount = ViewBag.Discount;
+
+            return View();
         }
     }
 }

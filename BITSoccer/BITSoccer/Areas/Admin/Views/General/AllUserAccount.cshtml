@@ -1,0 +1,104 @@
+﻿@model IEnumerable<BITSoccer.Models.User>
+@{
+    ViewBag.Title = "Danh sách tài khoản";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<h2>AllUserAccount</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+        <a href="@Url.Action("CreateCoachUser","General")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm tài khoản huấn luyện viên</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên tài khoản</th>
+                    <th>Tên khách hàng</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Loại tài khoản</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.CustomerName</td>
+                        <td>@item.Email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Address</td>
+                        <td>@item.UserType.UserTypeName</td>
+                        <td>@item.IsActive</td>
+                        <td class="text-center">
+                            @{
+                                if (item.IsActive == true)
+                                {
+                                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.User_ID)">
+                                        <i class="fas fa-lock"></i> Khóa
+                                    </a>
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("UnlockUser", "General", new { id = item.User_ID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken();
+                                        <button type="submit" class="btn btn-warning btn-sm">
+                                            <i class="fas fa-unlock"></i> Mở khóa
+                                        </button>
+                                    }
+
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="@string.Concat("ModalCenter",item.User_ID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn khóa tài khoản "@item.UserName" không?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    @using (Html.BeginForm("LockUser", "General", new { id = item.User_ID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fas fa-trash"></i> Xóa
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên tài khoản</th>
+                    <th>Tên khách hàng</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Loại tài khoản</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

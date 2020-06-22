@@ -1,0 +1,53 @@
+﻿@model BITSoccer.Models.Archive
+@{
+    ViewBag.Title = "Chỉnh sửa thành tựu";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+@using (Html.BeginForm("EditArchive", "General", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        @ViewBag.Title
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-10">
+                            <label for="Name">Thành tựu</label>
+                            <input name="Name" type="text" class="form-control" id="Name" value="@Model.Name" />
+                        </div>
+                        <div class="col-md-10">
+                            <label for="Content">Nội dung</label>
+                            <textarea name="Content" class="form-control" id="Content" style="height:150px">@Model.Content</textarea>
+                        </div>
+                        <div class="col-md-10">
+                            <label for="PictureUpload">Upload hình ảnh</label>
+                            <input name="PictureUpload" type="file" class="form-control" id="PictureUpload" value="@Model.PictureUpload" />
+                        </div>
+                        <div class="col-md-10">
+                            @{
+                                if (Model.Image != null)
+                                {
+                                    <label>Hình ảnh</label>
+                                    <img src="@Model.Image" style="max-width:350px" />
+                                    <input name="Image" type="hidden" class="form-control" id="Image" value="@Model.Image" />
+                                }
+                            }
+                            <input name="Archive_ID" type="hidden" value="@Model.Archive_ID" />
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-10 d-flex justify-content-end my-4">
+                                <a href="@Url.Action("Archive")" class="btn btn-secondary">Quay lại</a>
+                                <input type="submit" value="Save" class="btn btn-primary ml-3" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

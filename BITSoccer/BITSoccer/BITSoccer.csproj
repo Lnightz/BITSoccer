@@ -148,7 +148,9 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoachesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiscountCodesController.cs" />
     <Compile Include="Areas\Admin\Controllers\GendersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GeneralController.cs" />
     <Compile Include="Areas\Admin\Controllers\LevelCoachesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LevelStudentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsCategoryController.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Areas\Admin\Controllers\RangeAgesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RangeTimesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StadiumsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TouramentsController.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\ClassesBLL.cs" />
     <Compile Include="BLL\CommentBLL.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="Models\Coach.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CoachUserModel.cs" />
     <Compile Include="Models\Coach_Moment.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -728,6 +732,26 @@
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <Content Include="Areas\Admin\Views\News\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\General\HomePageContent.cshtml" />
+    <Content Include="Areas\Admin\Views\General\EditHomePageContent.cshtml" />
+    <Content Include="Areas\Admin\Views\General\Archive.cshtml" />
+    <Content Include="Areas\Admin\Views\Touraments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Touraments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Touraments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\General\EditArchive.cshtml" />
+    <Content Include="Areas\Admin\Views\General\CoachMoment.cshtml" />
+    <Content Include="Areas\Admin\Views\General\EditCoachMoment.cshtml" />
+    <Content Include="Areas\Admin\Views\General\HomeSlide.cshtml" />
+    <Content Include="Areas\Admin\Views\General\CreateHomeSlide.cshtml" />
+    <Content Include="Areas\Admin\Views\General\EditHomeSlide.cshtml" />
+    <Content Include="Areas\Admin\Views\General\EditFooter.cshtml" />
+    <Content Include="Areas\Admin\Views\General\Bill.cshtml" />
+    <Content Include="Areas\Admin\Views\General\BillDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\General\AllUserAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\General\EditAbout.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

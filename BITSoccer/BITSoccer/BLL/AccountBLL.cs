@@ -122,5 +122,59 @@ namespace BITSoccer.BLL
             }
             return null;
         }
+
+        public User CreateCoachUser(CoachUserModel model)
+        {
+            User coach = null;
+            using (var db = new BITSoccerEntities())
+            {
+                coach = new User()
+                {
+                    UserType_ID = 3,
+                    Avatar = "/Assets/img/no-photo.jpg",
+                    IsActive = true,
+                    UserName = model.UserName,
+                    Password = model.Password,
+                };
+
+                db.Users.Add(coach);
+
+                if (db.SaveChanges() > 0)
+                {
+                    return coach;
+                }
+            }
+            return coach;
+        }
+
+        public Coach ChangeCoachProfile(Coach model)
+        {
+            Coach coach = null;
+            using (var db = new BITSoccerEntities())
+            {
+                coach = db.Coaches.FirstOrDefault(x=> x.Coach_ID == model.Coach_ID);
+
+                if ( coach == null)
+                {
+                    return null;
+                }
+
+                coach.Facebook = model.Facebook;
+                coach.Name = model.Name;
+                coach.Gender = model.Gender;
+                coach.Age = model.Age;
+                coach.Phone = model.Phone;
+                coach.Passport = model.Passport;
+                coach.Email = model.Email;
+                coach.Insta = model.Insta;
+                coach.Twitter = model.Twitter;
+
+                if (db.SaveChanges ()> 0)
+                {
+                    return coach;
+                }
+            }
+            return null;
+        }
     }
 }

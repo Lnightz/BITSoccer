@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BITSoccer.Models.Coach_Moment>
+@{
+    ViewBag.Title = "Khoảnh khắc huấn luyện viên";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Khoảnh khắc</th>
+                    <th>Hình ảnh</th>
+                    <th>Nội dung</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Coach_Moment_ID</td>
+                        <td><img src="@item.Image" style="width:200px" /></td>
+                        <td>@item.Description</td>
+                        <td class="text-center">
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("EditCoachMoment","General", new { id = item.Coach_Moment_ID })">
+                                <i class="fas fa-pencil-alt"></i> Sửa
+                            </a>
+                            @*<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.Archive_ID)">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Khoảnh khắc</th>
+                    <th>Hình ảnh</th>
+                    <th>Nội dung</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
