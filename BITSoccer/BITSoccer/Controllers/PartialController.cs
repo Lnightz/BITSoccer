@@ -13,7 +13,7 @@ namespace BITSoccer.Controllers
         // GET: Partial
         public PartialViewResult HomeSlide()
         {
-            var slide = db.Home_Slide.Where(x=> x.IsActive == true).OrderBy(x => x.DisplayOrder).ToList();
+            var slide = db.Home_Slide.Where(x => x.IsActive == true).OrderBy(x => x.DisplayOrder).ToList();
             return PartialView(slide);
         }
 
@@ -25,7 +25,7 @@ namespace BITSoccer.Controllers
 
         public PartialViewResult Stadium()
         {
-            var stadium = db.Stadia.OrderBy(x=>x.Name).ToList();
+            var stadium = db.Stadia.OrderBy(x => x.Name).ToList();
             return PartialView(stadium);
         }
 
@@ -36,11 +36,43 @@ namespace BITSoccer.Controllers
         }
         public PartialViewResult Archive()
         {
-            return PartialView(db.Archives.OrderBy(x=>x.Name).ToList());
+            return PartialView(db.Archives.OrderBy(x => x.Name).ToList());
         }
 
         public PartialViewResult HotClass()
         {
+            DateTime today = DateTime.Today.AddDays(3);
+
+            //Lấy ra danh sách những lớp có ngày bắt đầu lớn hơn ngày hiện tại + 3
+            var course = db.Classes.Where(x => x.StartDay > today).ToList();
+
+            foreach (var item in course)
+            {
+                //Đếm trong danh sách đã lấy ở trên có bao nhiêu học viên tham gia
+                var countstudent = db.ClassUsers.Count(x => x.ClassID == item.Class_ID);
+
+                //Tạo ra một list danh sách từ danh sách lớp ở trên cộng với cột dữ liệu có bao nhiêu học sinh tham gia
+                if (Session["ListStudent"] == null)
+                {
+                    List<HotClasses> hotCourse = new List<HotClasses>
+                {
+                    new HotClasses(countstudent,db.Classes.Find(item.Class_ID))
+                };
+                    Session["ListStudent"] = hotCourse;
+                }
+                else
+                {
+                    List<HotClasses> hotCourse = (List<HotClasses>)Session["ListStudent"];
+                    hotCourse.Add(new HotClasses(countstudent, db.Classes.Find(item.Class_ID)));
+                    Session["ListStudent"] = hotCourse;
+                }
+            }
+
+            List<HotClasses> listStudent = (List<HotClasses>)Session["ListStudent"];
+            //Tìm ra những lớp có số lượng học sinh lớn hơn 
+            listStudent = listStudent.Where(x => x.NumStudent > 10).ToList();
+            Session["ListStudent"] = listStudent;
+
             return PartialView();
         }
 
@@ -56,7 +88,7 @@ namespace BITSoccer.Controllers
 
         public PartialViewResult AboutSlide()
         {
-            return PartialView(db.About_Slide.Where(x=>x.AboutID == 1).ToList());
+            return PartialView(db.About_Slide.Where(x => x.AboutID == 1).ToList());
         }
     }
 }

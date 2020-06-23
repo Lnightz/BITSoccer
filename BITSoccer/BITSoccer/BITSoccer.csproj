@@ -242,6 +242,7 @@
     <Compile Include="Models\Home_Slide.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HotClasses.cs" />
     <Compile Include="Models\LevelCoach.cs">
       <DependentUpon>BITSoccerDB.tt</DependentUpon>
     </Compile>
@@ -808,6 +809,7 @@
     <Content Include="Views\Partial\Footer.cshtml" />
     <Content Include="Views\Partial\About.cshtml" />
     <Content Include="Views\Partial\AboutSlide.cshtml" />
+    <Content Include="Views\Partial\HotClass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
