@@ -1,77 +1,155 @@
 ﻿@using BITSoccer.Models;
 @using System.Globalization;
 @{
-    foreach (var item in (List<HotClasses>)Session["ListStudent"])
+    if (ViewBag.ListStudent != null)
     {
-        <div class="hot-class">
-            <div class="card" style="width: auto;">
-                <div class="inner">
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Course.Class_ID})">
-                            @{
-                                if (item.Course.Image != null)
-                                {
-                                    <img src="@Url.Content(item.Course.Image)" class="card-img-top embed-responsive-item" alt="...">
+        foreach (var item in (List<HotClasses>)ViewBag.ListStudent)
+        {
+            <div class="hot-class">
+                <div class="card" style="width: auto;">
+                    <div class="inner">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Course.Class_ID})">
+                                @{
+                                    if (item.Course.Image != null)
+                                    {
+                                        <img src="@Url.Content(item.Course.Image)" class="card-img-top embed-responsive-item" alt="...">
+                                    }
+                                    else
+                                    {
+                                        <img src="https://via.placeholder.com/600" class="card-img-top embed-responsive-item" alt="...">
+                                    }
                                 }
-                                else
-                                {
-                                    <img src="https://via.placeholder.com/600" class="card-img-top embed-responsive-item" alt="...">
-                                }
-                            }
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Course.Class_ID})">
-                            <h5 class="card-title class-title">@item.Course.Name</h5>
-                        </a>
-                        <div class="class-number d-flex">
-                            <i class="fas fa-user"></i>
-                            <h6>@item.Course.Quanity</h6>
+                            </a>
                         </div>
                     </div>
-                    <p class="card-text">
-                        Huấn luyện viên: <span>@item.Course.Coach.Name</span>
-                    </p>
-                    @{
-                        string startday = item.Course.StartDay.HasValue ? item.Course.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
-                        string endday = item.Course.EndDay.HasValue ? item.Course.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Course.Class_ID})">
+                                <h5 class="card-title class-title">@item.Course.Name</h5>
+                            </a>
+                            <div class="class-number d-flex">
+                                <i class="fas fa-user"></i>
+                                <h6>@item.Course.Quanity</h6>
+                            </div>
+                        </div>
                         <p class="card-text">
-                            Thời gian: <span>@startday</span> - <span>@endday</span>
+                            Huấn luyện viên: <span>@item.Course.Coach.Name</span>
                         </p>
-                    }
-                    <div class="star-prices d-flex justify-content-between">
-                        <div class="star d-flex">
-                            @{
-                                var subtotal = item.Course.Ratings.Where(x => x.Class_ID == item.Course.Class_ID).Sum(x => x.NumberStar);
-                                var count = item.Course.Ratings.Where(x => x.Class_ID == item.Course.Class_ID).Count();
-                                float totalstar = 0;
-                                if (count > 0)
-                                {
-                                    totalstar = (float)Convert.ToDouble(subtotal / count);
+                        @{
+                            string startday = item.Course.StartDay.HasValue ? item.Course.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            string endday = item.Course.EndDay.HasValue ? item.Course.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            <p class="card-text">
+                                Thời gian: <span>@startday</span> - <span>@endday</span>
+                            </p>
+                        }
+                        <div class="star-prices d-flex justify-content-between">
+                            <div class="star d-flex">
+                                @{
+                                    var subtotal = item.Course.Ratings.Where(x => x.Class_ID == item.Course.Class_ID).Sum(x => x.NumberStar);
+                                    var count = item.Course.Ratings.Where(x => x.Class_ID == item.Course.Class_ID).Count();
+                                    float totalstar = 0;
+                                    if (count > 0)
+                                    {
+                                        totalstar = (float)Convert.ToDouble(subtotal / count);
+                                    }
                                 }
-                            }
-                            <i class="fas fa-star"></i><span>(@totalstar)</span>
-                        </div>
-                        <div class="prices position-relative">
-                            @{
-                                if (item.Course.PromoPrices >= item.Course.Prices)
-                                {
-                                    <div class="prices-now">@Convert.ToDouble(@item.Course.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                <i class="fas fa-star"></i><span>(@totalstar)</span>
+                            </div>
+                            <div class="prices position-relative">
+                                @{
+                                    if (item.Course.PromoPrices >= item.Course.Prices)
+                                    {
+                                        <div class="prices-now">@Convert.ToDouble(@item.Course.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="prices-now">@Convert.ToDouble(@item.Course.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                        <del class="prices-before">@Convert.ToDouble(@item.Course.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                    }
                                 }
-                                else
-                                {
-                                    <div class="prices-now">@Convert.ToDouble(@item.Course.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                    <del class="prices-before">@Convert.ToDouble(@item.Course.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</del>
-                                }
-                            }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     }
+    else
+    {
+        foreach (var item in (List<Class>)ViewBag.AnotherHotCourse)
+        {
+            <div class="hot-class">
+                <div class="card" style="width: auto;">
+                    <div class="inner">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Class_ID})">
+                                @{
+                                    if (item.Image != null)
+                                    {
+                                        <img src="@Url.Content(item.Image)" class="card-img-top embed-responsive-item" alt="...">
+                                    }
+                                    else
+                                    {
+                                        <img src="https://via.placeholder.com/600" class="card-img-top embed-responsive-item" alt="...">
+                                    }
+                                }
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Class_ID})">
+                                <h5 class="card-title class-title">@item..Name</h5>
+                            </a>
+                            <div class="class-number d-flex">
+                                <i class="fas fa-user"></i>
+                                <h6>@item..Quanity</h6>
+                            </div>
+                        </div>
+                        <p class="card-text">
+                            Huấn luyện viên: <span>@item.Coach.Name</span>
+                        </p>
+                        @{
+                            string startday = item.StartDay.HasValue ? item.StartDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            string endday = item.EndDay.HasValue ? item.EndDay.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            <p class="card-text">
+                                Thời gian: <span>@startday</span> - <span>@endday</span>
+                            </p>
+                        }
+                        <div class="star-prices d-flex justify-content-between">
+                            <div class="star d-flex">
+                                @{
+                                    var subtotal = item.Ratings.Where(x => x.Class_ID == item.Class_ID).Sum(x => x.NumberStar);
+                                    var count = item.Ratings.Where(x => x.Class_ID == item.Class_ID).Count();
+                                    float totalstar = 0;
+                                    if (count > 0)
+                                    {
+                                        totalstar = (float)Convert.ToDouble(subtotal / count);
+                                    }
+                                }
+                                <i class="fas fa-star"></i><span>(@totalstar)</span>
+                            </div>
+                            <div class="prices position-relative">
+                                @{
+                                    if (item.PromoPrices >= item.Prices)
+                                    {
+                                        <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="prices-now">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                        <del class="prices-before">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
 }
 
 

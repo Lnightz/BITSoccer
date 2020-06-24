@@ -122,8 +122,7 @@
                                                 <label for="birthday" class="col-sm-2 col-form-label">Ngày sinh</label>
                                                 <div class="col-sm-10">
                                                     @{
-                                                        string birthDay = Model.BirthDay.GetValueOrDefault().ToString("dd/MM/yyyy");
-                                                        <input type="text" class="form-control my-datetimepicker" id="birthday" placeholder="" name="BirthDay" value="@birthDay">
+                                                        @Html.EditorFor(model => model.BirthDay , new { htmlAttributes = new { @class = "form-control"} })
                                                         @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
                                                     }
                                                 </div>
@@ -191,15 +190,3 @@
         </div>
     </div>
 </main>
-
-
-<script>
-        //jQuery(document).ready(function () {
-        //    'use strict';
-
-        //    jQuery('.my-datetimepicker').datetimepicker({
-        //        format: 'd/m/Y'
-        //    });
-        //});
-
-</script>

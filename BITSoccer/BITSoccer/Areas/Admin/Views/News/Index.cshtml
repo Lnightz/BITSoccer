@@ -29,13 +29,13 @@
                     <tr>
                         <td>@item.Name</td>
                         <td>@item.CreatedBy</td>
-                        <td>@String.Format("{0:dd/MM/yyyy}",item.CreatedDate)</td>
+                        <td>@String.Format("{0:dd/MM/yyyy}", item.CreatedDate)</td>
                         <td>@item.News_Category.Name</td>
                         <td>@item.IsActive</td>
                         <td class="text-center">
-                            @*<a href="@Url.Action("Details","LevelCoaches", new { id = item.LevelCoachID })" class="btn btn-info btn-sm">
-                                    <i class="fas fa-eye"></i> Xem
-                                </a>*@
+                            <a href="@Url.Action("Details","News", new { id = item.News_ID })" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> Xem
+                            </a>
                             <a class="btn btn-warning btn-sm" href="@Url.Action("Edit","News", new { id = item.News_ID  })">
                                 <i class="fas fa-pencil-alt"></i> Sửa
                             </a>

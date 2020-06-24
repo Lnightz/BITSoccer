@@ -5,111 +5,51 @@
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Thông tin chung</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-md-10">Tên Tin Tức</label>
+                                <h4 class="col-md-10 ml-4"> @Model.Name</h4>
+                                <label class="col-md-10">Thể loại:</label>
+                                <h4 class="col-md-10 ml-4"> @Model.News_Category.Name</h4>
+                                <label class="col-md-10">Trạng thái:</label>
+                                <h4 class="col-md-10 ml-4"> @Model.IsActive</h4>
+                                <label class="col-md-10">Ngày tạo - người tạo:</label>
+                                <p class="col-md-10 ml-4"> @Model.CreatedDate - @Model.CreatedBy</p>
+                                <label class="col-md-10">Ngày chỉnh sửa - người chỉnh sửa:</label>
+                                <p class="col-md-10 ml-4"> @Model.ModifyDate - @Model.ModifyBy</p>
+                            </div>
+                            <div class="col-md-5">
+                                <img src="@Model.Image" class="img-fluid" />
+                            </div>
+                        </div>
+                    </div>
 
-<div>
-    <h4>News</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MetaTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MetaTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifyDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifyDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifyBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifyBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ViewsCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ViewsCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.News_Category.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.News_Category.Name)
-        </dd>
-
-    </dl>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Giới thiệu chi tiết </h3>
+                </div>
+                <div class="card-body">
+                    <label class="col-md-2">Giới thiệu ngắn:</label>
+                    <p class="col-md-10 ml-4"> @Model.ShortDescription</p>
+                    <label class="col-md-2">Mô tả chi tiết:</label>
+                    <div class="col-md-10 ml-2">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.News_ID }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-secondary" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.News_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

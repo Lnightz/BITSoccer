@@ -11,6 +11,7 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
     public partial class Class : UploadImage
@@ -30,7 +31,11 @@ namespace BITSoccer.Models
         public Nullable<decimal> Prices { get; set; }
         public Nullable<decimal> PromoPrices { get; set; }
         public string Image { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> StartDay { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> EndDay { get; set; }
         public Nullable<int> MinQuanity { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

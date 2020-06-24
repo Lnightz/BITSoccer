@@ -52,26 +52,32 @@ namespace BITSoccer.Controllers
                 var countstudent = db.ClassUsers.Count(x => x.ClassID == item.Class_ID);
 
                 //Tạo ra một list danh sách từ danh sách lớp ở trên cộng với cột dữ liệu có bao nhiêu học sinh tham gia
-                if (Session["ListStudent"] == null)
+                if (ViewBag.ListStudent == null)
                 {
                     List<HotClasses> hotCourse = new List<HotClasses>
                 {
                     new HotClasses(countstudent,db.Classes.Find(item.Class_ID))
                 };
-                    Session["ListStudent"] = hotCourse;
+                    ViewBag.ListStudent = hotCourse;
                 }
                 else
                 {
-                    List<HotClasses> hotCourse = (List<HotClasses>)Session["ListStudent"];
+                    List<HotClasses> hotCourse = (List<HotClasses>)ViewBag.ListStudent;
                     hotCourse.Add(new HotClasses(countstudent, db.Classes.Find(item.Class_ID)));
-                    Session["ListStudent"] = hotCourse;
+                    ViewBag.ListStudent = hotCourse;
                 }
             }
 
-            List<HotClasses> listStudent = (List<HotClasses>)Session["ListStudent"];
-            //Tìm ra những lớp có số lượng học sinh lớn hơn 
-            listStudent = listStudent.Where(x => x.NumStudent > 10).ToList();
-            Session["ListStudent"] = listStudent;
+            if(ViewBag.ListStudent != null)
+            {
+                List<HotClasses> listStudent = (List<HotClasses>)ViewBag.ListStudent;
+                //Tìm ra những lớp có số lượng học sinh lớn hơn 
+                listStudent = listStudent.Where(x => x.NumStudent > 10).ToList();
+                ViewBag.ListStudent = listStudent;
+            }
+
+            //Nếu như chưa tìm đc HotClass
+            ViewBag.AnotherHotCourse = course.Take(5).ToList();
 
             return PartialView();
         }

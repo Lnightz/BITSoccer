@@ -95,7 +95,7 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "News_ID,Name,,ModifyDate,ModifyBy,IsActive,NewCate_ID,Content,Image,ShortDescription,PictureUpload")] News news)
+        public ActionResult Edit([Bind(Include = "News_ID,Name,ModifyDate,ModifyBy,IsActive,NewCate_ID,Content,Image,ShortDescription,PictureUpload")] News news)
         {
             if (news.PictureUpload != null)
             {

@@ -5,156 +5,73 @@
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 }
 
-<div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Thông tin chung</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-md-10">Tên Huấn luyện viên</label>
+                                <h4 class="col-md-10 ml-4"> @Model.Name</h4>
+                                <label class="col-md-10">Tuổi:</label>
+                                <p class="col-md-10 ml-4">@Model.Age</p>
+                                <label class="col-md-10">Giới tính</label>
+                                <p class="col-md-10 ml-4">@Model.Gender</p>
+                                <label class="col-md-10">Chứng minh nhân dân</label>
+                                <p class="col-md-10 ml-4">@Model.Passport</p>
+                                <label class="col-md-10">Trạng thái:</label>
+                                <p class="col-md-10 ml-4">@Model.IsActive</p>
+                                <label class="col-md-10">Ngày tạo - người tạo:</label>
+                                <p class="col-md-10 ml-4"> @Model.CreatedDate - @Model.CreatedBy</p>
+                                <label class="col-md-10">Ngày chỉnh sửa - người chỉnh sửa:</label>
+                                <p class="col-md-10 ml-4"> @Model.ModifyDate - @Model.ModifyBy</p>
+                            </div>
+                            <div class="col-md-5">
+                                <img src="@Model.Image" class="img-fluid" />
+                            </div>
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Thông tin chi tiết</h3>
+                </div>
+                <div class="card-body">
+                    <label class="col-md-10">Trình độ bằng cấp</label>
+                    <p class="col-md-10 ml-4"> @Model.LevelCoach.LevelName</p>
+                    <label class="col-md-10">Số điện thoại:</label>
+                    <p class="col-md-10 ml-4"> @Model.Phone</p>
+                    <label class="col-md-10">Email</label>
+                    <p class="col-md-10 ml-4"> @Model.Email</p>
+                    <label class="col-md-10">Twitter</label>
+                    <p class="col-md-10 ml-4"> @Model.Twitter</p>
+                    <label class="col-md-10">Facebook</label>
+                    <p class="col-md-10 ml-4"> @Model.Facebook</p>
+                    <label class="col-md-10">Insta</label>
+                    <p class="col-md-10 ml-4"> @Model.Insta</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifyDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifyDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifyBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifyBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Passport)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Passport)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            <img src="@Url.Content(Model.Image)" alt="Alternate Text" style="width:200px" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Facebook)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Facebook)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Insta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Insta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Twitter)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Twitter)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LevelCoach.LevelName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LevelCoach.LevelName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
-
-    </dl>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Giới thiệu chi tiết </h3>
+                </div>
+                <div class="card-body">
+                    <label class="col-md-2">Mô tả chi tiết:</label>
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Coach_ID }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-secondary" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Coach_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

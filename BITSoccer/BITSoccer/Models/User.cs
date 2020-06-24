@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User : UploadImage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,6 +33,8 @@ namespace BITSoccer.Models
         public string Avatar { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CustomerName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BirthDay { get; set; }
         public string Gender { get; set; }
         public string PhoneNumber { get; set; }

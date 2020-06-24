@@ -225,7 +225,7 @@ namespace BITSoccer.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                Home_Slide slide = null;
+                Home_Slide slide = new Home_Slide();
 
                 slide.HomeSlide_ID = 0;
                 slide.Description = model.Description;

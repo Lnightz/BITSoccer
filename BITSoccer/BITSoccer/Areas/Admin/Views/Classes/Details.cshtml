@@ -5,137 +5,86 @@
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 }
 
-
-<div>
-
-
-    <dl class="dl-horizontal">
-        <dt>
-            Tên lớp học : @Html.DisplayFor(model => model.Name)
-        </dt>
-        <dt>
-            Số lượng học viên :  @Html.DisplayFor(model => model.Quanity)
-        </dt>
-
-        <dt>
-            Giá gốc :  @Convert.ToDouble(Model.Prices).ToString("c0", new CultureInfo("vi-VN"))
-        </dt>
-
-        <dt>
-            Giá hiện tại: @Convert.ToDouble(Model.PromoPrices).ToString("c0", new CultureInfo("vi-VN"))
-        </dt>
-        @{
-            if (Model.Image != null)
-            {
-                <dt>
-                    Hình ảnh
-                </dt>
-
-                <dd>
-                    <img src="@Url.Content(Model.Image)" alt="Alternate Text" style="width:200px" />
-                </dd>
-            }
-            else
-            {
-                <dt>
-                    Hình ảnh
-                </dt>
-
-                <dd>
-                    <img src="https://via.placeholder.com/600" alt="Alternate Text" style="width:200px" />
-                </dd>
-            }
-        }
-
-        <dt>
-            Lịch học :  @Html.DisplayFor(model => model.StartDay) - @Html.DisplayFor(model => model.EndDay)
-        </dt>
-
-        <dt>
-            Giới hạn thấp nhất :  @Html.DisplayFor(model => model.MinQuanity)
-        </dt>
-
-        <dt>
-            Mô tả :   @Html.Raw(Model.Description)
-        </dt>
-
-        <dt>
-            Thông tin Huấn luyện viên :  @Html.DisplayFor(model => model.Coach.Name)
-        </dt>
-
-        <dt>
-            Dành cho giới tính : @Html.DisplayFor(model => model.Gender.Gender1)
-        </dt>
-
-
-        <dt>
-            Trình độ lớp học  :  @Html.DisplayFor(model => model.LevelStudent.LevelName)
-        </dt>
-
-
-        <dt>
-            Buổi học :  @Html.DisplayFor(model => model.PartOfDay.PartOfDay1)
-        </dt>
-
-
-        <dt>
-            Giới hạn độ tuổi :  @Html.DisplayFor(model => model.RangeAge.MinAge) - @Html.DisplayFor(model => model.RangeAge.MaxAge)
-        </dt>
-
-
-        <dt>
-            Khung thời gian :   @Html.DisplayFor(model => model.RangeTime.StartTime) - @Html.DisplayFor(model => model.RangeTime.EndTime)
-        </dt>
-
-        <dt>
-            Cơ sở :  @Html.DisplayFor(model => model.Stadium.Name)
-        </dt>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription) : @Html.DisplayFor(model => model.ShortDescription)
-        </dt>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GeneralDescription) : @Html.DisplayFor(model => model.GeneralDescription)
-        </dt>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate) : @Html.DisplayFor(model => model.CreatedDate)
-        </dt>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy) :  @Html.DisplayFor(model => model.CreatedBy)
-        </dt>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifyDate) :  @Html.DisplayFor(model => model.ModifyDate)
-        </dt>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifyBy) :  @Html.DisplayFor(model => model.ModifyBy)
-        </dt>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive) :  @Html.DisplayFor(model => model.IsActive)
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ViewCount) :   @Html.DisplayFor(model => model.ViewCount)
-        </dt>
-
-
-    </dl>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Thông tin chung</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-md-10">Tên Khóa Học:</label>
+                                <h4 class="col-md-10 ml-4"> @Model.Name</h4>
+                                <label class="col-md-10">Ngày bắt đầu - Ngày kết thúc:</label>
+                                <p class="col-md-10 ml-4"> @Model.StartDay - @Model.EndDay </p>
+                                <label class="col-md-10">Giá Gốc:</label>
+                                <p class="col-md-10 ml-4"> @Model.Prices</p>
+                                <label class="col-md-10">Giá Hiện tại:</label>
+                                <p class="col-md-10 ml-4"> @Model.PromoPrices</p>
+                                <label class="col-md-10">Số lượng tối đa:</label>
+                                <p class="col-md-10 ml-4"> @Model.Quanity</p>
+                                <label class="col-md-10">Số lượng tối thiểu:</label>
+                                <p class="col-md-10 ml-4"> @Model.MinQuanity</p>
+                                <label class="col-md-10">Trạng thái:</label>
+                                <p class="col-md-10 ml-4"> @Model.IsActive</p>
+                                <label class="col-md-10">Ngày tạo - người tạo:</label>
+                                <p class="col-md-10 ml-4"> @Model.CreatedDate - @Model.CreatedBy</p>
+                                <label class="col-md-10">Ngày chỉnh sửa - người chỉnh sửa:</label>
+                                <p class="col-md-10 ml-4"> @Model.ModifyDate - @Model.ModifyBy</p>
+                            </div>
+                            <div class="col-md-5">
+                                <img src="@Model.Image" class="img-fluid" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Thông tin chi tiết</h3>
+                </div>
+                <div class="card-body">
+                    <label class="col-md-10">Tên Huấn Luyện viên:</label>
+                    <h4 class="col-md-10 ml-4"> @Model.Coach.Name</h4>
+                    <label class="col-md-10">Trình độ lớp:</label>
+                    <p class="col-md-10 ml-4"> @Model.LevelStudent.LevelName</p>
+                    <label class="col-md-10">Buổi học:</label>
+                    <p class="col-md-10 ml-4"> @Model.PartOfDay.PartOfDay1</p>
+                    <label class="col-md-10">Thời gian học:</label>
+                    <p class="col-md-10 ml-4"> @Model.RangeTime.StartTime - @Model.RangeTime.EndTime</p>
+                    <label class="col-md-10">Giới hạn độ tuổi:</label>
+                    <p class="col-md-10 ml-4"> @Model.RangeAge.MinAge - @Model.RangeAge.MaxAge</p>
+                    <label class="col-md-10">Giới hạn giới tính:</label>
+                    <p class="col-md-10 ml-4"> @Model.Gender.Gender1</p>
+                    <label class="col-md-10">Nơi Học:</label>
+                    <p class="col-md-10 ml-4"> @Model.Stadium.Name</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-weight:700">Giới thiệu chi tiết </h3>
+                </div>
+                <div class="card-body">
+                    <label class="col-md-2">Giới thiệu ngắn:</label>
+                    <p class="col-md-10 ml-4"> @Model.ShortDescription</p>
+                    <label class="col-md-2">Mô tả chung:</label>
+                    <p class="col-md-10 ml-4"> @Model.GeneralDescription</p>
+                    <label class="col-md-2">Mô tả chi tiết:</label>
+                    <div class="col-md-10 ml-2">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+            </div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Class_ID }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-secondary" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Class_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+

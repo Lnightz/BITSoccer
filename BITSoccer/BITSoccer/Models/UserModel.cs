@@ -27,6 +27,8 @@ namespace BITSoccer.Models
         [Required]
         public string CustomerName { get; set; }
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BirthDay { get; set; }
         [Required]
         public string Gender { get; set; }
