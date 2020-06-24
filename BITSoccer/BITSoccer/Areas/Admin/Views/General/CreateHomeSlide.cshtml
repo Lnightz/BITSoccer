@@ -17,20 +17,23 @@
                     <div class="card-body">
                         <div class="col-md-10">
                             <label for="Name">Mô tả ngắn</label>
-                            <input name="Name" type="text" class="form-control" id="Name" value="@Model.Description" />
+                            <input name="Name" type="text" class="form-control" id="Name" />
                         </div>
                         <div class="col-md-10">
                             <label for="Link">Đường dẫn</label>
-                            <input name="Link" type="text" class="form-control" id="Link" value="@Model.Link" />
+                            <input name="Link" type="text" class="form-control" id="Link" />
                         </div>
                         <div class="col-md-10">
                             <label for="IsActive">Mô tả ngắn</label>
                             @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-
+                        <div class="col-md-10">
+                            <label for="IsActive">Thứ tự hiển thị</label>
+                            <input name="DisplayOrder" type="number" min="0" max="5" class="form-control"/>
+                            </div>
                         <div class="col-md-10">
                             <label for="PictureUpload">Upload hình ảnh</label>
-                            <input name="PictureUpload" type="file" class="form-control" id="PictureUpload" value="@Model.PictureUpload" />
+                            <input name="PictureUpload" type="file" class="form-control" id="PictureUpload" />
                         </div>
                     </div>
                     <div class="container-fluid">

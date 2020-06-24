@@ -219,7 +219,7 @@ namespace BITSoccer.Areas.Admin.Controllers
                 string pathinDB = "/Content/Images/" + Path.GetFileName(model.PictureUpload.FileName);
                 model.Image = pathinDB;
             }
-            else
+            if(model.PictureUpload == null)
             {
                 model.Image = "/Assets/img/no-photo.jpg";
             }
@@ -227,9 +227,9 @@ namespace BITSoccer.Areas.Admin.Controllers
             {
                 Home_Slide slide = null;
 
+                slide.HomeSlide_ID = 0;
                 slide.Description = model.Description;
                 slide.Image = model.Image;
-                slide.PictureUpload = model.PictureUpload;
                 slide.Link = model.Link;
                 slide.DisplayOrder = model.DisplayOrder;
                 slide.CreatedDate = DateTime.Now;
