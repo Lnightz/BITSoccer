@@ -28,7 +28,7 @@ namespace BITSoccer.Models
         public Nullable<int> Team_A_Score { get; set; }
         public Nullable<int> Team_B_Score { get; set; }
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Time { get; set; }
         public int Stadium_ID { get; set; }
         public string Team_A_Player { get; set; }

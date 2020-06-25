@@ -56,29 +56,36 @@
                                     @ViewBag.Classes.ShortDescription
                                 </p>
                                 @{
-                                    
+
                                     if (DateTime.Now.AddDays(-3) > ViewBag.Classes.StartDay)
                                     {
                                         <div class="alert alert-warning text-capitalize text-center">khoá học này đã hết hạn đăng ký rồi</div>
                                     }
                                     else
                                     {
-                                        if (User.Identity.IsAuthenticated)
+                                        if (ViewBag.FullClass != null)
                                         {
-                                            if (ViewBag.UsersHaveClass == null)
-                                            {
-                                                <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = ViewBag.Classes.Class_ID })">
-                                                    <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <div class="alert alert-info text-capitalize text-center">bạn đã đăng ký khoá học này rồi</div>
-                                            }
+                                            <div class="alert alert-warning text-capitalize text-center">@ViewBag.FullClass</div>
                                         }
                                         else
                                         {
-                                            <a href="@Url.Action("Login", "Account")" class="alert alert-info text-center">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                            if (User.Identity.IsAuthenticated)
+                                            {
+                                                if (ViewBag.UsersHaveClass == null)
+                                                {
+                                                    <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = ViewBag.Classes.Class_ID })">
+                                                        <img src="~/Assets/img/dang-ky-hoc-banh.png" alt="Bóng đá">
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <div class="alert alert-info text-capitalize text-center">bạn đã đăng ký khoá học này rồi</div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("Login", "Account")" class="alert alert-info text-center">Vui lòng đăng nhập để đăng ký lớp học</a>
+                                            }
                                         }
                                     }
                                 }

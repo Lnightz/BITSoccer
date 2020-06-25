@@ -84,6 +84,12 @@ namespace BITSoccer.Controllers
             
             ViewBag.Classes = classes;
 
+            var countStudentInClass = db.ClassUsers.Count(x => x.ClassID == id);
+            if (countStudentInClass >= classes.Quanity)
+            {
+                ViewBag.FullClass = "Lớp đã quá giới hạn đăng ký";
+            }
+
             if(userratingdetails != null)
             {
                 ViewBag.Error = "RATED";
