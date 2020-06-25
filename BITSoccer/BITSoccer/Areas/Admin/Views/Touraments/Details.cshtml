@@ -1,0 +1,59 @@
+﻿@model BITSoccer.Models.Tourament
+@{
+    ViewBag.Title = "Chi tiết trận đấu";
+    Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    @ViewBag.Title
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12">Đội A:</label>
+                                <p class="col-md-12 mr-3">@Model.Team_A</p>
+                                <label class="col-md-12">Số bàn thắng:</label>
+                                <p class="col-md-12 mr-3">@Model.Team_A_Score</p>
+                                <label class="col-md-12">Cầu thủ ghi bàn:</label>
+                                <p class="col-md-12 mr-3">@Model.Team_B_Player</p>
+                                <label class="col-md-12">Đội hình:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamAFormation</p>
+                                <label class="col-md-12">Thẻ vàng:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamAYellowCart</p>
+                                <label class="col-md-12">Thẻ đỏ:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamARedCard</p>
+                                <label class="col-md-12">Lỗi vi phạm:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamAFouls_Conceded</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12">Đội B:</label>
+                                <p class="col-md-12 mr-3">@Model.Team_B</p>
+                                <label class="col-md-12">Số bàn thắng:</label>
+                                <p class="col-md-12 mr-3">@Model.Team_B_Score</p>
+                                <label class="col-md-12">Cầu thủ ghi bàn:</label>
+                                <p class="col-md-12 mr-3">@Model.Team_B_Player</p>
+                                <label class="col-md-12">Đội hình:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamBFormation</p>
+                                <label class="col-md-12">Thẻ vàng:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamBYellowCart</p>
+                                <label class="col-md-12">Thẻ đỏ:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamBRedCard</p>
+                                <label class="col-md-12">Lỗi vi phạm:</label>
+                                <p class="col-md-12 mr-3">@Model.TeamBFouls_Conceded</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

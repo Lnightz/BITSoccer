@@ -106,7 +106,6 @@ namespace BITSoccer.Controllers
                 model = model.Where(x => x.Name.Contains(searchclassname));
             }
 
-
             return View(model.ToPagedList(pageNumber, pageSize));
             
         }

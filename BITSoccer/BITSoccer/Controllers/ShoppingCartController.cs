@@ -89,13 +89,16 @@ namespace BITSoccer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOut(FormCollection model)
         {
-            float discount = (float)Convert.ToDouble(model["Discount"]);
+            //float discount = (float)Convert.ToDouble(model["Discount"]);
             
             var userdetails = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             List<Cart> listcarts = (List<Cart>)Session["ClassCart"];
 
-            var checkdiscount = db.DiscountCodes.Where(x => x.DiscountCode1 == model["Discount"].ToString()).FirstOrDefault();
+            var discountcode = model["Discount"].ToString();
 
+            var checkdiscount = db.DiscountCodes.Where(x => x.DiscountCode1 == discountcode).FirstOrDefault();
+
+            float discount = 0;
             if(checkdiscount != null)
             {
                 discount = (float)Convert.ToDouble(checkdiscount.Discount);

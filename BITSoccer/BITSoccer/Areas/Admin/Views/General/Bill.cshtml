@@ -27,7 +27,7 @@
                     <tr>
                         <td>@item.User.CustomerName</td>
                         <td>@String.Format("{0:dd/MM/yyyy}",item.CreateDate)</td>
-                        <td>@item.Discount</td>
+                        <td>@String.Format("{0:0.#}",item.Discount)</td>
                         <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", item.TotalPaid)</td>
                         <td>@item.PayMethod.PayMethodName</td>
                         <td class="text-center">

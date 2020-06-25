@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace BITSoccer.Controllers
 {
+    [ChildActionOnly]
     public class PartialController : Controller
     {
         BITSoccerEntities db = new BITSoccerEntities();
@@ -64,6 +65,7 @@ namespace BITSoccer.Controllers
                 {
                     List<HotClasses> hotCourse = (List<HotClasses>)ViewBag.ListStudent;
                     hotCourse.Add(new HotClasses(countstudent, db.Classes.Find(item.Class_ID)));
+
                     ViewBag.ListStudent = hotCourse;
                 }
             }
@@ -73,11 +75,18 @@ namespace BITSoccer.Controllers
                 List<HotClasses> listStudent = (List<HotClasses>)ViewBag.ListStudent;
                 //Tìm ra những lớp có số lượng học sinh lớn hơn 
                 listStudent = listStudent.Where(x => x.NumStudent > 10).ToList();
-                ViewBag.ListStudent = listStudent;
+                if (listStudent.Count() > 3)
+                {
+                    ViewBag.ListStudent = listStudent;
+                }
+                else
+                {
+                    ViewBag.ListStudent = null;
+                }
             }
 
             //Nếu như chưa tìm đc HotClass
-            ViewBag.AnotherHotCourse = course.Take(5).ToList();
+            ViewBag.AnotherHotCourse = db.Classes.OrderByDescending(x => x.CreatedDate).Take(5).ToList();
 
             return PartialView();
         }

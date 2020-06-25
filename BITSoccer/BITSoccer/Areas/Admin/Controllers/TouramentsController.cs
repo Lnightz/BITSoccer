@@ -21,6 +21,20 @@ namespace BITSoccer.Areas.Admin.Controllers
             return View(touraments.ToList());
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tourament tourament = db.Touraments.Find(id);
+            if (tourament == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tourament);
+        }
+
         // GET: Admin/Touraments/Create
         public ActionResult Create()
         {
@@ -46,6 +60,7 @@ namespace BITSoccer.Areas.Admin.Controllers
             return View(tourament);
         }
 
+        [HttpGet]
         // GET: Admin/Touraments/Edit/5
         public ActionResult Edit(int? id)
         {

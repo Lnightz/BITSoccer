@@ -79,8 +79,8 @@
                             <a class="nav-link" href="@Url.Action("About","Home")">Về chúng tôi</a>
                         </li>
                         <!-- <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li> -->
+                          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li> -->
                     </ul>
 
                     @{
@@ -303,7 +303,7 @@
 
                             <div class="col-md-6">
                                 <label for="class-discount-code">Mã giảm giá</label>
-                                <input id="class-discount-code" class="form-control" name="Discount" value="0" disabled>
+                                <input id="class-discount-code" class="form-control" name="Discount" value="0" >
                                 <br>
                                 <label for="">Hình thức thanh toán</label>
 
@@ -323,9 +323,15 @@
                                 <input type="hidden" value="@total" name="Total" />
                             </div>
                             <div class="col-lg-12">
-                                <button type="button" class="btn btn-primary btn-lg StudentPayBtn" data-toggle="modal" data-target="#exampleModal111">
-                                    Thanh Toán
-                                </button>
+                                @{
+                                    if (Session["ClassCart"] != null)
+                                    {
+                                        <button type="button" class="btn btn-primary btn-lg StudentPayBtn" data-toggle="modal" data-target="#exampleModal111">
+                                            Thanh Toán
+                                        </button>
+                                    }
+                                }
+
                             </div>
                             <div class="modal fade" id="exampleModal111" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">

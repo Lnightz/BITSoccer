@@ -65,7 +65,7 @@
                                 <div class="form-inline">
                                     <div class="search-group d-flex mr-2 float-right">
                                         <input type="text" placeholder="Tên lớp" style="margin-right:0 !important"
-                                               class="form-control news-search-form-control" name="searchclassname">
+                                               class="form-control news-search-form-control" name="searchclassname" value="@ViewBag.ClassName">
                                         <button type="submit" class="btn btn-primary btn-news-search"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
@@ -384,8 +384,8 @@
                                                                         }
                                                                         else
                                                                         {
-                                                                            <div class="prices-now">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                                                            <del class="prices-before">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                                                            <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                                                            <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
                                                                         }
                                                                     }
                                                                 </div>

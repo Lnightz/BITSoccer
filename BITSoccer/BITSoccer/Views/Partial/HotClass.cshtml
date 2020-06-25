@@ -64,8 +64,8 @@
                                     }
                                     else
                                     {
-                                        <div class="prices-now">@Convert.ToDouble(@item.Course.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                        <del class="prices-before">@Convert.ToDouble(@item.Course.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                        <div class="prices-now">@Convert.ToDouble(@item.Course.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                        <del class="prices-before">@Convert.ToDouble(@item.Course.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
                                     }
                                 }
                             </div>
@@ -100,11 +100,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <a href="@Url.Action("ClassDetails","ClassDetails", new { id = item.Class_ID})">
-                                <h5 class="card-title class-title">@item..Name</h5>
+                                <h5 class="card-title class-title">@item.Name</h5>
                             </a>
                             <div class="class-number d-flex">
                                 <i class="fas fa-user"></i>
-                                <h6>@item..Quanity</h6>
+                                <h6>@item.Quanity</h6>
                             </div>
                         </div>
                         <p class="card-text">
@@ -138,8 +138,8 @@
                                     }
                                     else
                                     {
-                                        <div class="prices-now">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</div>
-                                        <del class="prices-before">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</del>
+                                        <div class="prices-now">@Convert.ToDouble(@item.PromoPrices).ToString("C0", new CultureInfo("vi-VN"))</div>
+                                        <del class="prices-before">@Convert.ToDouble(@item.Prices).ToString("C0", new CultureInfo("vi-VN"))</del>
                                     }
                                 }
                             </div>

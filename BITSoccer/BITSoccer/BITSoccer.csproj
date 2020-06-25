@@ -754,6 +754,7 @@
     <Content Include="Areas\Admin\Views\General\BillDetails.cshtml" />
     <Content Include="Areas\Admin\Views\General\AllUserAccount.cshtml" />
     <Content Include="Areas\Admin\Views\General\EditAbout.cshtml" />
+    <Content Include="Areas\Admin\Views\Touraments\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
