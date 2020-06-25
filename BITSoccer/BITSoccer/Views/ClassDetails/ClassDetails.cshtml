@@ -56,8 +56,9 @@
                                     @ViewBag.Classes.ShortDescription
                                 </p>
                                 @{
+                                    DateTime Check = ViewBag.Classes.StartDay;
 
-                                    if (DateTime.Now.AddDays(-3) > ViewBag.Classes.StartDay)
+                                    if (DateTime.Today > Check.AddDays(-3))
                                     {
                                         <div class="alert alert-warning text-capitalize text-center">khoá học này đã hết hạn đăng ký rồi</div>
                                     }
@@ -170,7 +171,7 @@
                                                     <div class="assessments-feature class-details-icon text-left">
                                                         <i class="fas fa-calendar-plus"></i>
                                                         <span class="label">Bắt đầu:</span>
-                                                        <span class="value col-lg-3">@String.Format("{0:dd/MM/yyyy}",ViewBag.Classes.StartDay)</span>
+                                                        <span class="value col-lg-3">@String.Format("{0:dd/MM/yyyy}", ViewBag.Classes.StartDay)</span>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">

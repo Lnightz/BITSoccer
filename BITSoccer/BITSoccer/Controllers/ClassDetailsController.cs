@@ -80,7 +80,7 @@ namespace BITSoccer.Controllers
             var userratingdetails = db.Ratings.Where(x => x.User.UserName == User.Identity.Name && x.Class_ID ==  id).FirstOrDefault();
 
             //Tìm xem user đã đăng ký lớp học chua để trap không cho đk nữa
-            ViewBag.UsersHaveClass = db.ClassUsers.FirstOrDefault(x => x.User.UserName == User.Identity.Name);
+            ViewBag.UsersHaveClass = db.ClassUsers.FirstOrDefault(x => x.User.UserName == User.Identity.Name && x.ClassID == id);
             
             ViewBag.Classes = classes;
 

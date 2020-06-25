@@ -94,7 +94,7 @@ namespace BITSoccer.Controllers
                 var haveclass = db.ClassUsers.Where(x => x.User.UserName == User.Identity.Name).ToList();
                 var pageNumber = page ?? 1;
                 var pageSize = 1;
-                var today = DateTime.UtcNow;
+                var today = DateTime.Now;
                 switch (CurrentFilter)
                 {
                     case 1:

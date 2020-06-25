@@ -27,7 +27,7 @@ namespace BITSoccer.BLL
                     User_ID = model.UserID,
                     Class_ID = model.ClassID,
                     Content = model.Content,
-                    PostDate = DateTime.UtcNow,
+                    PostDate = DateTime.Now,
                     RootCommentID = model.RootCmtID,
                     ReplyToCommentID = model.RepToCmtID,
                 };
@@ -51,7 +51,7 @@ namespace BITSoccer.BLL
                     User_ID = model.UserID,
                     New_ID = model.NewsID,
                     Content = model.Content,
-                    PostDate = DateTime.UtcNow,
+                    PostDate = DateTime.Now,
                     RootCommentID = model.RootCmtID,
                     ReplyToCommentID = model.RepToCmtID,
                 };
@@ -75,7 +75,7 @@ namespace BITSoccer.BLL
                     User_ID = model.UserID,
                     New_ID = model.NewsID,
                     Content = model.Content,
-                    PostDate = DateTime.UtcNow,
+                    PostDate = DateTime.Now,
                 };
                 db.Comments.Add(cmt);
                 if (db.SaveChanges() > 0)
@@ -97,7 +97,7 @@ namespace BITSoccer.BLL
                     User_ID = model.UserID,
                     Class_ID = model.ClassID,
                     Content = model.Content,
-                    PostDate = DateTime.UtcNow,
+                    PostDate = DateTime.Now,
                 };
                 db.Comments.Add(cmt);
                 if (db.SaveChanges() > 0)

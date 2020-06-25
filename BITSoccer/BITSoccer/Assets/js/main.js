@@ -89,12 +89,4 @@ $('.hot-class-wrapper')
 //        }
 //    });
 //});
-jQuery(document).ready(function () {
-    'use strict';
-
-    jQuery('.my-datetimepicker').datetimepicker({
-        timepicker: false,
-        format: 'd/m/Y'
-    });
-});
 
