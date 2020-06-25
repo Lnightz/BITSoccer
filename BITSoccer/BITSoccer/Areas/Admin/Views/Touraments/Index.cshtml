@@ -5,162 +5,85 @@
     Layout = "~/Views/Shared/_LayoutAdminControl.cshtml";
 }
 
-<h2>Index</h2>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+        <a href="@Url.Action("Create","Touraments")" class="btn btn-primary float-right"><span><i class="fas fa-plus"></i></span> Thêm @ViewBag.Title</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Đội A</th>
+                    <th>Đội B</th>
+                    <th>Tỉ số</th>
+                    <th>Thời gian diễn ra</th>
+                    <th>Sân vận động</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Team_A</td>
+                        <td>@item.Team_B</td>
+                        <td>@item.Team_A_Score - @item.Team_B_Score</td>
+                        <td>@item.Time</td>
+                        <td>@item.Stadium.Name</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Details","Touraments", new { id = item.Stadium_ID })" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> Xem
+                            </a>
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("Edit","Touraments", new { id = item.Stadium_ID })">
+                                <i class="fas fa-pencil-alt"></i> Sửa
+                            </a>
+                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#exampleModalCenter",item.Stadium_ID)">
+                                <i class="fas fa-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="@string.Concat("exampleModalCenter",item.Stadium_ID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xóa huấn luyện viên @item.Name ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    @using (Html.BeginForm("Delete", "Touraments", new { id = item.Stadium_ID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fas fa-trash"></i> Xóa
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Đội A</th>
+                    <th>Đội B</th>
+                    <th>Tỉ số</th>
+                    <th>Thời gian diễn ra</th>
+                    <th>Sân vận động</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MetaTitlte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreaedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifyDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifyBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team_A)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team_B)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team_A_Score)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team_B_Score)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team_A_Player)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team_B_Player)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamARedCard)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamAYellowCart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamAFouls_Conceded)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamBRedCard)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamBYellowCart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamBFouls_Conceded)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamAFormation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamBFormation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stadium.Name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MetaTitlte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreaedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifyDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifyBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team_A)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team_B)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team_A_Score)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team_B_Score)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team_A_Player)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team_B_Player)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamARedCard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamAYellowCart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamAFouls_Conceded)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamBRedCard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamBYellowCart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamBFouls_Conceded)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamAFormation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamBFormation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stadium.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Tour_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Tour_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Tour_ID })
-        </td>
-    </tr>
-}
 
-</table>

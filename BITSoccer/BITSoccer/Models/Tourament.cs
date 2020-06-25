@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tourament
     {
         public int Tour_ID { get; set; }
@@ -26,6 +27,8 @@ namespace BITSoccer.Models
         public string Team_B { get; set; }
         public Nullable<int> Team_A_Score { get; set; }
         public Nullable<int> Team_B_Score { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Time { get; set; }
         public int Stadium_ID { get; set; }
         public string Team_A_Player { get; set; }
