@@ -83,17 +83,18 @@
 }
 
 .hot-class-slider .hot-class-wrapper{
-    width: 85%;
+    width: 100%;
     height: auto;
     margin: 0px auto;
 
 }
 
 .hot-class-slider .hot-class-wrapper .hot-class{
-    width: 23rem;
+    width: auto;
     height: auto;
     display: inline-block;
-    margin: 0px  10px 0px 10px;
+    margin: auto;
+    margin-right:10px;
 }
 
 .hot-class-slider .slick-list{

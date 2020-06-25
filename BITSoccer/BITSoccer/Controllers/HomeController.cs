@@ -79,7 +79,7 @@ namespace BITSoccer.Controllers
             //ViewBag.ClassDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
             //ViewBag.ClassCostSort = sortOrder == "Prices" ? "PricesDesc" : "Prices";
             var pageNumber = page ?? 1;
-            var pageSize = 3;
+            var pageSize = 6;
 
 
             switch (sortOrder)
@@ -130,7 +130,7 @@ namespace BITSoccer.Controllers
                 news = news.Where(x => x.NewCate_ID == newscateid);
             }
             var pageNumber = page ?? 1;
-            var pageSize = 3;
+            var pageSize = 6;
 
             //ViewBag.NewsNameSort = sortOrder == "NewsName";
             //ViewBag.NewsDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
@@ -174,7 +174,7 @@ namespace BITSoccer.Controllers
 
             ViewBag.PageNumber = pageNumber;
 
-            var pageSize = 2;
+            var pageSize = 4;
 
             ViewBag.PageSize = pageSize;
 
@@ -236,7 +236,7 @@ namespace BITSoccer.Controllers
             //ViewBag.NewsDateCreateSort = sortOrder == "DateCreate" ? "DateCreateDesc" : "DateCreate";
 
             var pageNumber = page ?? 1;
-            var pageSize = 3;
+            var pageSize = 6;
 
             switch (sortOrder)
             {

@@ -112,7 +112,7 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Class_ID,Name,Quanity,Prices,PromoPrices,Image,StartDay,EndDay,MinQuanity,CreatedBy,ModifyDate,ModifyBy,IsActive,Coach_ID,LevelStudentID,RangeAgeID,PartOfDayID,GenderID,RangeTimeID,StadiumID,Description,ShortDescription,GeneralDescription,PictureUpload")] Class @class)
+        public ActionResult Edit([Bind(Include = "Class_ID,Name,Quanity,Prices,PromoPrices,Image,StartDay,EndDay,MinQuanity,CreatedDate,CreatedBy,ModifyDate,ModifyBy,IsActive,Coach_ID,LevelStudentID,RangeAgeID,PartOfDayID,GenderID,RangeTimeID,StadiumID,Description,ShortDescription,GeneralDescription,PictureUpload")] Class @class)
         {
             if (@class.PictureUpload != null)
             {

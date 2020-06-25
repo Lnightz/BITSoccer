@@ -82,7 +82,7 @@ namespace BITSoccer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Tour_ID,ModifyDate,ModifyBy,IsActive,Team_A,Team_B,Team_A_Score,Team_B_Score,Time,Stadium_ID,Team_A_Player,Team_B_Player,TeamARedCard,TeamAYellowCart,TeamAFouls_Conceded,TeamBRedCard,TeamBYellowCart,TeamBFouls_Conceded,TeamAFormation,TeamBFormation")] Tourament tourament)
+        public ActionResult Edit([Bind(Include = "Tour_ID,CreatedDate,CreaedBy,ModifyDate,ModifyBy,IsActive,Team_A,Team_B,Team_A_Score,Team_B_Score,Time,Stadium_ID,Team_A_Player,Team_B_Player,TeamARedCard,TeamAYellowCart,TeamAFouls_Conceded,TeamBRedCard,TeamBYellowCart,TeamBFouls_Conceded,TeamAFormation,TeamBFormation")] Tourament tourament)
         {
             if (ModelState.IsValid)
             {
