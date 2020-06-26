@@ -42,7 +42,7 @@
                             <label for="PictureUpload">Đăng hình ảnh đội ngũ huấn luyện viên</label>
                             <input type="file" name="PictureUpload" id="PictureUpload" value="@about.PictureUpload" class="form-control" />
                         </div>
-                        <input type="hidden" value="@about.AboutID" name="AboutID"/>
+                        <input type="hidden" value="@about.AboutID" name="AboutID" />
 
                         <div class="col-md-10 d-flex justify-content-end my-4">
                             <input type="submit" value="Save" class="btn btn-primary ml-3" />
@@ -78,40 +78,41 @@
                                     <td><img src="@item.Image" class="img-fluid" /></td>
                                     <td class="text-center">
                                         @*<a class="btn btn-warning btn-sm" href="@Url.Action("EditArchive","General", new { id = item.Archive_ID })">
-                        <i class="fas fa-pencil-alt"></i> Sửa
-                    </a>*@
-                                        <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.AboutSlideID)">
+                                                <i class="fas fa-pencil-alt"></i> Sửa
+                                            </a>*@
+                                        <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.AboutSlideID)">
                                             <i class="fas fa-pencil-alt"></i> Sửa
                                         </a>
                                     </td>
                                 </tr>
-                                using (Html.BeginForm("EditAboutSlide", "General", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    @Html.AntiForgeryToken();
-                                    <div class="modal fade" id="@string.Concat("ModalCenter",item.AboutSlideID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
+                                <div class="modal fade" id="@string.Concat("ModalCenter",item.AboutSlideID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @using (Html.BeginForm("EditAboutSlide", "General", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
+                                                @Html.AntiForgeryToken();
                                                 <div class="modal-body">
                                                     <label for="PictureUpload1">Upload hình</label>
-                                                    <input name="PictureUpload" value="@item.PictureUpload" id="PictureUpload1" class="form-control" type="file"/>
-                                                    <input name="AboutSlideID" type="hidden" value="@item.AboutSlideID" /> 
+                                                    <input name="PictureUpload" value="@item.PictureUpload" id="PictureUpload1" class="form-control" type="file" />
+                                                    <input name="AboutSlideID" type="hidden" value="@item.AboutSlideID" />
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                        <button class="btn btn-warning btn-sm" type="submit">
+                                                            <i class="fas fa-pencil-alt"></i> Sửa
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">
-                                                        <i class="fas fa-pencil-alt"></i> Sửa
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            }
                                         </div>
                                     </div>
-                                }
+                                </div>
+
                             }
                         </tbody>
                         <tfoot>
