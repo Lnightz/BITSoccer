@@ -22,9 +22,10 @@ namespace BITSoccer.BLL
 
             using (var db = new BITSoccerEntities())
             {
+                var userid = db.Users.FirstOrDefault(x => x.UserName == model.UserName);
                 cmt = new Comment()
                 {
-                    User_ID = model.UserID,
+                    User_ID = userid.User_ID,
                     Class_ID = model.ClassID,
                     Content = model.Content,
                     PostDate = DateTime.Now,
@@ -46,9 +47,10 @@ namespace BITSoccer.BLL
 
             using (var db = new BITSoccerEntities())
             {
+                var userid = db.Users.FirstOrDefault(x => x.UserName == model.UserName);
                 cmt = new Comment()
                 {
-                    User_ID = model.UserID,
+                    User_ID = userid.User_ID,
                     New_ID = model.NewsID,
                     Content = model.Content,
                     PostDate = DateTime.Now,
@@ -70,9 +72,10 @@ namespace BITSoccer.BLL
 
             using (var db = new BITSoccerEntities())
             {
+                var userid = db.Users.FirstOrDefault(x => x.UserName == model.UserName);
                 cmt = new Comment()
                 {
-                    User_ID = model.UserID,
+                    User_ID = userid.User_ID,
                     New_ID = model.NewsID,
                     Content = model.Content,
                     PostDate = DateTime.Now,
@@ -92,9 +95,10 @@ namespace BITSoccer.BLL
 
             using (var db = new BITSoccerEntities())
             {
+                var userid = db.Users.FirstOrDefault(x => x.UserName == model.UserName);
                 cmt = new Comment()
                 {
-                    User_ID = model.UserID,
+                    User_ID = userid.User_ID,
                     Class_ID = model.ClassID,
                     Content = model.Content,
                     PostDate = DateTime.Now,

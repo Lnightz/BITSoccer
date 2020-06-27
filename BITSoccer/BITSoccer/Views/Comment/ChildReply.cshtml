@@ -46,7 +46,7 @@
                             @Html.AntiForgeryToken();
                             <textarea class="form-control textcmtbox" rows="4" id="" name="Content"></textarea>
                             <input type="hidden" value="@item.Class_ID" name="ClassID" />
-                            <input type="hidden" value="@item.User_ID" name="UserID" />
+                            <input type="hidden" value="@User.Identity.Name" name="UserName" />
                             <input type="hidden" value="@item.RootCommentID" name="RootCmtID" />
                             <input type="hidden" value="@item.Comment_ID" name="RepToCmtID" />
                             <div class="float-right">
@@ -105,7 +105,7 @@
                             @Html.AntiForgeryToken();
                             <textarea class="form-control textcmtbox" rows="4" id="" name="Content"></textarea>
                             <input type="hidden" value="@item.New_ID" name="NewsID" />
-                            <input type="hidden" value="@item.User_ID" name="UserID" />
+                            <input type="hidden" value="@User.Identity.Name" name="UserName" />
                             <input type="hidden" value="@item.RootCommentID" name="RootCmtID" />
                             <input type="hidden" value="@item.Comment_ID" name="RepToCmtID" />
                             <div class="float-right">

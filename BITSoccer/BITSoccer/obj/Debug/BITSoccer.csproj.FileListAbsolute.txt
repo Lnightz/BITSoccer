@@ -177,3 +177,4 @@ E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csproj.CopyComplete
 E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.dll
 E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.pdb
 D:\GitHub\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csprojAssemblyReference.cache
+E:\BITSoccer\BITSoccer\BITSoccer\obj\Debug\BITSoccer.csprojAssemblyReference.cache

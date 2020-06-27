@@ -9,7 +9,7 @@ namespace BITSoccer.Models
     public class CommentModel
     {
         public int CommentID { get; set; }
-        public int UserID { get; set; }
+        public string UserName { get; set; }
         public int ClassID { get; set; }
         public int NewsID { get; set; }
         [Required]

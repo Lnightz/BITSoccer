@@ -435,7 +435,7 @@
                                                     <textarea class="form-control" placeholder="Bạn cảm thấy khóa học thế nào?" rows="4" style="height: 100px" name="Content"></textarea>
                                                 </div>
                                                 <input type="hidden" value="@ViewBag.Classes.Class_ID" name="ClassID" />
-                                                <input type="hidden" value="@ViewBag.UserDetails.User_ID" name="UserID" />
+                                                <input type="hidden" value="@User.Identity.Name" name="UserName" />
                                                 <div class="comment-btns mt-2">
                                                     <div class="row">
                                                         <div class="col-6">
