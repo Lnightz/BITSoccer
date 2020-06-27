@@ -27,6 +27,8 @@ namespace BITSoccer.Models
     
         public int Class_ID { get; set; }
         public string Name { get; set; }
+        [Required]
+        [Range(1,50)]
         public Nullable<int> Quanity { get; set; }
         public Nullable<decimal> Prices { get; set; }
         public Nullable<decimal> PromoPrices { get; set; }
@@ -37,6 +39,8 @@ namespace BITSoccer.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> EndDay { get; set; }
+        [Required]
+        [Range(1, 50)]
         public Nullable<int> MinQuanity { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }

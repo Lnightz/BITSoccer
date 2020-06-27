@@ -11,7 +11,8 @@ namespace BITSoccer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Coach : UploadImage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,7 +29,10 @@ namespace BITSoccer.Models
         public string ModifyBy { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Gender { get; set; }
+        [Range(1,1000)]
         public Nullable<int> Age { get; set; }
+        [StringLength(10,MinimumLength =1)]
+        [RegularExpression("^[0-9]*$")]
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Passport { get; set; }

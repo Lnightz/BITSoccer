@@ -11,6 +11,7 @@ namespace BITSoccer.Models
         [Required]
         public string UserName { get; set; }
         [Required]
+        [StringLength(16,MinimumLength =8)]
         public string Password { get; set; }
         public string RePassword { get; set; }
 
@@ -33,6 +34,8 @@ namespace BITSoccer.Models
         [Required]
         public string Gender { get; set; }
         [Required]
+        [StringLength(10,MinimumLength =1)]
+        [RegularExpression("^[0-9]*$")]
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
 
